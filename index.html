@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealtyFind MX - Encuentra tu Casa Soñada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&subset=latin,latin-ext&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Tierrasmx/assets/css/main.css">
+    <link rel="stylesheet" href="Tierrasmx/assets/css/recommendations.css">
+    <link rel="stylesheet" href="Tierrasmx/assets/css/responsive.css">
+</head>
+<body>
+    <!-- New Header Structure -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#" class="brand">RealtyFind MX</a>
+                </div>
+
+                <!-- Primary Navigation -->
+                <nav class="primary-nav">
+                    <a href="#">Comprar</a>
+                    <a href="#">Rentar</a>
+                    <a href="#">Vender</a>
+                    <a href="#">Créditos</a>
+                    <a href="#">Agencias</a>
+                </nav>
+
+                <!-- Secondary Actions -->
+                <div class="secondary-actions">
+                    <a href="#">Administrar Alquileres</a>
+                    <a href="#">Anunciar</a>
+                    <a href="#">Ayuda</a>
+                    <button class="btn btn-primary">Iniciar Sesión</button>
+                    <button class="btn btn-ghost">Unirse</button>
+                </div>
+
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="active">ES</button>
+                    <button>EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Encuentra tu Casa Soñada en México</h1>
+                <p>Busca millones de propiedades y conéctate con profesionales inmobiliarios locales</p>
+                
+                <!-- Search Form -->
+                <div class="search-form">
+                    <input type="text" placeholder="Ingresa estado, ciudad o colonia">
+                    <select>
+                        <option>Tipo de Propiedad</option>
+                        <option>Casa</option>
+                        <option>Departamento</option>
+                    </select>
+                    <button class="btn btn-search"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+            </div>
+            
+            <!-- Background Image -->
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixid=M3wzNjM5Nzd8MHwxfHNlYXJjaHwxfHxpY2UlMjBmaW5hbmNpYWwlMjBmaW5hbmNpYWwlMjBmaW5hbmNpYWwlMjBmaW5hbmNpYWUlfGVufDB8fHx8MTF8MA&ixlib=rb-4.0.3&w=1200" 
+                 alt="Propiedad destacada" class="hero-image">
+    </div>
+</section>
+
+    <!-- Featured Properties -->
+    <section class="section section-featured">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Propiedades Destacadas</h2>
+                <p class="section-subtitle">Descubre las propiedades más populares en tu zona</p>
+            </div>
+            
+            <div class="properties-grid" id="featuredProperties">
+                <!-- Property Card 1 - Mexico City -->
+                <div class="property-card" data-id="mx-cdmx-polanco-123-5500000">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Departamento moderno en Polanco, CDMX">
+                        <div class="property-badge sale">En Venta</div>
+                        <div class="property-badge mx">México</div>
+                        <button class="favorite-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">
+                            <i class="fas fa-coins"></i> 
+                            <span class="mxn-price">$5,500,000 MXN</span>
+                        </div>
+                        <div class="property-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Polanco, Miguel Hidalgo
+                        </div>
+                        <div class="location-hierarchy">
+                            <span class="location-item">CDMX</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Miguel Hidalgo</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Polanco</span>
+                        </div>
+                        <div class="property-stats">
+                            <div class="stat">
+                                <i class="fas fa-bed"></i>
+                                2 recámaras
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-bath"></i>
+                                2 baños
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-ruler-combined"></i>
+                                85 m²
+                            </div>
+                        </div>
+                        <div class="property-features">
+                            <span class="feature-badge seguridad">
+                                <i class="fas fa-shield-alt"></i> Seguridad 24/7
+                            </span>
+                            <span class="feature-badge">
+                                <i class="fas fa-car"></i> Estacionamiento
+                            </span>
+                        </div>
+                        <p class="property-description">Hermoso departamento moderno en Polanco con vista a la ciudad, excelente ubicación cerca de centros comerciales y restaurantes.</p>
+                        <a href="#" class="view-property">Ver propiedad <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Property Card 2 - Guadalajara -->
+                <div class="property-card" data-id="mx-jalisco-guadalajara-456-3200000">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1600596542815-4a3d32c18c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Casa familiar en Providencia, Guadalajara">
+                        <div class="property-badge sale">En Venta</div>
+                        <div class="property-badge mx">México</div>
+                        <button class="favorite-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">
+                            <i class="fas fa-coins"></i> 
+                            <span class="mxn-price">$3,200,000 MXN</span>
+                        </div>
+                        <div class="property-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Providencia, Guadalajara
+                        </div>
+                        <div class="location-hierarchy">
+                            <span class="location-item">Jalisco</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Guadalajara</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Providencia</span>
+                        </div>
+                        <div class="property-stats">
+                            <div class="stat">
+                                <i class="fas fa-bed"></i>
+                                3 recámaras
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-bath"></i>
+                                2.5 baños
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-ruler-combined"></i>
+                                180 m²
+                            </div>
+                        </div>
+                        <div class="property-features">
+                            <span class="feature-badge seguridad">
+                                <i class="fas fa-shield-alt"></i> Seguridad
+                            </span>
+                            <span class="feature-badge">
+                                <i class="fas fa-utensils"></i> Gas Natural
+                            </span>
+                            <span class="feature-badge">
+                                <i class="fas fa-tint"></i> Agua Potable
+                            </span>
+                        </div>
+                        <p class="property-description">Casa familiar en zona segura de Providencia, con jardín privado y acabados de calidad. Cerca de escuelas y centros comerciales.</p>
+                        <a href="#" class="view-property">Ver propiedad <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Property Card 3 - Monterrey -->
+                <div class="property-card" data-id="mx-nl-monterrey-santa-catarina-4500000">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Terreno en Santa Catarina, Monterrey">
+                        <div class="property-badge sale">En Venta</div>
+                        <div class="property-badge mx">México</div>
+                        <button class="favorite-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">
+                            <i class="fas fa-coins"></i> 
+                            <span class="mxn-price">$4,500,000 MXN</span>
+                        </div>
+                        <div class="property-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Santa Catarina, Monterrey
+                        </div>
+                        <div class="location-hierarchy">
+                            <span class="location-item">Nuevo León</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Monterrey</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Santa Catarina</span>
+                        </div>
+                        <div class="property-stats">
+                            <div class="stat">
+                                <i class="fas fa-ruler-combined"></i>
+                                500 m² de terreno
+                            </div>
+                        </div>
+                        <div class="property-features">
+                            <span class="feature-badge">
+                                <i class="fas fa-road"></i> Acceso Pavimentado
+                            </span>
+                            <span class="feature-badge">
+                                <i class="fas fa-bolt"></i> Luz y Agua
+                            </span>
+                        </div>
+                        <p class="property-description">Terreno plano en excelente ubicación de Santa Catarina, ideal para construcción residencial o comercial. Documentación en regla.</p>
+                        <a href="#" class="view-property">Ver propiedad <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-all-wrapper text-center">
+                <button class="btn btn-primary btn-large">Ver Todas las Propiedades</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add this section below your featured properties -->
+    <section class="recommendations-section hidden" id="recommendationsSection">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Propiedades que Tal Vez Te Gusten</h2>
+                <p class="section-subtitle">Propiedades similares a las que has visto y guardado</p>
+            </div>
+            
+            <div class="properties-grid" id="recommendationsGrid">
+                <div class="recommendations-empty">
+                    <div class="recommendations-empty-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="recommendations-empty-title">Sin recomendaciones aún</h3>
+                    <p class="recommendations-empty-text">Navega por las propiedades para ver recomendaciones personalizadas basadas en tus preferencias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section class="section recommendations-section" id="recommendationsSection">
+        <div class="container">
+            <div class="section-header">
+                <div class="recommendations-header">
+                    <h2 class="recommendations-title">Propiedades que Tal Vez Te Gusten</h2>
+                    <a href="#" class="view-all-link">Ver todas las recomendaciones <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <p class="section-subtitle">Propiedades similares a las que has visto y guardado</p>
+            </div>
+            
+            <div class="properties-grid" id="recommendationsGrid">
+                <!-- Recommendations will be populated dynamically -->
+                <div class="recommendations-empty">
+                    <div class="recommendations-empty-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="recommendations-empty-title">Sin recomendaciones aún</h3>
+                    <p class="recommendations-empty-text">Navega por las propiedades para ver recomendaciones personalizadas basadas en tus preferencias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿Por Qué Elegir RealtyFind MX?</h2>
+                <p class="section-subtitle">Tu socio de confianza en bienes raíces en México</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title">Búsqueda Avanzada</h3>
+                    <p class="service-description">Encuentra exactamente lo que buscas con nuestros filtros y herramientas de búsqueda poderosas adaptadas al mercado mexicano.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="service-title">Experiencia Local</h3>
+                    <p class="service-description">Conéctate con agentes locales experimentados que conocen tu mercado a fondo, desde CDMX hasta Cancún.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="service-title">Servicio Personalizado</h3>
+                    <p class="service-description">Obtén recomendaciones personalizadas y guarda tus propiedades favoritas para no perder de vista tus opciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        RealtyFind <span class="mx-flag">MX</span>
+                    </a>
+                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Compradores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Buscar Propiedades</a></li>
+                        <li><a href="#">Calculadora de Crédito</a></li>
+                        <li><a href="#">Guía de Compra</a></li>
+                        <li><a href="#">Encuentra un Agente</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Vendedores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Vende tu Propiedad</a></li>
+                        <li><a href="#">Valor de tu Propiedad</a></li>
+                        <li><a href="#">Guía de Venta</a></li>
+                        <li><a href="#">Lista tu Propiedad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Compañía</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Trabajos</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 RealtyFind MX. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="Tierrasmx/assets/js/main.js"></script>
+    <script src="Tierrasmx/assets/js/recommendations.js"></script>
+    <script src="Tierrasmx/assets/js/localization.js"></script>
+    <script src="Tierrasmx/assets/js/utils.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "mx-cdmx-polanco-123-5500000",
+    "title_es": "Departamento moderno en Polanco",
+    "price": 5500000,
+    "currency": "MXN",
+    "property_type": "departamento",
+    "location": {
+      "country": "México",
+      "state": "Ciudad de México",
+      "city": "Ciudad de México",
+      "neighborhood": "Polanco",
+      "address": "Av. Presidente Masaryk 123",
+      "coordinates": { "lat": 19.42847, "lng": -99.19433 }
+    },
+    "features": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "construction_size": 85,
+      "land_size": 85,
+      "security": true,
+      "natural_gas": true,
+      "potable_water": true
+    }
+  },
+  {
+    "id": "mx-jalisco-guadalajara-456-3200000",
+    "title_es": "Casa familiar en Providencia",
+    "price": 3200000,
+    "currency": "MXN",
+    "property_type": "casa",
+    "location": {
+      "country": "México",
+      "state": "Jalisco",
+      "city": "Guadalajara",
+      "neighborhood": "Providencia",
+      "address": "Av. Vallarta 456",
+      "coordinates": { "lat": 20.6736, "lng": -103.3493 }
+    },
+    "features": {
+      "bedrooms": 3,
+      "bathrooms": 2.5,
+      "parking": 2,
+      "construction_size": 180,
+      "land_size": 220,
+      "security": true,
+      "natural_gas": true,
+      "potable_water": true
+    }
+  },
+  {
+    "id": "mx-nl-monterrey-santa-catarina-4500000",
+    "title_es": "Terreno en Santa Catarina",
+    "price": 4500000,
+    "currency": "MXN",
+    "property_type": "terreno",
+    "location": {
+      "country": "México",
+      "state": "Nuevo León",
+      "city": "Monterrey",
+      "neighborhood": "Santa Catarina",
+      "address": "Carretera Nacional 750",
+      "coordinates": { "lat": 25.6866, "lng": -100.3161 }
+    },
+    "features": {
+      "construction_size": 0,
+      "land_size": 500,
+      "road_access": true,
+      "electricity": true,
+      "water": true
+    }
+  }
+]

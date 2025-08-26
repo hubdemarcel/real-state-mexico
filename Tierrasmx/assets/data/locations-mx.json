@@ -1,0 +1,67 @@
+{
+  "estados": [
+    {
+      "id": "cdmx",
+      "nombre": "Ciudad de México",
+      "ciudades": [
+        {
+          "id": "cuauhtemoc",
+          "nombre": "Cuauhtémoc",
+          "colonias": ["Centro Histórico", "Juárez", "Roma", "Condesa", "Polanco"]
+        },
+        {
+          "id": "miguel-hidalgo",
+          "nombre": "Miguel Hidalgo",
+          "colonias": ["Polanco", "Lomas de Chapultepec", "Anzures"]
+        },
+        {
+          "id": "benito-juarez",
+          "nombre": "Benito Juárez",
+          "colonias": ["Del Valle", "Nápoles", "Portales"]
+        }
+      ]
+    },
+    {
+      "id": "jalisco",
+      "nombre": "Jalisco",
+      "ciudades": [
+        {
+          "id": "guadalajara",
+          "nombre": "Guadalajara",
+          "colonias": ["Centro", "Chapalita", "Providencia", "Americana"]
+        },
+        {
+          "id": "zapopan",
+          "nombre": "Zapopan",
+          "colonias": ["Puerta de Hierro", "Valle de los Profetas", "Jardines del Bosque"]
+        },
+        {
+          "id": "tonala",
+          "nombre": "Tonalá",
+          "colonias": ["Tonalá Centro", "Santa Tere", "Parque Industrial"]
+        }
+      ]
+    },
+    {
+      "id": "nuevo-leon",
+      "nombre": "Nuevo León",
+      "ciudades": [
+        {
+          "id": "monterrey",
+          "nombre": "Monterrey",
+          "colonias": ["Valle Oriente", "Valle Alto", "San Pedro Garza García"]
+        },
+        {
+          "id": "santa-catarina",
+          "nombre": "Santa Catarina",
+          "colonias": ["Santa Catarina", "Valle de Santa Catarina"]
+        },
+        {
+          "id": "guadalupe",
+          "nombre": "Guadalupe",
+          "colonias": ["Guadalupe Centro", "Unidad Valle Alto"]
+        }
+      ]
+    }
+  ]
+}

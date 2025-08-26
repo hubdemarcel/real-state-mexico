@@ -1,0 +1,117 @@
+/* Recommendations Section */
+.recommendations-section {
+    padding: 4rem 0;
+    background-color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.recommendations-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.recommendations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.recommendations-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.view-all-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.view-all-link:hover {
+    color: #1d4ed8;
+}
+
+.view-all-link i {
+    transition: transform 0.2s ease;
+}
+
+.view-all-link:hover i {
+    transform: translateX(3px);
+}
+
+.recommendations-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+}
+
+.recommendations-empty-icon {
+    font-size: 3rem;
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+}
+
+.recommendations-empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.recommendations-empty-text {
+    color: #6b7280;
+    max-width: 32rem;
+    margin: 0 auto;
+}
+
+/* Recommendation Badges */
+.viewed-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.saved-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Recommendation Indicators */
+.similar-property {
+    border-left: 4px solid #2563eb;
+}
+
+.similar-property .property-content {
+    padding-left: 1.25rem;
+}

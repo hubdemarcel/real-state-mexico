@@ -1,0 +1,64 @@
+{
+  "header": {
+    "logo": "RealtyFind MX",
+    "nav": {
+      "buy": "Comprar",
+      "rent": "Rentar",
+      "sell": "Vender",
+      "agents": "Agentes",
+      "mortgage": "Créditos"
+    }
+  },
+  "hero": {
+    "title": "Encuentra tu Casa Soñada en México",
+    "subtitle": "Busca millones de propiedades y conéctate con profesionales inmobiliarios locales",
+    "search_placeholder": "Ingresa estado, ciudad o colonia",
+    "search_button": "Buscar"
+  },
+  "property_types": {
+    "casa": "Casa",
+    "departamento": "Departamento",
+    "terreno": "Terreno",
+    "local_comercial": "Local Comercial"
+  },
+  "property_badges": {
+    "sale": "En Venta",
+    "rent": "En Renta"
+  },
+  "features": {
+    "seguridad": "Seguridad 24/7",
+    "gas_natural": "Gas Natural",
+    "agua_potable": "Agua Potable",
+    "estacionamiento": "Estacionamiento"
+  },
+  "recommendations": {
+    "title": "Propiedades que Tal Vez Te Gusten",
+    "subtitle": "Propiedades similares a las que has visto y guardado",
+    "empty_title": "Sin recomendaciones aún",
+    "empty_text": "Navega por las propiedades para ver recomendaciones personalizadas basadas en tus preferencias."
+  },
+  "services": {
+    "title": "¿Por Qué Elegir RealtyFind MX?",
+    "subtitle": "Tu socio de confianza en bienes raíces en México",
+    "search": {
+      "title": "Búsqueda Avanzada",
+      "description": "Encuentra exactamente lo que buscas con nuestros filtros y herramientas de búsqueda poderosas adaptadas al mercado mexicano."
+    },
+    "local": {
+      "title": "Experiencia Local",
+      "description": "Conéctate con agentes locales experimentados que conocen tu mercado a fondo, desde CDMX hasta Cancún."
+    },
+    "personalized": {
+      "title": "Servicio Personalizado",
+      "description": "Obtén recomendaciones personalizadas y guarda tus propiedades favoritas para no perder de vista tus opciones."
+    }
+  },
+  "notifications": {
+    "search_required": "Por favor ingresa una ubicación para buscar",
+    "searching": "Buscando {type} en {location}...",
+    "view_property": "Abriendo detalles para propiedad en {address}",
+    "added_favorites": "Añadido a favoritos",
+    "removed_favorites": "Removido de favoritos",
+    "language_changed": "Idioma cambiado a {language}"
+  }
+}
