@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealtyFind MX - Construcciones Nuevas en México</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --mexico-blue: #0068ff;
+            --mexico-green: #10b981;
+            --mexico-red: #ef4444;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.125rem;
+            --radius: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--gray-700);
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            color: var(--mexico-green);
+        }
+
+        .primary-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            line-height: 80px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .secondary-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .secondary-actions a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            line-height: 80px;
+        }
+
+        .language-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-toggle button {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .language-toggle button.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--gray-700);
+        }
+
+        .btn-ghost:hover {
+            background-color: var(--gray-100);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+
+        /* Search Bar Styles */
+        .search-bar {
+            background-color: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 0;
+        }
+
+        .search-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .search-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .filter-select {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            background-color: #ffffff;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--gray-900);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+            min-width: 180px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-input {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            background-color: #ffffff;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--gray-900);
+            min-width: 300px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* New Homes Banner */
+        .new-homes-banner {
+            background: linear-gradient(135deg, #0ea5e9, #2563eb);
+            color: white;
+            padding: 2rem 0;
+            margin: 2rem 0;
+            border-radius: var(--radius-lg);
+        }
+
+        .new-homes-banner-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .new-homes-banner-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .new-homes-banner-text {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .btn-banner {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .btn-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-new-homes {
+            background-color: var(--gray-50);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+        }
+
+        /* Property Cards */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+
+        .property-card {
+            background-color: #ffffff;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid var(--gray-200);
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .property-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.05);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        .property-badge.new {
+            background-color: var(--secondary);
+        }
+
+        .property-badge.sale {
+            background-color: var(--primary);
+        }
+
+        .property-badge.mx {
+            background-color: #c026d3;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.85);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favorite-btn:hover {
+            background-color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn i {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+        }
+
+        .favorite-btn.active i {
+            color: #ef4444;
+        }
+
+        .viewed-badge {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .property-content {
+            padding: 1.5rem;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mxn-price {
+            color: var(--secondary);
+            font-weight: 800;
+        }
+
+        .property-address {
+            display: flex;
+            align-items: center;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .property-address i {
+            margin-right: 0.25rem;
+            color: var(--primary);
+        }
+
+        .location-hierarchy {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .location-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .location-separator {
+            margin: 0 0.25rem;
+            color: var(--gray-400);
+        }
+
+        .property-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .stat i {
+            margin-right: 0.25rem;
+            color: var(--primary);
+        }
+
+        .property-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--gray-700);
+        }
+
+        .feature-badge i {
+            margin-right: 0.25rem;
+            color: var(--secondary);
+        }
+
+        .feature-badge.new-home {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        .feature-badge.new-home i {
+            color: #059669;
+        }
+
+        .property-description {
+            color: var(--gray-700);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            min-height: 60px;
+        }
+
+        .view-property {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .view-property:hover {
+            color: var(--primary-dark);
+        }
+
+        .view-property i {
+            margin-left: 0.25rem;
+            transition: transform 0.2s;
+        }
+
+        .view-property:hover i {
+            transform: translateX(3px);
+        }
+
+        .viewed-property::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
+        /* Recommendations Section */
+        .recommendations-section {
+            padding: 4rem 0;
+            background-color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .recommendations-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .recommendations-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .recommendations-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .view-all-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: var(--transition);
+        }
+
+        .view-all-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .view-all-link i {
+            transition: transform 0.2s ease;
+        }
+
+        .view-all-link:hover i {
+            transform: translateX(3px);
+        }
+
+        .recommendations-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--gray-50);
+            border-radius: var(--radius-lg);
+            margin: 2rem 0;
+        }
+
+        .recommendations-empty-icon {
+            font-size: 3rem;
+            color: var(--gray-300);
+            margin-bottom: 1rem;
+        }
+
+        .recommendations-empty-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendations-empty-text {
+            color: var(--gray-600);
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        /* No Results State */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: white;
+            border-radius: var(--radius-lg);
+            margin: 2rem 0;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            color: var(--gray-300);
+            margin-bottom: 1.5rem;
+        }
+
+        .no-results-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .no-results-text {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .suggested-searches {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .suggested-search {
+            padding: 0.5rem 1rem;
+            background-color: var(--gray-100);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .suggested-search:hover {
+            background-color: var(--gray-200);
+        }
+
+        .btn-primary-large {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.75rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary-large:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--gray-900);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo i {
+            color: var(--mexico-green);
+        }
+
+        .footer-description {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: var(--gray-900);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            font-weight: 500;
+            max-width: 400px;
+            border-left: 4px solid var(--primary);
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .notification.success {
+            border-left-color: var(--secondary);
+        }
+
+        .notification.warning {
+            border-left-color: var(--warning);
+        }
+
+        .notification.error {
+            border-left-color: var(--danger);
+        }
+
+        .notification-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .properties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .suggested-searches {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 2rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .mx-flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .mx-flag::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 12px;
+            background: linear-gradient(to bottom, #006341 33%, #FFFFFF 33%, #FFFFFF 66%, #CE1126 66%);
+            border: 1px solid var(--gray-300);
+            border-radius: 2px;
+            vertical-align: middle;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Print Styles */
+        @media print {
+            .header,
+            .footer {
+                display: none;
+            }
+            
+            .property-card {
+                break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <i class="fas fa-home logo-icon"></i>
+                RealtyFind <span class="mx-flag">MX</span>
+            </a>
+            
+            <!-- Navigation -->
+            <nav class="primary-nav">
+                <a href="#">Comprar</a>
+                <a href="#">Rentar</a>
+                <a href="#">Vender</a>
+                <a href="#" class="active">Construcciones Nuevas</a>
+                <a href="#">Agentes</a>
+                <a href="#">Créditos</a>
+            </nav>
+            
+            <!-- Auth & Language -->
+            <div class="secondary-actions">
+                <button class="language-toggle active" data-lang="es">ES</button>
+                <button class="language-toggle" data-lang="en">EN</button>
+                <button class="btn btn-ghost">Iniciar Sesión</button>
+                <button class="btn btn-primary">Unirse</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-container">
+            <div class="search-filters">
+                <div class="filter-group">
+                    <label for="location-search" class="filter-label">Ubicación</label>
+                    <input type="text" id="location-search" class="search-input" placeholder="Ingresa estado, ciudad o colonia">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="property-type" class="filter-label">Tipo de Propiedad</label>
+                    <select id="property-type" class="filter-select">
+                        <option value="all">Todas</option>
+                        <option value="casa">Casa</option>
+                        <option value="departamento">Departamento</option>
+                        <option value="terreno">Terreno</option>
+                        <option value="local-comercial">Local Comercial</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="price-range" class="filter-label">Rango de Precio</label>
+                    <select id="price-range" class="filter-select">
+                        <option value="all">Todos los precios</option>
+                        <option value="0-2000000">$0 - $2,000,000 MXN</option>
+                        <option value="2000000-5000000">$2,000,000 - $5,000,000 MXN</option>
+                        <option value="5000000+">$5,000,000+ MXN</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group" style="align-self: flex-end;">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- New Homes Banner -->
+        <div class="new-homes-banner">
+            <div class="new-homes-banner-content">
+                <h1 class="new-homes-banner-title">Encuentra tu Nueva Construcción en México</h1>
+                <p class="new-homes-banner-text">Descubre las últimas propiedades de construcción nueva en las mejores zonas de México con acabados modernos y garantía de calidad.</p>
+                <a href="#" class="btn-banner">Conoce los beneficios de comprar una casa nueva</a>
+            </div>
+        </div>
+
+        <!-- New Construction Properties -->
+        <section class="section section-new-homes">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Construcciones Nuevas en México</h2>
+                    <p class="section-subtitle">Propiedades de construcción nueva con acabados modernos y garantía</p>
+                </div>
+                
+                <!-- No Results State - This would be hidden when results exist -->
+                <div class="no-results" id="noResults">
+                    <div class="no-results-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="no-results-title">No se encontraron construcciones nuevas</h3>
+                    <p class="no-results-text">No pudimos encontrar resultados de construcciones nuevas en tu ubicación. Intenta cambiando tu búsqueda.</p>
+                    
+                    <div class="suggested-searches">
+                        <div class="suggested-search">Construcciones Nuevas en CDMX</div>
+                        <div class="suggested-search">Construcciones Nuevas en Guadalajara</div>
+                        <div class="suggested-search">Construcciones Nuevas en Monterrey</div>
+                        <div class="suggested-search">Construcciones Nuevas en Cancún</div>
+                    </div>
+                    
+                    <button class="btn-primary-large">
+                        <i class="fas fa-search"></i> Realizar una nueva búsqueda
+                    </button>
+                </div>
+                
+                <!-- Property Grid - This would be hidden when no results -->
+                <div class="properties-grid" id="propertyGrid" style="display: none;">
+                    <!-- Property Card 1 - Mexico City -->
+                    <div class="property-card" data-id="mx-cdmx-santa-fe-123-8500000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Departamento nuevo en Santa Fe, CDMX">
+                            <div class="property-badge new">Nueva Construcción</div>
+                            <div class="property-badge mx">México</div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins"></i> 
+                                <span class="mxn-price">$8,500,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Santa Fe, Cuajimalpa
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">CDMX</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Cuajimalpa</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Santa Fe</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-bed"></i>
+                                    3 recámaras
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-bath"></i>
+                                    3.5 baños
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined"></i>
+                                    160 m²
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge new-home">
+                                    <i class="fas fa-building"></i> Entrega 2024
+                                </span>
+                                <span class="feature-badge new-home">
+                                    <i class="fas fa-shield-alt"></i> Garantía 5 años
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-car"></i> 2 Estacionamientos
+                                </span>
+                            </div>
+                            <p class="property-description">Departamento nuevo en Santa Fe con acabados de lujo, vista panorámica y amenities exclusivos. Entrega programada para Q4 2024.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right"></i>
+                                <span class="sr-only">en Santa Fe, Cuajimalpa</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 2 - Guadalajara -->
+                    <div class="property-card" data-id="mx-jalisco-zapopan-456-4200000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600596542815-4a3d32c18c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Casa nueva en Puerta de Hierro, Guadalajara">
+                            <div class="property-badge new">Nueva Construcción</div>
+                            <div class="property-badge mx">México</div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins"></i> 
+                                <span class="mxn-price">$4,200,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Puerta de Hierro, Zapopan
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">Jalisco</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Zapopan</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Puerta de Hierro</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-bed"></i>
+                                    4 recámaras
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-bath"></i>
+                                    3.5 baños
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined"></i>
+                                    240 m²
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge new-home">
+                                    <i class="fas fa-building"></i> Entrega 2024
+                                </span>
+                                <span class="feature-badge new-home">
+                                    <i class="fas fa-shield-alt"></i> Garantía 5 años
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-swimming-pool"></i> Alberca
+                                </span>
+                            </div>
+                            <p class="property-description">Casa nueva en Puerta de Hierro con jardín privado, alberca y seguridad 24/7. Acabados de primera y diseño moderno. Entrega Q3 2024.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right"></i>
+                                <span class="sr-only">en Puerta de Hierro, Zapopan</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 3 - Monterrey -->
+                    <div class="property-card" data-id="mx-nl-san-pedro-789-12000000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Departamento nuevo en San Pedro, Monterrey">
+                            <div class="property-badge new">Nueva Construcción</div>
+                            <div class="property-badge mx">México</div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins"></i> 
+                                <span class="mxn-price">$12,000,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                San Pedro Garza García
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">Nuevo León</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Monterrey</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">San Pedro</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-bed"></i>
+                                    3 recámaras
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-bath"></i>
+                                    3.5 baños
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined"></i>
+                                    210 m²
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge new-home">
+                                    <i class="fas fa-building"></i> Entrega 2024
+                                </span>
+                                <span class="feature-badge new-home">
+                                    <i class="fas fa-shield-alt"></i> Garantía 5 años
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-car"></i> 3 Estacionamientos
+                                </span>
+                            </div>
+                            <p class="property-description">Departamento de lujo en San Pedro con vista panorámica, amenities completos y seguridad 24/7. Entrega programada para Q2 2024.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right"></i>
+                                <span class="sr-only">en San Pedro Garza García</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="section recommendations-section" id="recommendationsSection">
+            <div class="container">
+                <div class="section-header">
+                    <div class="recommendations-header">
+                        <h2 class="recommendations-title">Construcciones Nuevas que Tal Vez Te Gusten</h2>
+                        <a href="#" class="view-all-link">Ver todas las recomendaciones <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <p class="section-subtitle">Basado en tus búsquedas recientes y propiedades vistas</p>
+                </div>
+                
+                <div class="properties-grid" id="recommendationsGrid">
+                    <!-- Recommendations will be populated dynamically -->
+                    <div class="recommendations-empty">
+                        <div class="recommendations-empty-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="recommendations-empty-title">Sin recomendaciones aún</h3>
+                        <p class="recommendations-empty-text">Navega por las construcciones nuevas para ver recomendaciones personalizadas basadas en tus preferencias.</p>
+                    </div>
+                </div>
+                
+                <div class="recommendation-info" aria-hidden="true">
+                    <h3 class="info-title">¿Cómo funcionan estas recomendaciones?</h3>
+                    <p class="info-text">Las recomendaciones se basan en tu ubicación y actividad de búsqueda, como las propiedades que has visto y guardado y los filtros que has utilizado. Usamos esta información para mostrarte propiedades similares, para que no te pierdas ninguna oportunidad.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        RealtyFind <span class="mx-flag">MX</span>
+                    </a>
+                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Compradores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Buscar Propiedades</a></li>
+                        <li><a href="#">Calculadora de Crédito</a></li>
+                        <li><a href="#">Guía de Compra</a></li>
+                        <li><a href="#">Encuentra un Agente</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Vendedores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Vende tu Propiedad</a></li>
+                        <li><a href="#">Valor de tu Propiedad</a></li>
+                        <li><a href="#">Guía de Venta</a></li>
+                        <li><a href="#">Lista tu Propiedad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Compañía</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Trabajos</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 RealtyFind MX. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Content Loaded Event
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMobileMenu();
+            initializeSearchForm();
+            initializeFavoriteButtons();
+            initializePropertyCards();
+            initializeRecommendationSystem();
+            initializeNoResults();
+        });
+
+        // Mobile Menu Functionality
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                    
+                    // Toggle icon
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileNav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close mobile menu when clicking on links
+                const mobileLinks = mobileNav.querySelectorAll('.nav-link-mobile');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+                        mobileNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        }
+
+        // Search Form Functionality
+        function initializeSearchForm() {
+            const searchInput = document.getElementById('location-search');
+            const searchButton = document.querySelector('.search-button');
+            
+            if (searchInput) {
+                // Handle Enter key in search input
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        performSearch();
+                    }
+                });
+            }
+
+            if (searchButton) {
+                searchButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    performSearch();
+                });
+            }
+        }
+
+        // Perform Search Function
+        function performSearch() {
+            const searchInput = document.getElementById('location-search');
+            const location = searchInput.value.trim();
+
+            if (!location) {
+                showNotification('Por favor ingresa una ubicación para buscar', 'warning');
+                searchInput.focus();
+                return;
+            }
+
+            // Show loading state
+            const originalText = searchButton.innerHTML;
+            searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
+            searchButton.disabled = true;
+
+            // Simulate search API call
+            setTimeout(() => {
+                // Reset button
+                searchButton.innerHTML = originalText;
+                searchButton.disabled = false;
+
+                // Show results notification
+                showNotification(`Buscando construcciones nuevas en ${location}...`, 'success');
+                
+                // Check if we have results (in a real implementation, this would come from API)
+                const hasResults = Math.random() > 0.3; // 70% chance of having results
+                
+                if (hasResults) {
+                    // Show results
+                    document.getElementById('noResults').style.display = 'none';
+                    document.getElementById('propertyGrid').style.display = 'grid';
+                    
+                    // Scroll to results
+                    const resultsSection = document.querySelector('.section-new-homes');
+                    if (resultsSection) {
+                        resultsSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    // Show no results
+                    document.getElementById('noResults').style.display = 'block';
+                    document.getElementById('propertyGrid').style.display = 'none';
+                    
+                    // Update no results message
+                    const noResultsText = document.querySelector('.no-results-text');
+                    noResultsText.textContent = `No pudimos encontrar resultados de construcciones nuevas en ${location}. Intenta cambiando tu búsqueda.`;
+                }
+            }, 1500);
+        }
+
+        // Favorite Buttons Functionality
+        function initializeFavoriteButtons() {
+            const favoriteButtons = document.querySelectorAll('.favorite-btn');
+            
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const icon = this.querySelector('i');
+                    const propertyCard = this.closest('.property-card');
+                    const propertyId = propertyCard.dataset.id;
+                    const isFavorited = icon.classList.contains('fas');
+                    
+                    if (isFavorited) {
+                        // Remove from favorites
+                        icon.classList.remove('fas', 'fa-heart');
+                        icon.classList.add('far', 'fa-heart');
+                        propertyCard.querySelector('.saved-badge')?.remove();
+                        
+                        // Remove from localStorage
+                        let savedProperties = getLocalStorageItem('savedProperties', []);
+                        savedProperties = savedProperties.filter(p => p.id !== propertyId);
+                        setLocalStorageItem('savedProperties', savedProperties);
+                        
+                        showNotification('Removido de favoritos', 'info');
+                    } else {
+                        // Add to favorites
+                        icon.classList.remove('far', 'fa-heart');
+                        icon.classList.add('fas', 'fa-heart');
+                        
+                        // Add saved badge
+                        if (!propertyCard.querySelector('.saved-badge')) {
+                            const badge = document.createElement('div');
+                            badge.className = 'saved-badge';
+                            badge.innerHTML = '<i class="fas fa-heart"></i> Guardado';
+                            propertyCard.querySelector('.property-image').appendChild(badge);
+                        }
+                        
+                        // Save to localStorage
+                        const propertyDetails = getPropertyDetails(propertyCard);
+                        let savedProperties = getLocalStorageItem('savedProperties', []);
+                        
+                        // Remove if already exists
+                        savedProperties = savedProperties.filter(p => p.id !== propertyId);
+                        
+                        // Add with timestamp
+                        savedProperties.push({
+                            id: propertyId,
+                            timestamp: Date.now(),
+                            details: propertyDetails
+                        });
+                        
+                        // Keep only the 10 most recent
+                        savedProperties = savedProperties.slice(-10);
+                        setLocalStorageItem('savedProperties', savedProperties);
+                        
+                        showNotification('Añadido a favoritos', 'success');
+                    }
+                    
+                    // Add animation
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        }
+
+        // Property Cards Interaction
+        function initializePropertyCards() {
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            propertyCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking favorite button
+                    if (e.target.closest('.favorite-btn')) {
+                        return;
+                    }
+                    
+                    // Get property details
+                    const price = this.querySelector('.property-price').textContent;
+                    const address = this.querySelector('.property-address').textContent.trim();
+                    
+                    // Mark as viewed
+                    markPropertyAsViewed(this.dataset.id, this);
+                    
+                    // Simulate opening property details
+                    showNotification(`Abriendo detalles para propiedad en ${address}`, 'info');
+                });
+            });
+        }
+
+        // Recommendation System
+        function initializeRecommendationSystem() {
+            // Check if user has viewed/saved properties
+            const viewedProperties = getLocalStorageItem('viewedProperties', []);
+            const savedProperties = getLocalStorageItem('savedProperties', []);
+            
+            // Show recommendations section if user has activity
+            if (viewedProperties.length > 0 || savedProperties.length > 0) {
+                showRecommendationsSection();
+                
+                // Generate and display recommendations
+                generateNewConstructionRecommendations(viewedProperties, savedProperties);
+            }
+            
+            // Track property views
+            trackPropertyViews();
+        }
+
+        // Track when user views a property
+        function trackPropertyViews() {
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            propertyCards.forEach(card => {
+                // Add viewed class when property card is in viewport for more than 2 seconds
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                if (entry.isIntersecting) {
+                                    const propertyId = card.dataset.id;
+                                    markPropertyAsViewed(propertyId, card);
+                                }
+                            }, 2000);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(card);
+            });
+        }
+
+        // Mark a property as viewed and save to localStorage
+        function markPropertyAsViewed(propertyId, cardElement) {
+            // Add viewed indicator if not already favorited
+            if (!cardElement.classList.contains('viewed-property')) {
+                cardElement.classList.add('viewed-property');
+                
+                // Add viewed badge if not already favorited
+                if (!cardElement.querySelector('.viewed-badge') && 
+                    !cardElement.querySelector('.saved-badge')) {
+                    const badge = document.createElement('div');
+                    badge.className = 'viewed-badge';
+                    badge.innerHTML = '<i class="fas fa-eye"></i> Visto';
+                    cardElement.querySelector('.property-image').appendChild(badge);
+                }
+            }
+            
+            // Save to localStorage
+            let viewedProperties = getLocalStorageItem('viewedProperties', []);
+            
+            // Remove if already exists to update timestamp
+            viewedProperties = viewedProperties.filter(p => p.id !== propertyId);
+            
+            // Add with timestamp
+            viewedProperties.push({
+                id: propertyId,
+                timestamp: Date.now(),
+                details: getPropertyDetails(cardElement)
+            });
+            
+            // Keep only the 10 most recent
+            viewedProperties = viewedProperties.slice(-10);
+            
+            setLocalStorageItem('viewedProperties', viewedProperties);
+            
+            // Show recommendations if needed
+            if (viewedProperties.length === 1) {
+                showRecommendationsSection();
+            }
+        }
+
+        // Get property details for tracking
+        function getPropertyDetails(cardElement) {
+            return {
+                price: cardElement.querySelector('.property-price')?.textContent || '',
+                address: cardElement.querySelector('.property-address')?.textContent.replace('📍', '').trim() || '',
+                bedrooms: cardElement.querySelector('.stat:nth-child(1)')?.textContent || '',
+                bathrooms: cardElement.querySelector('.stat:nth-child(2)')?.textContent || '',
+                size: cardElement.querySelector('.stat:nth-child(3)')?.textContent || '',
+                type: 'new-construction',
+                location: {
+                    estado: cardElement.querySelector('.location-item:nth-child(1)')?.textContent || '',
+                    ciudad: cardElement.querySelector('.location-item:nth-child(3)')?.textContent || '',
+                    colonia: cardElement.querySelector('.location-item:nth-child(5)')?.textContent || ''
+                }
+            };
+        }
+
+        // Show the recommendations section
+        function showRecommendationsSection() {
+            const recommendationsSection = document.getElementById('recommendationsSection');
+            if (recommendationsSection) {
+                recommendationsSection.style.display = 'block';
+                
+                // Animate in
+                setTimeout(() => {
+                    recommendationsSection.classList.add('active');
+                }, 50);
+            }
+        }
+
+        // Generate new construction recommendations
+        function generateNewConstructionRecommendations(viewedProperties, savedProperties) {
+            const recommendationsGrid = document.getElementById('recommendationsGrid');
+            if (!recommendationsGrid) return;
+            
+            // Clear existing recommendations
+            recommendationsGrid.innerHTML = '';
+            
+            // Show loading state
+            recommendationsGrid.innerHTML = `
+                <div class="recommendations-loading" style="text-align: center; padding: 2rem; grid-column: 1/-1;">
+                    <div class="spinner" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; border: 3px solid #dbeafe; border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="color: #6b7280;">Encontrando construcciones nuevas que podrían gustarte...</p>
+                </div>
+            `;
+            
+            // Add spinner animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // Get recommendations based on viewed properties
+                const recommendations = getMexicanNewConstructionRecommendations(viewedProperties, savedProperties);
+                
+                if (recommendations.length > 0) {
+                    // Render recommendations
+                    recommendationsGrid.innerHTML = '';
+                    recommendations.forEach(property => {
+                        recommendationsGrid.appendChild(createRecommendationCard(property));
+                    });
+                    
+                    // Add "View All" link
+                    const viewAll = document.createElement('div');
+                    viewAll.className = 'view-all-wrapper';
+                    viewAll.style.gridColumn = '1/-1';
+                    viewAll.style.marginTop = '1rem';
+                    viewAll.innerHTML = `
+                        <a href="#" class="view-all-link">
+                            Ver todas las construcciones nuevas recomendadas <i class="fas fa-arrow-right"></i>
+                        </a>
+                    `;
+                    
+                    viewAll.querySelector('a').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const propertiesSection = document.querySelector('.section-new-homes');
+                        if (propertiesSection) {
+                            propertiesSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                    
+                    recommendationsGrid.appendChild(viewAll);
+                } else {
+                    // Show empty state
+                    recommendationsGrid.innerHTML = `
+                        <div class="recommendations-empty">
+                            <div class="recommendations-empty-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3 class="recommendations-empty-title">Sin recomendaciones aún</h3>
+                            <p class="recommendations-empty-text">Navega por las construcciones nuevas para ver recomendaciones personalizadas basadas en tus preferencias.</p>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+
+        // Get Mexican-specific new construction recommendations
+        function getMexicanNewConstructionRecommendations(viewedProperties, savedProperties) {
+            // For demo purposes, we'll return some similar properties
+            // In a real implementation, this would use a more sophisticated algorithm
+            
+            // Get the most recently viewed property
+            const mostRecentView = viewedProperties.length > 0 ? 
+                viewedProperties[viewedProperties.length - 1] : null;
+            
+            // If no viewed properties, return empty array
+            if (!mostRecentView) {
+                return [];
+            }
+            
+            // Extract location data from most recent view
+            const { location } = mostRecentView.details;
+            const { estado, ciudad, colonia } = location;
+            
+            // Generate similar properties based on location
+            const similarProperties = [];
+            
+            // Create 3 similar properties
+            for (let i = 1; i <= 3; i++) {
+                let price;
+                let title;
+                let description;
+                let image;
+                
+                // Price variation (±15%)
+                const basePrice = parseInt(mostRecentView.details.price.replace(/[^0-9]/g, ''));
+                const priceVariation = basePrice * 0.15;
+                price = basePrice + (Math.random() * priceVariation * 2 - priceVariation);
+                
+                title = `Construcción nueva en ${colonia || ciudad}`;
+                description = `Construcción nueva en ${colonia || ciudad} con características similares a la que has visto recientemente.`;
+                
+                // Different images for variety
+                const images = [
+                    'https://images.unsplash.com/photo-1600488689109-5fab0f5b6c86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                ];
+                image = images[i % images.length];
+                
+                // Format price as MXN
+                const formattedPrice = new Intl.NumberFormat('es-MX', {
+                    style: 'currency',
+                    currency: 'MXN',
+                    minimumFractionDigits: 0
+                }).format(price);
+                
+                similarProperties.push({
+                    id: `mx-new-construction-${Date.now()}-${i}`,
+                    title,
+                    price: formattedPrice,
+                    address: `${colonia || ciudad}, ${estado || 'México'}`,
+                    image,
+                    bedrooms: Math.floor(2 + Math.random() * 2),
+                    bathrooms: Math.floor(2 + Math.random() * 1.5),
+                    size: Math.floor(80 + Math.random() * 120),
+                    features: [
+                        { icon: 'fa-building', text: 'Entrega 2024', className: 'new-home' },
+                        { icon: 'fa-shield-alt', text: 'Garantía 5 años', className: 'new-home' },
+                        { icon: 'fa-car', text: 'Estacionamiento', className: '' }
+                    ].slice(0, 2 + Math.floor(Math.random() * 2))
+                });
+            }
+            
+            return similarProperties;
+        }
+
+        // Create recommendation card element
+        function createRecommendationCard(property) {
+            const card = document.createElement('div');
+            card.className = 'property-card similar-property';
+            card.innerHTML = `
+                <div class="property-image">
+                    <img src="${property.image}" alt="${property.title}">
+                    <div class="property-badge new">Nueva Construcción</div>
+                    <div class="property-badge mx">México</div>
+                    <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="property-content">
+                    <div class="property-price">
+                        <i class="fas fa-coins"></i> 
+                        <span class="mxn-price">${property.price}</span>
+                    </div>
+                    <div class="property-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${property.address}
+                    </div>
+                    <div class="location-hierarchy">
+                        <span class="location-item">México</span>
+                        <span class="location-separator">></span>
+                        <span class="location-item">${property.address.split(',')[1]?.trim() || 'CDMX'}</span>
+                        <span class="location-separator">></span>
+                        <span class="location-item">${property.address.split(',')[0]?.trim() || 'Polanco'}</span>
+                    </div>
+                    <div class="property-stats">
+                        <div class="stat">
+                            <i class="fas fa-bed"></i>
+                            ${property.bedrooms} recámaras
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bath"></i>
+                            ${property.bathrooms} baños
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-ruler-combined"></i>
+                            ${property.size} m²
+                        </div>
+                    </div>
+                    <div class="property-features">
+                        ${property.features.map(feature => `
+                            <span class="feature-badge ${feature.className || ''}">
+                                <i class="fas ${feature.icon}"></i> ${feature.text}
+                            </span>
+                        `).join('')}
+                    </div>
+                    <p class="property-description">${property.description}</p>
+                    <a href="#" class="view-property">
+                        Ver propiedad <i class="fas fa-arrow-right"></i>
+                        <span class="sr-only">en ${property.address}</span>
+                    </a>
+                </div>
+            `;
+            
+            // Add click handler for favorite button
+            card.querySelector('.favorite-btn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far', 'fa-heart');
+                    icon.classList.add('fas', 'fa-heart');
+                    showNotification('Añadido a favoritos', 'success');
+                } else {
+                    icon.classList.remove('fas', 'fa-heart');
+                    icon.classList.add('far', 'fa-heart');
+                    showNotification('Removido de favoritos', 'info');
+                }
+            });
+            
+            return card;
+        }
+
+        // No Results Functionality
+        function initializeNoResults() {
+            // Handle suggested searches
+            const suggestedSearches = document.querySelectorAll('.suggested-search');
+            suggestedSearches.forEach(search => {
+                search.addEventListener('click', function() {
+                    const location = this.textContent.replace('Construcciones Nuevas en ', '');
+                    document.getElementById('location-search').value = location;
+                    performSearch();
+                });
+            });
+            
+            // Handle new search button
+            const newSearchButton = document.querySelector('.btn-primary-large');
+            if (newSearchButton) {
+                newSearchButton.addEventListener('click', function() {
+                    document.getElementById('location-search').value = '';
+                    document.getElementById('location-search').focus();
+                });
+            }
+        }
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            if (type !== 'info') notification.classList.add(type);
+            
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                warning: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
+            };
+            
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas ${icons[type]}"></i>
+                </div>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Get item from localStorage with JSON parsing
+        function getLocalStorageItem(key, defaultValue) {
+            try {
+                const item = localStorage.getItem(key);
+                return item ? JSON.parse(item) : defaultValue;
+            } catch (e) {
+                console.error(`Error parsing localStorage item ${key}:`, e);
+                return defaultValue;
+            }
+        }
+
+        // Set item in localStorage with JSON stringifying
+        function setLocalStorageItem(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (e) {
+                console.error(`Error storing item ${key} in localStorage:`, e);
+            }
+        }
+    </script>
+</body>
+</html>

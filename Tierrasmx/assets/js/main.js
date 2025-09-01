@@ -187,61 +187,158 @@ function getPropertyTypeLabel(type) {
 
 function initializeFavoriteButtons() {
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
-    
+
     favoriteButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             const icon = this.querySelector('i');
             const propertyCard = this.closest('.property-card');
             const propertyId = propertyCard.dataset.id;
             const isFavorited = icon.classList.contains('fas');
-            
+
             if (isFavorited) {
                 icon.classList.remove('fas', 'fa-heart');
                 icon.classList.add('far', 'fa-heart');
                 propertyCard.querySelector('.saved-badge')?.remove();
-                
+
                 let savedProperties = getLocalStorageItem('savedProperties', []);
                 savedProperties = savedProperties.filter(p => p.id !== propertyId);
                 setLocalStorageItem('savedProperties', savedProperties);
-                
+
                 showNotification('Removido de favoritos', 'info');
             } else {
                 icon.classList.remove('far', 'fa-heart');
                 icon.classList.add('fas', 'fa-heart');
-                
+
                 if (!propertyCard.querySelector('.saved-badge')) {
                     const badge = document.createElement('div');
                     badge.className = 'saved-badge';
                     badge.innerHTML = '<i class="fas fa-heart"></i> Guardado';
                     propertyCard.querySelector('.property-image').appendChild(badge);
                 }
-                
+
                 const propertyDetails = getPropertyDetails(propertyCard);
                 let savedProperties = getLocalStorageItem('savedProperties', []);
-                
+
                 savedProperties = savedProperties.filter(p => p.id !== propertyId);
-                
+
                 savedProperties.push({
                     id: propertyId,
                     timestamp: Date.now(),
                     details: propertyDetails
                 });
-                
+
                 savedProperties = savedProperties.slice(-10);
                 setLocalStorageItem('savedProperties', savedProperties);
-                
+
                 showNotification('Añadido a favoritos', 'success');
             }
-            
+
             this.style.transform = 'scale(1.2)';
             setTimeout(() => {
                 this.style.transform = 'scale(1)';
             }, 150);
         });
     });
+}
+
+// Function to toggle save property (server-side)
+function toggleSaveProperty(propertyId, buttonElement) {
+    const icon = buttonElement.querySelector('i');
+    const isSaved = icon.classList.contains('fas');
+
+    const formData = new FormData();
+    formData.append('property_id', propertyId);
+
+    const url = isSaved ? 'unsave_property.php' : 'save_property.php';
+
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (isSaved) {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                buttonElement.closest('.property-card').querySelector('.saved-badge')?.remove();
+                showNotification('Propiedad eliminada de guardadas', 'info');
+            } else {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                showNotification('Propiedad guardada', 'success');
+            }
+        } else {
+            if (data.message === 'Usuario no autenticado') {
+                showNotification('Debes iniciar sesión para guardar propiedades', 'warning');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            } else {
+                showNotification(data.message, 'error');
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showNotification('Error al procesar la solicitud', 'error');
+    });
+
+    buttonElement.style.transform = 'scale(1.2)';
+    setTimeout(() => {
+        buttonElement.style.transform = 'scale(1)';
+    }, 150);
+}
+
+// Function to toggle favorite property (server-side)
+function toggleFavoriteProperty(propertyId, buttonElement) {
+    const icon = buttonElement.querySelector('i');
+    const isFavorited = icon.classList.contains('fas');
+
+    const formData = new FormData();
+    formData.append('property_id', propertyId);
+
+    const url = isFavorited ? 'unfavorite_property.php' : 'favorite_property.php';
+
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (isFavorited) {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                showNotification('Propiedad eliminada de favoritos', 'info');
+            } else {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                showNotification('Propiedad agregada a favoritos', 'success');
+            }
+        } else {
+            if (data.message === 'Usuario no autenticado') {
+                showNotification('Debes iniciar sesión para agregar a favoritos', 'warning');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            } else {
+                showNotification(data.message, 'error');
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showNotification('Error al procesar la solicitud', 'error');
+    });
+
+    buttonElement.style.transform = 'scale(1.2)';
+    setTimeout(() => {
+        buttonElement.style.transform = 'scale(1)';
+    }, 150);
 }
 
 function initializeScrollEffects() {

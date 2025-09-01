@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Tierras.mx</title>
+    <link rel="stylesheet" href="Tierrasmx/assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-home logo-icon"></i>
+                Tierras.mx
+            </a>
+            <nav class="primary-nav">
+                <div class="dropdown">
+                    <a href="comprar.html" class="nav-link dropdown-toggle">Comprar</a>
+                    <div class="dropdown-menu">
+                        <a href="casas_compra.html">Comprar Casa</a>
+                        <a href="construccionesnuevas.html">Construcciones Nuevas</a>
+                        <a href="casas embargadas.html">Casas Embargadas</a>
+                        <a href="puertasabiertas.html">Puertas Abiertas</a>
+                        <a href="proximamente.html">Próximamente</a>
+                        <a href="ofertadecompra.html">Hacer Oferta</a>
+                    </div>
+                </div>
+                <a href="renta.html" class="nav-link">Rentar</a>
+                <div class="dropdown">
+                    <a href="venta.html" class="nav-link dropdown-toggle">Vender</a>
+                    <div class="dropdown-menu">
+                        <a href="anunciar.html">Anunciar Propiedad</a>
+                        <a href="recursos vendedor.html">Recursos para Vendedores</a>
+                        <a href="ventasrecientes.html">Ventas Recientes</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="Créditos Hipotecarios.html" class="nav-link dropdown-toggle">Créditos</a>
+                    <div class="dropdown-menu">
+                        <a href="prestamos.html">Préstamos</a>
+                        <a href="financiamientotierras.html">Financiamiento de Tierras</a>
+                    </div>
+                </div>
+                <a href="encuentraunagente.html" class="nav-link">Agentes</a>
+            </nav>
+            <div class="secondary-actions">
+                <button class="search-button">Iniciar Sesión</button>
+                <button class="search-button">Unirse</button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <div class="section-header">
+                <h1 class="section-title">Iniciar Sesión</h1>
+            </div>
+
+            <form action="login.php" method="post">
+                <div class="form-group">
+                    <label for="username">Nombre de Usuario o Correo Electrónico</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        Tierras.mx
+                    </a>
+                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/523331010164?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n." class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/tierras.mx/" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/tierras-m%C3%A9xico-417931362/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@TierrasMexico" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Compradores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Buscar Propiedades</a></li>
+                        <li><a href="#">Calculadora de Crédito</a></li>
+                        <li><a href="#">Guía de Compra</a></li>
+                        <li><a href="#">Encuentra un Agente</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Vendedores</h4>
+                    <ul class="footer-links">
+                        <li><a href="anunciar.html">Vende tu Propiedad</a></li>
+                        <li><a href="#">Valor de tu Propiedad</a></li>
+                        <li><a href="recursos vendedor.html">Guía de Venta</a></li>
+                        <li><a href="anunciar.html">Lista tu Propiedad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Compañía</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Trabajos</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tierras.mx. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+            const message = urlParams.get('message');
+
+            if (status && message) {
+                // Assuming you have a function showNotification in utils.js
+                // or you can implement a simple notification display here
+                if (typeof showNotification === 'function') {
+                    showNotification(decodeURIComponent(message), status);
+                } else {
+                    // Fallback if showNotification is not available
+                    const notificationDiv = document.createElement('div');
+                    notificationDiv.style.padding = '10px';
+                    notificationDiv.style.margin = '10px 0';
+                    notificationDiv.style.color = 'white';
+                    notificationDiv.style.borderRadius = '5px';
+                    notificationDiv.style.textAlign = 'center';
+
+                    if (status === 'success') {
+                        notificationDiv.style.backgroundColor = 'green';
+                    } else if (status === 'error') {
+                        notificationDiv.style.backgroundColor = 'red';
+                    } else {
+                        notificationDiv.style.backgroundColor = 'gray';
+                    }
+                    notificationDiv.textContent = decodeURIComponent(message);
+                    document.querySelector('main.container').prepend(notificationDiv); // Add to top of main content
+                    setTimeout(() => notificationDiv.remove(), 5000); // Remove after 5 seconds
+                }
+            }
+        });
+    </script>
+</body>
+</html>

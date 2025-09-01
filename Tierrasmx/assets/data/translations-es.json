@@ -1,6 +1,6 @@
 {
   "header": {
-    "logo": "RealtyFind MX",
+    "logo": "Tierras.mx",
     "nav": {
       "buy": "Comprar",
       "rent": "Rentar",
@@ -38,7 +38,7 @@
     "empty_text": "Navega por las propiedades para ver recomendaciones personalizadas basadas en tus preferencias."
   },
   "services": {
-    "title": "¿Por Qué Elegir RealtyFind MX?",
+    "title": "¿Por Qué Elegir Tierras.mx?",
     "subtitle": "Tu socio de confianza en bienes raíces en México",
     "search": {
       "title": "Búsqueda Avanzada",

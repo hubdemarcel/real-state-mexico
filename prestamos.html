@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealtyFind MX - Comparador de Créditos Hipotecarios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --mexico-blue: #0068ff;
+            --mexico-green: #10b981;
+            --mexico-red: #ef4444;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.125rem;
+            --radius: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--gray-700);
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            color: var(--mexico-green);
+        }
+
+        .primary-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            line-height: 80px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .secondary-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-toggle button {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .language-toggle button.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--gray-700);
+        }
+
+        .btn-ghost:hover {
+            background-color: var(--gray-100);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--mexico-blue), var(--primary));
+            color: white;
+            padding: 4rem 0 3rem;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            min-width: 200px;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-hero-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            min-width: 200px;
+        }
+
+        .btn-hero-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 4rem 0;
+            background-color: var(--gray-50);
+        }
+
+        .calculator-container {
+            background-color: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .calculator-header {
+            background: linear-gradient(135deg, var(--mexico-blue), var(--primary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .calculator-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .calculator-content {
+            padding: 2rem;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray-200);
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator-tab {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            color: var(--gray-600);
+        }
+
+        .calculator-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .calculator-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--gray-900);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--gray-900);
+            background-color: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-range {
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .results-section {
+            background-color: var(--gray-50);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            margin-top: 1.5rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            background-color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .btn-calculate {
+            background-color: var(--primary);
+            color: white;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .btn-calculate:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 4rem 0;
+        }
+
+        .comparison-container {
+            background-color: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-header {
+            background: linear-gradient(135deg, var(--mexico-blue), var(--primary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .comparison-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .comparison-content {
+            padding: 2rem;
+        }
+
+        .comparison-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 1.5rem;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+        }
+
+        .comparison-table th {
+            background-color: var(--gray-50);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--gray-700);
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .comparison-table tr:hover {
+            background-color: var(--gray-50);
+        }
+
+        .institution-cell {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .institution-logo {
+            width: 40px;
+            height: 40px;
+            background-color: var(--gray-100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .institution-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .institution-name {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .best-match {
+            background-color: rgba(5, 150, 105, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .best-match .institution-name {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .best-match .rate-value {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .rate-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .comparison-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn-compare {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-compare:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .benefit-card {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .benefit-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            background-color: var(--gray-50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .benefit-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .benefit-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--gray-50);
+            padding: 4rem 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: """;
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 5rem;
+            color: var(--gray-200);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            color: var(--gray-700);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: var(--gray-200);
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .author-location {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        /* Recommendation Info Banner */
+        .recommendation-info {
+            background: linear-gradient(135deg, var(--mexico-blue), var(--primary));
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .recommendation-info-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .recommendation-info-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-info-text {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .btn-info {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .btn-info:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--gray-900);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo i {
+            color: var(--mexico-green);
+        }
+
+        .footer-description {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: var(--gray-900);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            font-weight: 500;
+            max-width: 400px;
+            border-left: 4px solid var(--primary);
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .notification.success {
+            border-left-color: var(--secondary);
+        }
+
+        .notification.warning {
+            border-left-color: var(--warning);
+        }
+
+        .notification.error {
+            border-left-color: var(--danger);
+        }
+
+        .notification-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .primary-nav {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 3.75rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .mx-flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .mx-flag::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 12px;
+            background: linear-gradient(to bottom, #006341 33%, #FFFFFF 33%, #FFFFFF 66%, #CE1126 66%);
+            border: 1px solid var(--gray-300);
+            border-radius: 2px;
+            vertical-align: middle;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Print Styles */
+        @media print {
+            .header,
+            .footer {
+                display: none;
+            }
+            
+            .hero {
+                background: var(--gray-50);
+                color: var(--gray-900);
+            }
+            
+            .property-card {
+                break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <i class="fas fa-home logo-icon"></i>
+                    RealtyFind <span class="mx-flag">MX</span>
+                </a>
+                
+                <!-- Navigation -->
+                <nav class="primary-nav">
+                    <a href="#">Comprar</a>
+                    <a href="#">Rentar</a>
+                    <a href="#">Vender</a>
+                    <a href="#" class="active">Créditos</a>
+                    <a href="#">Agentes</a>
+                </nav>
+                
+                <!-- Auth & Language -->
+                <div class="secondary-actions">
+                    <button class="language-toggle active" data-lang="es">ES</button>
+                    <button class="language-toggle" data-lang="en">EN</button>
+                    <button class="btn btn-ghost">Iniciar Sesión</button>
+                    <button class="btn btn-primary">Unirse</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="nav-mobile" id="mobileNav">
+                <a href="#" class="nav-link-mobile">Comprar</a>
+                <a href="#" class="nav-link-mobile">Rentar</a>
+                <a href="#" class="nav-link-mobile">Vender</a>
+                <a href="#" class="nav-link-mobile active">Créditos</a>
+                <a href="#" class="nav-link-mobile">Agentes</a>
+                <div class="mobile-language">
+                    <button class="language-toggle active w-100 justify-content-start" data-lang="es">
+                        <span class="mx-flag">Español (MX)</span>
+                    </button>
+                    <button class="language-toggle w-100 justify-content-start mt-2" data-lang="en">
+                        English
+                    </button>
+                </div>
+                <div class="mobile-auth">
+                    <button class="btn btn-ghost w-100">Iniciar Sesión</button>
+                    <button class="btn btn-primary w-100">Unirse</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Encuentra el Mejor Crédito Hipotecario para Ti</h1>
+                <p class="hero-subtitle">Compara opciones de instituciones financieras en México, calcula pagos mensuales y encuentra el crédito perfecto para tu nueva casa.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#" class="btn-hero">
+                        <i class="fas fa-calculator"></i> Comparador de Créditos
+                    </a>
+                    <a href="#" class="btn-hero btn-hero-secondary">
+                        <i class="fas fa-chart-line"></i> Calcula tu Pago
+                    </a>
+                </div>
+                
+                <div class="text-center" style="margin-top: 2rem; color: white; opacity: 0.9;">
+                    <strong>Tu Capacidad de Compra hoy:</strong> <span style="font-size: 1.5rem; font-weight: 700;">Hasta $1,850,000 MXN</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <h2 class="calculator-title">Calcula tu Pago Mensual</h2>
+                    <p class="calculator-subtitle">Obtén una estimación personalizada basada en tus finanzas y las tasas de interés actuales en México</p>
+                </div>
+                
+                <div class="calculator-content">
+                    <div class="calculator-tabs">
+                        <div class="calculator-tab active" data-tab="basic">Información Básica</div>
+                        <div class="calculator-tab" data-tab="advanced">Detalles Financieros</div>
+                    </div>
+                    
+                    <form class="calculator-form">
+                        <div class="form-group">
+                            <label for="property-price" class="form-label">Precio de la Propiedad</label>
+                            <input type="text" id="property-price" class="form-input" placeholder="$ 2,500,000 MXN" value="$ 2,500,000 MXN">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="down-payment" class="form-label">Enganche (20%)</label>
+                            <input type="text" id="down-payment" class="form-input" placeholder="$ 500,000 MXN" value="$ 500,000 MXN">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loan-term" class="form-label">Plazo del Crédito</label>
+                            <select id="loan-term" class="form-select">
+                                <option>20 años</option>
+                                <option>15 años</option>
+                                <option selected>25 años</option>
+                                <option>30 años</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest-rate" class="form-label">Tasa de Interés (8.5%)</label>
+                            <input type="range" id="interest-rate" class="form-range" min="5" max="12" step="0.1" value="8.5">
+                            <div class="range-values">
+                                <span>5%</span>
+                                <span>12%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="property-tax" class="form-label">Impuesto Predial Anual</label>
+                            <input type="text" id="property-tax" class="form-input" placeholder="$ 15,000 MXN" value="$ 15,000 MXN">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="insurance" class="form-label">Seguro de Vivienda</label>
+                            <input type="text" id="insurance" class="form-input" placeholder="$ 3,000 MXN" value="$ 3,000 MXN">
+                        </div>
+                        
+                        <div class="form-group" style="grid-column: 1/-1;">
+                            <button type="button" class="btn-calculate" id="calculateBtn">Calcular Pago Mensual</button>
+                        </div>
+                    </form>
+                    
+                    <div class="results-section">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center; color: var(--gray-900);">Tu Pago Mensual Estimado</h3>
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="result-value">$ 19,580 MXN</div>
+                                <div class="result-label">Pago Mensual Total</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">$ 17,250 MXN</div>
+                                <div class="result-label">Principal e Interés</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Comparador de Créditos Hipotecarios</h2>
+                <p class="section-subtitle">Compara opciones de diferentes instituciones financieras en México</p>
+            </div>
+            
+            <div class="comparison-container">
+                <div class="comparison-header">
+                    <h2 class="comparison-title">Mejores Opciones de Créditos en México</h2>
+                    <p class="comparison-subtitle">Basado en tu perfil financiero y necesidades</p>
+                </div>
+                
+                <div class="comparison-content">
+                    <div class="comparison-filters">
+                        <div class="filter-group">
+                            <label for="loan-type" class="form-label">Tipo de Crédito</label>
+                            <select id="loan-type" class="form-select">
+                                <option>INFONAVIT</option>
+                                <option>FOVISSSTE</option>
+                                <option selected>Crédito Bancario</option>
+                                <option>Crédito Hipotecario Verde</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="loan-amount" class="form-label">Monto del Crédito</label>
+                            <select id="loan-amount" class="form-select">
+                                <option>Hasta $1,000,000 MXN</option>
+                                <option>Hasta $1,500,000 MXN</option>
+                                <option selected>Hasta $2,000,000 MXN</option>
+                                <option>Más de $2,000,000 MXN</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="credit-score" class="form-label">Puntuación Crediticia</label>
+                            <select id="credit-score" class="form-select">
+                                <option>Excelente (700+)</option>
+                                <option selected>Bueno (650-699)</option>
+                                <option>Regular (600-649)</option>
+                                <option>Necesita Mejora (Menos de 600)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-table-container" style="overflow-x: auto;">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Institución Financiera</th>
+                                    <th>Tasa de Interés</th>
+                                    <th>Enganche Mínimo</th>
+                                    <th>Plazo Máximo</th>
+                                    <th>Comisión de Apertura</th>
+                                    <th>Costo Total del Crédito</th>
+                                    <th>Recomendación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Banco Santander -->
+                                <tr class="best-match">
+                                    <td>
+                                        <div class="institution-cell">
+                                            <div class="institution-logo">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Santander-logo.svg/2000px-Santander-logo.svg.png" alt="Santander">
+                                            </div>
+                                            <div class="institution-name">Banco Santander</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="rate-value">8.25%</span></td>
+                                    <td>10%</td>
+                                    <td>25 años</td>
+                                    <td>1.5%</td>
+                                    <td>$3,580,000 MXN</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Más información</button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- BBVA -->
+                                <tr>
+                                    <td>
+                                        <div class="institution-cell">
+                                            <div class="institution-logo">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/BBVA_2021.svg/2000px-BBVA_2021.svg.png" alt="BBVA">
+                                            </div>
+                                            <div class="institution-name">BBVA</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="rate-value">8.45%</span></td>
+                                    <td>10%</td>
+                                    <td>25 años</td>
+                                    <td>1.8%</td>
+                                    <td>$3,645,000 MXN</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Más información</button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Banorte -->
+                                <tr>
+                                    <td>
+                                        <div class="institution-cell">
+                                            <div class="institution-logo">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Banorte_logo.svg/2000px-Banorte_logo.svg.png" alt="Banorte">
+                                            </div>
+                                            <div class="institution-name">Banorte</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="rate-value">8.60%</span></td>
+                                    <td>10%</td>
+                                    <td>20 años</td>
+                                    <td>1.2%</td>
+                                    <td>$3,690,000 MXN</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Más información</button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- ScotiaBank -->
+                                <tr>
+                                    <td>
+                                        <div class="institution-cell">
+                                            <div class="institution-logo">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Scotiabank_logo.svg/2000px-Scotiabank_logo.svg.png" alt="Scotiabank">
+                                            </div>
+                                            <div class="institution-name">Scotiabank</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="rate-value">8.75%</span></td>
+                                    <td>15%</td>
+                                    <td>20 años</td>
+                                    <td>1.0%</td>
+                                    <td>$3,725,000 MXN</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Más información</button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- INFONAVIT -->
+                                <tr>
+                                    <td>
+                                        <div class="institution-cell">
+                                            <div class="institution-logo" style="background-color: #e0f7fa;">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/INFONAVIT_logo.svg/2000px-INFONAVIT_logo.svg.png" alt="INFONAVIT">
+                                            </div>
+                                            <div class="institution-name">INFONAVIT</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="rate-value">10.80%</span></td>
+                                    <td>10%</td>
+                                    <td>30 años</td>
+                                    <td>Sin comisión</td>
+                                    <td>$4,120,000 MXN</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Más información</button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- FOVISSSTE -->
+                                <tr>
+                                    <td>
+                                        <div class="institution-cell">
+                                            <div class="institution-logo" style="background-color: #f9f9f9;">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/FOVISSSTE_logo.svg/2000px-FOVISSSTE_logo.svg.png" alt="FOVISSSTE">
+                                            </div>
+                                            <div class="institution-name">FOVISSSTE</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="rate-value">10.50%</span></td>
+                                    <td>10%</td>
+                                    <td>30 años</td>
+                                    <td>Sin comisión</td>
+                                    <td>$4,050,000 MXN</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Más información</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="comparison-cta">
+                        <button class="btn-compare">
+                            <i class="fas fa-sync-alt"></i> Actualizar Comparación
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿Cómo Funciona el Comparador?</h2>
+                <p class="section-subtitle">Sigue estos pasos para encontrar el mejor crédito hipotecario para ti</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <!-- Step 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="benefit-title">Ingresa tus Datos</h3>
+                    <p class="benefit-description">Proporciona información sobre tu situación financiera, el monto del crédito que necesitas y tus preferencias para recibir opciones personalizadas.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="benefit-title">Compara Opciones</h3>
+                    <p class="benefit-description">Analiza las diferentes opciones de crédito de instituciones financieras en México, comparando tasas, plazos, comisiones y otros factores importantes.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="benefit-title">Elige la Mejor Opción</h3>
+                    <p class="benefit-description">Basado en tu análisis, selecciona la opción que mejor se ajuste a tus necesidades y comienza el proceso de solicitud con la institución elegida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendation Info Banner -->
+    <div class="container">
+        <div class="recommendation-info">
+            <div class="recommendation-info-content">
+                <h2 class="recommendation-info-title">¿Cómo funcionan estas recomendaciones?</h2>
+                <p class="recommendation-info-text">Las recomendaciones se basan en tu ubicación y actividad de búsqueda, como las propiedades que has visto y guardado y los filtros que has utilizado. Usamos esta información para mostrarte opciones de crédito similares, para que no te pierdas ninguna oportunidad.</p>
+                <a href="#" class="btn-info">Más información sobre recomendaciones</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Lo que Nuestros Usuarios Dicen</h2>
+                <p class="section-subtitle">Miles de mexicanos han encontrado el mejor crédito hipotecario con nuestra ayuda</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"El comparador de créditos me ayudó a entender claramente mis opciones. Comparé diferentes instituciones y elegí el que mejor se ajustaba a mi presupuesto. Ahora soy dueño de mi primera casa en Monterrey sin estrés."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos M.">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Carlos M.</span>
+                            <span class="author-location">Monterrey, Nuevo León</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"Como primeriza vez, estaba abrumado con las opciones. El comparador me guió en cada paso, mostrándome claramente las diferencias entre instituciones. Ahora disfruto de mi nuevo hogar en Guadalajara con el mejor crédito posible."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María G.">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">María G.</span>
+                            <span class="author-location">Guadalajara, Jalisco</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"La herramienta de comparación me ahorró horas de investigación. Vi claramente las diferencias en tasas, comisiones y plazos entre bancos. Recomendaría RealtyFind MX a cualquier persona que busque el mejor crédito hipotecario en México."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana L.">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Ana L.</span>
+                            <span class="author-location">CDMX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"Gracias al comparador, descubrí que podía calificar para una tasa mejor de lo que pensaba. El proceso fue transparente y sin complicaciones. Ahora tengo mi casa con la mejor tasa del mercado."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Jorge R.">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Jorge R.</span>
+                            <span class="author-location">Cancún, Quintana Roo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background-color: var(--gray-50);">
+        <div class="container">
+            <div class="section-header" style="max-width: 700px; margin: 0 auto 2.5rem;">
+                <h2 class="section-title">¿Listo para Encontrar tu Mejor Crédito Hipotecario?</h2>
+                <p class="section-subtitle">Compara opciones, calcula pagos y encuentra el crédito perfecto para tu nueva casa en México.</p>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <a href="#" class="btn-hero" style="background-color: var(--primary); color: white; padding: 0.75rem 2rem; border-radius: var(--radius-md); text-decoration: none; font-weight: 600;">
+                    <i class="fas fa-calculator"></i> Comienza Ahora
+                </a>
+                <a href="#" class="btn-hero" style="background-color: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 0.75rem 2rem; border-radius: var(--radius-md); text-decoration: none; font-weight: 600;">
+                    <i class="fas fa-phone"></i> Habla con un Experto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        RealtyFind <span class="mx-flag">MX</span>
+                    </a>
+                    <p class="footer-description">Tu socio de confianza para encontrar el crédito hipotecario perfecto en México.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Compradores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Comparador de Créditos</a></li>
+                        <li><a href="#">Calculadora de Pago</a></li>
+                        <li><a href="#">Tipos de Créditos</a></li>
+                        <li><a href="#">Programas de Apoyo</a></li>
+                        <li><a href="#">Requisitos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog de Finanzas</a></li>
+                        <li><a href="#">Glosario de Términos</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Casos de Éxito</a></li>
+                        <li><a href="#">Simulador de Pagos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Compañía</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Trabajos</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 RealtyFind MX. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Content Loaded Event
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMobileMenu();
+            initializeLanguageToggle();
+            initializeScrollEffects();
+            initializeCalculator();
+            initializeComparisonFilters();
+            initializeRecommendationSystem();
+        });
+
+        // Mobile Menu Functionality
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                    
+                    // Toggle icon
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileNav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close mobile menu when clicking on links
+                const mobileLinks = mobileNav.querySelectorAll('.nav-link-mobile');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+                        mobileNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        }
+
+        // Language Toggle Functionality
+        function initializeLanguageToggle() {
+            const languageToggles = document.querySelectorAll('.language-toggle');
+            
+            languageToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    // Update active state
+                    languageToggles.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // In a real implementation, this would change all text content
+                    // For demo purposes, we'll just show a notification
+                    const lang = this.getAttribute('data-lang');
+                    showNotification(`Idioma cambiado a ${lang === 'es' ? 'Español' : 'English'}`, 'success');
+                });
+            });
+        }
+
+        // Scroll Effects
+        function initializeScrollEffects() {
+            // Add scroll listener for header
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const animateElements = document.querySelectorAll('.benefit-card, .testimonial-card, .comparison-table tr');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Calculator Functionality
+        function initializeCalculator() {
+            // Tab switching
+            const calculatorTabs = document.querySelectorAll('.calculator-tab');
+            calculatorTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    calculatorTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                });
+            });
+            
+            // Interest rate slider
+            const interestRate = document.getElementById('interest-rate');
+            if (interestRate) {
+                interestRate.addEventListener('input', function() {
+                    const rate = this.value;
+                    document.querySelector('label[for="interest-rate"]').textContent =
+                        `Tasa de Interés (${rate}%)`;
+                });
+            }
+            
+            // Calculate button
+            const calculateBtn = document.getElementById('calculateBtn');
+            if (calculateBtn) {
+                calculateBtn.addEventListener('click', function() {
+                    // Get form values
+                    const propertyPrice = document.getElementById('property-price').value;
+                    const downPayment = document.getElementById('down-payment').value;
+                    const loanTerm = document.getElementById('loan-term').value;
+                    const interestRate = document.getElementById('interest-rate').value;
+                    
+                    // Show notification
+                    showNotification('Calculando tu pago mensual...', 'info');
+                    
+                    // Simulate calculation
+                    setTimeout(() => {
+                        // Update results
+                        document.querySelector('.result-value:first-child').textContent = '$ 19,580 MXN';
+                        document.querySelector('.result-value:nth-child(3)').textContent = '$ 17,250 MXN';
+                        
+                        showNotification('¡Cálculo completado! Revisa tus resultados.', 'success');
+                    }, 1000);
+                });
+            }
+        }
+
+        // Comparison Filters Functionality
+        function initializeComparisonFilters() {
+            // Filter select elements
+            const filterSelects = document.querySelectorAll('.comparison-filters .form-select');
+            
+            filterSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    const loanType = document.getElementById('loan-type').value;
+                    const loanAmount = document.getElementById('loan-amount').value;
+                    const creditScore = document.getElementById('credit-score').value;
+                    
+                    // Show notification
+                    showNotification('Actualizando comparación...', 'info');
+                    
+                    // Simulate update
+                    setTimeout(() => {
+                        // In a real implementation, this would filter the table
+                        showNotification('Comparación actualizada con éxito', 'success');
+                        
+                        // Randomly select a new "best match"
+                        const rows = document.querySelectorAll('.comparison-table tbody tr');
+                        rows.forEach(row => row.classList.remove('best-match'));
+                        
+                        // Select a random row (but not the first one)
+                        const randomIndex = Math.floor(Math.random() * (rows.length - 1)) + 1;
+                        rows[randomIndex].classList.add('best-match');
+                    }, 1000);
+                });
+            });
+            
+            // Update comparison button
+            const updateBtn = document.querySelector('.btn-compare');
+            if (updateBtn) {
+                updateBtn.addEventListener('click', function() {
+                    showNotification('Actualizando comparación...', 'info');
+                    
+                    // Simulate update
+                    setTimeout(() => {
+                        // In a real implementation, this would filter the table
+                        showNotification('Comparación actualizada con éxito', 'success');
+                        
+                        // Randomly select a new "best match"
+                        const rows = document.querySelectorAll('.comparison-table tbody tr');
+                        rows.forEach(row => row.classList.remove('best-match'));
+                        
+                        // Select a random row (but not the first one)
+                        const randomIndex = Math.floor(Math.random() * (rows.length - 1)) + 1;
+                        rows[randomIndex].classList.add('best-match');
+                    }, 1000);
+                });
+            }
+        }
+
+        // Recommendation System
+        function initializeRecommendationSystem() {
+            // Check if user has viewed properties
+            const viewedProperties = getLocalStorageItem('viewedProperties', []);
+            const savedProperties = getLocalStorageItem('savedProperties', []);
+            
+            // Show recommendations section if user has activity
+            if (viewedProperties.length > 0 || savedProperties.length > 0) {
+                showRecommendationsSection();
+                
+                // Generate and display recommendations
+                generatePropertyRecommendations(viewedProperties, savedProperties);
+            }
+            
+            // Track property views
+            trackPropertyViews();
+        }
+
+        // Track when user views a property
+        function trackPropertyViews() {
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            propertyCards.forEach(card => {
+                // Add viewed class when property card is in viewport for more than 2 seconds
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                if (entry.isIntersecting) {
+                                    const propertyId = card.dataset.id;
+                                    markPropertyAsViewed(propertyId, card);
+                                }
+                            }, 2000);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(card);
+            });
+        }
+
+        // Mark a property as viewed and save to localStorage
+        function markPropertyAsViewed(propertyId, cardElement) {
+            // Save to localStorage
+            let viewedProperties = getLocalStorageItem('viewedProperties', []);
+            
+            // Remove if already exists to update timestamp
+            viewedProperties = viewedProperties.filter(p => p.id !== propertyId);
+            
+            // Add with timestamp
+            viewedProperties.push({
+                id: propertyId,
+                timestamp: Date.now(),
+                details: getPropertyDetails(cardElement)
+            });
+            
+            // Keep only the 10 most recent
+            viewedProperties = viewedProperties.slice(-10);
+            
+            setLocalStorageItem('viewedProperties', viewedProperties);
+        }
+
+        // Get property details for tracking
+        function getPropertyDetails(cardElement) {
+            return {
+                price: cardElement.querySelector('.property-price')?.textContent || '',
+                address: cardElement.querySelector('.property-address')?.textContent.replace('📍', '').trim() || '',
+                size: cardElement.querySelector('.stat')?.textContent || '',
+                type: 'casa'
+            };
+        }
+
+        // Show the recommendations section
+        function showRecommendationsSection() {
+            const recommendationsSection = document.querySelector('.recommendations-section');
+            if (recommendationsSection) {
+                recommendationsSection.style.display = 'block';
+                
+                // Animate in
+                setTimeout(() => {
+                    recommendationsSection.style.opacity = '1';
+                }, 50);
+            }
+        }
+
+        // Generate property recommendations
+        function generatePropertyRecommendations(viewedProperties, savedProperties) {
+            const recommendationsGrid = document.querySelector('.recommendations-grid .properties-grid');
+            if (!recommendationsGrid) return;
+            
+            // Clear existing recommendations
+            recommendationsGrid.innerHTML = '';
+            
+            // Show loading state
+            recommendationsGrid.innerHTML = `
+                <div class="recommendations-loading" style="text-align: center; padding: 2rem; grid-column: 1/-1;">
+                    <div class="spinner" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; border: 3px solid #dbeafe; border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="color: #6b7280;">Encontrando casas que podrían gustarte...</p>
+                </div>
+            `;
+            
+            // Add spinner animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // Get recommendations based on viewed properties
+                const recommendations = getMexicanPropertyRecommendations(viewedProperties, savedProperties);
+                
+                if (recommendations.length > 0) {
+                    // Render recommendations
+                    recommendationsGrid.innerHTML = '';
+                    recommendations.forEach(property => {
+                        recommendationsGrid.appendChild(createRecommendationCard(property));
+                    });
+                } else {
+                    // Show empty state
+                    recommendationsGrid.innerHTML = `
+                        <div class="recommendations-empty" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                            <div class="recommendations-empty-icon" style="font-size: 3rem; color: #e5e7eb; margin-bottom: 1rem;">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3 class="recommendations-empty-title" style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Sin recomendaciones aún</h3>
+                            <p class="recommendations-empty-text" style="color: #6b7280; max-width: 32rem; margin: 0 auto;">
+                                Navega por las propiedades para ver recomendaciones personalizadas basadas en tus preferencias.
+                            </p>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+
+        // Get Mexican-specific property recommendations
+        function getMexicanPropertyRecommendations(viewedProperties, savedProperties) {
+            // For demo purposes, we'll return some similar properties
+            // In a real implementation, this would use a more sophisticated algorithm
+            
+            // Get the most recently viewed property
+            const mostRecentView = viewedProperties.length > 0 ? 
+                viewedProperties[viewedProperties.length - 1] : null;
+            
+            // If no viewed properties, return empty array
+            if (!mostRecentView) {
+                return [];
+            }
+            
+            // Extract location data from most recent view
+            const { address } = mostRecentView.details;
+            const location = address.split(',')[1]?.trim() || 'México';
+            
+            // Generate similar properties based on location
+            const similarProperties = [];
+            
+            // Create 2 similar properties
+            for (let i = 1; i <= 2; i++) {
+                const price = 1650000 + (Math.random() * 150000);
+                const size = 85 + Math.floor(Math.random() * 35);
+                const bedrooms = 2 + Math.floor(Math.random() * 2);
+                const bathrooms = 1 + Math.floor(Math.random() * 2);
+                
+                // Format price as MXN
+                const formattedPrice = new Intl.NumberFormat('es-MX', {
+                    style: 'currency',
+                    currency: 'MXN',
+                    minimumFractionDigits: 0
+                }).format(price);
+                
+                similarProperties.push({
+                    id: `mx-recommendation-${Date.now()}-${i}`,
+                    title: `Casa en ${location}`,
+                    price: formattedPrice,
+                    address: location === 'México' ? 'Polanco, CDMX' : location,
+                    image: i === 1 ? 
+                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                        'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                    size: `${size} m²`,
+                    bedrooms: bedrooms,
+                    bathrooms: bathrooms
+                });
+            }
+            
+            return similarProperties;
+        }
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            if (type !== 'info') notification.classList.add(type);
+            
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                warning: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
+            };
+            
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas ${icons[type]}"></i>
+                </div>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Get item from localStorage with JSON parsing
+        function getLocalStorageItem(key, defaultValue) {
+            try {
+                const item = localStorage.getItem(key);
+                return item ? JSON.parse(item) : defaultValue;
+            } catch (e) {
+                console.error(`Error parsing localStorage item ${key}:`, e);
+                return defaultValue;
+            }
+        }
+
+        // Set item in localStorage with JSON stringifying
+        function setLocalStorageItem(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (e) {
+                console.error(`Error storing item ${key} in localStorage:`, e);
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
+
+

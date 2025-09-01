@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealtyFind MX - Encuentra tu Casa Soñada</title>
+    <title>Tierras.mx - Agentes. Visitas.
+Créditos. Casas.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&subset=latin,latin-ext&display=swap" rel="stylesheet">
@@ -13,70 +14,116 @@
     <link rel="stylesheet" href="Tierrasmx/assets/css/responsive.css">
 </head>
 <body>
-    <!-- New Header Structure -->
     <header class="header">
-        <div class="container">
-            <div class="nav-wrapper">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="#" class="brand">RealtyFind MX</a>
+        <div class="header-container container">
+            <a href="index.php" class="logo">
+                <img src="https://static.wixstatic.com/media/663c9c_db1472302d8b4730a01c556f348b0634~mv2.png/v1/fill/w_61,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LOGO%20TM%20BROWN%20copy.png" alt="Tierras.mx Logo" class="logo-icon">
+                Tierras.mx
+            </a>
+            <nav class="primary-nav">
+                <div class="dropdown">
+                    <a href="comprar_new.php" class="nav-link dropdown-toggle">Comprar</a>
+                    <div class="dropdown-menu">
+                        <a href="casas_compra.html">Comprar Casa</a>
+                        <a href="construccionesnuevas.html">Construcciones Nuevas</a>
+                        <a href="casas embargadas.html">Casas Embargadas</a>
+                        <a href="puertasabiertas.html">Puertas Abiertas</a>
+                        <a href="proximamente.html">Próximamente</a>
+                        <a href="ofertadecompra.html">Hacer Oferta</a>
+                    </div>
                 </div>
-
-                <!-- Primary Navigation -->
-                <nav class="primary-nav">
-                    <a href="#">Comprar</a>
-                    <a href="#">Rentar</a>
-                    <a href="#">Vender</a>
-                    <a href="#">Créditos</a>
-                    <a href="#">Agencias</a>
-                </nav>
-
-                <!-- Secondary Actions -->
-                <div class="secondary-actions">
-                    <a href="#">Administrar Alquileres</a>
-                    <a href="#">Anunciar</a>
-                    <a href="#">Ayuda</a>
-                    <button class="btn btn-primary">Iniciar Sesión</button>
-                    <button class="btn btn-ghost">Unirse</button>
+                <a href="renta.php" class="nav-link">Rentar</a>
+                <div class="dropdown">
+                    <a href="venta.html" class="nav-link dropdown-toggle">Vender</a>
+                    <div class="dropdown-menu">
+                        <a href="anunciar.php">Anunciar Propiedad</a>
+                        <a href="recursos vendedor.html">Recursos para Vendedores</a>
+                        <a href="ventasrecientes.html">Ventas Recientes</a>
+                    </div>
                 </div>
-
-                <!-- Language Toggle -->
-                <div class="language-toggle">
-                    <button class="active">ES</button>
-                    <button>EN</button>
+                <div class="dropdown">
+                    <a href="Créditos Hipotecarios.html" class="nav-link dropdown-toggle">Créditos</a>
+                    <div class="dropdown-menu">
+                        <a href="prestamos.html">Préstamos</a>
+                        <a href="financiamientotierras.html">Financiamiento de Tierras</a>
+                    </div>
                 </div>
+                <a href="encuentraunagente.php" class="nav-link">Agentes</a>
+            </nav>
+            <div class="secondary-actions">
+                <button class="search-button" onclick="window.location.href='login.html'">Iniciar Sesión</button>
+                <button class="search-button" onclick="window.location.href='register.html'">Unirse</button>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </header>
 
+        <!-- Mobile Navigation -->
+        <nav class="nav-mobile" id="mobileNav">
+            <a href="comprar_new.php" class="nav-link-mobile">Comprar</a>
+            <a href="renta.php" class="nav-link-mobile">Rentar</a>
+            <a href="venta.html" class="nav-link-mobile">Vender</a>
+            <a href="encuentraunagente.php" class="nav-link-mobile">Agentes</a>
+            <a href="Créditos Hipotecarios.html" class="nav-link-mobile">Créditos</a>
+            <div class="mobile-auth">
+                <button class="btn btn-ghost w-100" onclick="window.location.href='login.html'">Iniciar Sesión</button>
+                <button class="btn btn-primary w-100" onclick="window.location.href='register.html'">Unirse</button>
+            </div>
+        </nav>
+    </header>
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="container">
-            <div class="hero-content">
-                <h1>Encuentra tu Casa Soñada en México</h1>
-                <p>Busca millones de propiedades y conéctate con profesionales inmobiliarios locales</p>
-                
-                <!-- Search Form -->
-                <div class="search-form">
-                    <input type="text" placeholder="Ingresa estado, ciudad o colonia">
-                    <select>
-                        <option>Tipo de Propiedad</option>
-                        <option>Casa</option>
-                        <option>Departamento</option>
-                    </select>
-                    <button class="btn btn-search"><i class="fas fa-search"></i> Buscar</button>
+            <div class="hero-content" style="display: flex; align-items: center; padding-top: 50px; padding-bottom: 50px; gap: 40px;">
+                <div class="hero-image" style="flex: 1;">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Beautiful house" style="width: 100%; height: auto; border-radius: 10px;">
+                </div>
+                <div class="hero-text-and-search" style="flex: 2;">
+                    <h1>Encuentra tu Casa Soñada en México</h1>
+                    <p>Busca millones de propiedades y conéctate con profesionales inmobiliarios locales</p>
+                    <div class="search-bar">
+                        <div class="search-container">
+                            <div class="search-filters">
+                                <div class="filter-group">
+                                    <label for="location-search" class="filter-label">Ubicación</label>
+                                    <input type="text" id="location-search" class="search-input" placeholder="Ingresa estado, ciudad o colonia">
+                                </div>
+                                
+                                <div class="filter-group">
+                                    <label for="property-type" class="filter-label">Tipo de Propiedad</label>
+                                    <select id="property-type" class="filter-select">
+                                        <option value="all">Todas</option>
+                                        <option value="casa">Casa</option>
+                                        <option value="departamento">Departamento</option>
+                                        <option value="terreno">Terreno</option>
+                                        <option value="local-comercial">Local Comercial</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="filter-group">
+                                    <label for="price-range" class="filter-label">Rango de Precio</label>
+                                    <select id="price-range" class="filter-select">
+                                        <option value="all">Todos los precios</option>
+                                        <option value="0-2000000">$0 - $2,000,000 MXN</option>
+                                        <option value="2000000-5000000">$2,000,000 - $5,000,000 MXN</option>
+                                        <option value="5000000+">$5,000,000+ MXN</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="filter-group" style="align-self: flex-end;">
+                                    <button class="search-button">
+                                        <i class="fas fa-search"></i> Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Background Image -->
-            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixid=M3wzNjM5Nzd8MHwxfHNlYXJjaHwxfHxpY2UlMjBmaW5hbmNpYWwlMjBmaW5hbmNpYWwlMjBmaW5hbmNpYWwlMjBmaW5hbmNpYWUlfGVufDB8fHx8MTF8MA&ixlib=rb-4.0.3&w=1200" 
-                 alt="Propiedad destacada" class="hero-image">
-    </div>
-</section>
 
-    <!-- Featured Properties -->
-    <section class="section section-featured">
-        <div class="container">
+    <main class="container">
+        <section class="section section-featured">
             <div class="section-header">
                 <h2 class="section-title">Propiedades Destacadas</h2>
                 <p class="section-subtitle">Descubre las propiedades más populares en tu zona</p>
@@ -244,28 +291,9 @@
             <div class="view-all-wrapper text-center">
                 <button class="btn btn-primary btn-large">Ver Todas las Propiedades</button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Add this section below your featured properties -->
-    <section class="recommendations-section hidden" id="recommendationsSection">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Propiedades que Tal Vez Te Gusten</h2>
-                <p class="section-subtitle">Propiedades similares a las que has visto y guardado</p>
-            </div>
-            
-            <div class="properties-grid" id="recommendationsGrid">
-                <div class="recommendations-empty">
-                    <div class="recommendations-empty-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3 class="recommendations-empty-title">Sin recomendaciones aún</h3>
-                    <p class="recommendations-empty-text">Navega por las propiedades para ver recomendaciones personalizadas basadas en tus preferencias.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Recommendations Section -->
     <section class="section recommendations-section" id="recommendationsSection">
@@ -290,96 +318,93 @@
             </div>
         </div>
     </section>
+      
 
     <!-- Services Section -->
     <section class="section services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">¿Por Qué Elegir RealtyFind MX?</h2>
-                <p class="section-subtitle">Tu socio de confianza en bienes raíces en México</p>
+        <div class="section-header">
+            <h2 class="section-title">¿Por Qué Elegir Tierras.mx?</h2>
+            <p class="section-subtitle">Tu socio de confianza en bienes raíces en México</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="service-title">Búsqueda Avanzada</h3>
+                <p class="service-description">Encuentra exactamente lo que buscas con nuestros filtros y herramientas de búsqueda poderosas adaptadas al mercado mexicano.</p>
             </div>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3 class="service-title">Búsqueda Avanzada</h3>
-                    <p class="service-description">Encuentra exactamente lo que buscas con nuestros filtros y herramientas de búsqueda poderosas adaptadas al mercado mexicano.</p>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-map-marker-alt"></i>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3 class="service-title">Experiencia Local</h3>
-                    <p class="service-description">Conéctate con agentes locales experimentados que conocen tu mercado a fondo, desde CDMX hasta Cancún.</p>
+                <h3 class="service-title">Experiencia Local</h3>
+                <p class="service-description">Conéctate con agentes locales experimentados que conocen tu mercado a fondo, desde CDMX hasta Cancún.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-heart"></i>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 class="service-title">Servicio Personalizado</h3>
-                    <p class="service-description">Obtén recomendaciones personalizadas y guarda tus propiedades favoritas para no perder de vista tus opciones.</p>
-                </div>
+                <h3 class="service-title">Servicio Personalizado</h3>
+                <p class="service-description">Obtén recomendaciones personalizadas y guarda tus propiedades favoritas para no perder de vista tus opciones.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <i class="fas fa-home"></i>
-                        RealtyFind <span class="mx-flag">MX</span>
+                    <a href="index.php" class="footer-logo">
+                        <img src="https://static.wixstatic.com/media/663c9c_db1472302d8b4730a01c556f348b0634~mv2.png/v1/fill/w_61,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LOGO%20TM%20BROWN%20copy.png" alt="Tierras.mx Logo" style="width: 24px; height: 24px; margin-right: 8px;">
+                        Tierras.mx
                     </a>
                     <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/523331010164?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n." class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/tierras.mx/" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/tierras-m%C3%A9xico-417931362/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@TierrasMexico" class="social-link"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-column">
                     <h4 class="footer-title">Para Compradores</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Buscar Propiedades</a></li>
+                        <li><a href="comprar_new.php">Buscar Propiedades</a></li>
                         <li><a href="#">Calculadora de Crédito</a></li>
                         <li><a href="#">Guía de Compra</a></li>
-                        <li><a href="#">Encuentra un Agente</a></li>
+                        <li><a href="encuentraunagente.php">Encuentra un Agente</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-column">
                     <h4 class="footer-title">Para Vendedores</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Vende tu Propiedad</a></li>
+                        <li><a href="anunciar.php">Vende tu Propiedad</a></li>
                         <li><a href="#">Valor de tu Propiedad</a></li>
-                        <li><a href="#">Guía de Venta</a></li>
-                        <li><a href="#">Lista tu Propiedad</a></li>
+                        <li><a href="recursos vendedor.html">Guía de Venta</a></li>
+                        <li><a href="anunciar.php">Lista tu Propiedad</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-column">
                     <h4 class="footer-title">Compañía</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="Sobre Nosotros.html">Sobre Nosotros</a></li>
                         <li><a href="#">Trabajos</a></li>
                         <li><a href="#">Prensa</a></li>
                         <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="Politica de Privacidad.html">Política de Privacidad</a></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p>&copy; 2024 RealtyFind MX. Todos los derechos reservados.</p>
+                <p>&copy; 2024 Tierras.mx. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -388,5 +413,6 @@
     <script src="Tierrasmx/assets/js/recommendations.js"></script>
     <script src="Tierrasmx/assets/js/localization.js"></script>
     <script src="Tierrasmx/assets/js/utils.js"></script>
+    <script src="Tierrasmx/assets/js/search.js" defer></script>
 </body>
-</html>
+</html>t 

@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealtyFind MX - Financiamiento TierrasMX </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --mexico-blue: #0068ff;
+            --mexico-green: #10b981;
+            --mexico-red: #ef4444;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.125rem;
+            --radius: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--gray-700);
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            color: var(--mexico-green);
+        }
+
+        .primary-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            line-height: 80px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .secondary-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-toggle button {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .language-toggle button.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--gray-700);
+        }
+
+        .btn-ghost:hover {
+            background-color: var(--gray-100);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--mexico-blue), var(--primary));
+            color: white;
+            padding: 6rem 0 4rem;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            min-width: 200px;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-hero-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            min-width: 200px;
+        }
+
+        .btn-hero-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background-color: var(--gray-50);
+            padding: 4rem 0;
+        }
+
+        .calculator-container {
+            background-color: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .calculator-header {
+            background: linear-gradient(135deg, var(--mexico-blue), var(--primary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .calculator-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .calculator-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .calculator-content {
+            padding: 2rem;
+        }
+
+        .calculator-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray-200);
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator-tab {
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            color: var(--gray-600);
+        }
+
+        .calculator-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .calculator-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--gray-900);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            color: var(--gray-900);
+            background-color: white;
+            appearance: none;
+            background-image: url("image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-range {
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .results-section {
+            background-color: var(--gray-50);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            margin-top: 1.5rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            background-color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .result-description {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .btn-calculate {
+            background-color: var(--primary);
+            color: white;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .btn-calculate:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 1024px) {
+            .process-steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .process-step {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .process-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: var(--gray-50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .process-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .process-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Recommendations Section */
+        .recommendations-section {
+            padding: 4rem 0;
+            background-color: var(--gray-50);
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 1024px) {
+            .recommendations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .recommendation-card {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .recommendation-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            background-color: var(--gray-50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .recommendation-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .recommendation-description {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .recommendation-cta {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            gap: 0.25rem;
+        }
+
+        .recommendation-cta:hover {
+            color: var(--primary-dark);
+        }
+
+        .recommendation-cta i {
+            font-size: 0.875rem;
+        }
+
+        .recommendation-badge {
+            display: inline-block;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Property Cards */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 1024px) {
+            .properties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .property-card {
+            background-color: #ffffff;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid var(--gray-200);
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .property-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.05);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        .property-badge.sale {
+            background-color: var(--secondary);
+        }
+
+        .property-badge.rent {
+            background-color: var(--primary);
+        }
+
+        .property-badge.mx {
+            background-color: #c026d3;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .property-badge.affordable {
+            background-color: var(--secondary);
+            position: static;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.85);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favorite-btn:hover {
+            background-color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn i {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+        }
+
+        .favorite-btn.active i {
+            color: #ef4444;
+        }
+
+        .viewed-badge {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .property-content {
+            padding: 1.5rem;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mxn-price {
+            color: var(--secondary);
+            font-weight: 800;
+        }
+
+        .property-address {
+            display: flex;
+            align-items: center;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .property-address i {
+            margin-right: 0.25rem;
+            color: var(--primary);
+        }
+
+        .location-hierarchy {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .location-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .location-separator {
+            margin: 0 0.25rem;
+            color: var(--gray-400);
+        }
+
+        .property-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .stat i {
+            margin-right: 0.25rem;
+            color: var(--primary);
+        }
+
+        .property-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--gray-700);
+        }
+
+        .feature-badge i {
+            margin-right: 0.25rem;
+            color: var(--secondary);
+        }
+
+        .feature-badge.seguridad {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        .feature-badge.seguridad i {
+            color: #059669;
+        }
+
+        .property-description {
+            color: var(--gray-700);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            min-height: 60px;
+        }
+
+        .view-property {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .view-property:hover {
+            color: var(--primary-dark);
+        }
+
+        .view-property i {
+            margin-left: 0.25rem;
+            transition: transform 0.2s;
+        }
+
+        .view-property:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Recommendation Info Banner */
+        .recommendation-info {
+            background: linear-gradient(135deg, var(--mexico-blue), var(--primary));
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .recommendation-info-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .recommendation-info-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-info-text {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .btn-info {
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .btn-info:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--gray-900);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo i {
+            color: var(--mexico-green);
+        }
+
+        .footer-description {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: var(--gray-900);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            font-weight: 500;
+            max-width: 400px;
+            border-left: 4px solid var(--primary);
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .notification.success {
+            border-left-color: var(--secondary);
+        }
+
+        .notification.warning {
+            border-left-color: var(--warning);
+        }
+
+        .notification.error {
+            border-left-color: var(--danger);
+        }
+
+        .notification-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .primary-nav {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 3.75rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .mx-flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .mx-flag::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 12px;
+            background: linear-gradient(to bottom, #006341 33%, #FFFFFF 33%, #FFFFFF 66%, #CE1126 66%);
+            border: 1px solid var(--gray-300);
+            border-radius: 2px;
+            vertical-align: middle;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Print Styles */
+        @media print {
+            .header,
+            .footer {
+                display: none;
+            }
+            
+            .hero {
+                background: var(--gray-50);
+                color: var(--gray-900);
+            }
+            
+            .property-card {
+                break-inside: avoid;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <i class="fas fa-home logo-icon"></i>
+                    RealtyFind <span class="mx-flag">MX</span>
+                </a>
+                
+                <!-- Navigation -->
+                <nav class="primary-nav">
+                    <a href="#">Comprar</a>
+                    <a href="#">Rentar</a>
+                    <a href="#">Vender</a>
+                    <a href="#">Agentes</a>
+                    <a href="#" class="active">Créditos</a>
+                </nav>
+                
+                <!-- Auth & Language -->
+                <!-- Auth & Language -->
+                <div class="secondary-actions">
+                    <button class="language-toggle active" data-lang="es">ES</button>
+                    <button class="language-toggle" data-lang="en">EN</button>
+                    <button class="btn btn-ghost">Iniciar Sesión</button>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle">Administrar Rentas</a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-column">
+                                <h5>Herramientas de Administración</h5>
+                                <a href="#">Crea Anuncio</a>
+                                <a href="#">Mis Listas</a>
+                                <a href="#">Inbox</a>
+                                <a href="#">Aplicaciones</a>
+                                <a href="#">Leases</a>
+                                <a href="#">Pagos</a>
+                            </div>
+                            <div class="dropdown-column">
+                                <h5>Aprende Más</h5>
+                                <a href="#">TIerrasMX Rental Manager</a>
+                                <a href="#">Price My Rental</a>
+                                <a href="#">Centro de Recursos</a>
+                                <a href="#">Centro de Ayuda</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Unirse</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="nav-mobile" id="mobileNav">
+                <a href="#" class="nav-link-mobile">Comprar</a>
+                <a href="#" class="nav-link-mobile">Rentar</a>
+                <a href="#" class="nav-link-mobile">Vender</a>
+                <a href="#" class="nav-link-mobile">Agentes</a>
+                <a href="#" class="nav-link-mobile active">Créditos</a>
+                <div class="mobile-language">
+                    <button class="language-toggle active w-100 justify-content-start" data-lang="es">
+                        <span class="mx-flag">Español (MX)</span>
+                    </button>
+                    <button class="language-toggle w-100 justify-content-start mt-2" data-lang="en">
+                        English
+                    </button>
+                </div>
+                <div class="mobile-auth">
+                    <button class="btn btn-ghost w-100">Iniciar Sesión</button>
+                    <button class="btn btn-primary w-100">Unirse</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Financiamiento para Tierras con Capacidad de Compra</h1>
+                <p class="hero-subtitle">Más que una calculadora, Capacidad de Compra personaliza tu búsqueda en RealtyFind MX. Comienza ahora para ver qué puedes pagar en tiempo real — y obtén precalificación con RealtyFind MX Créditos cuando estés listo.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#" class="btn-hero">
+                        <i class="fas fa-calculator"></i> Comienza Ahora
+                    </a>
+                    <a href="#" class="btn-hero btn-hero-secondary">
+                        <i class="fas fa-user"></i> Acceder a Mi Dashboard
+                    </a>
+                </div>
+                
+                <div class="text-center" style="margin-top: 2rem; color: white; opacity: 0.9;">
+                    <strong>Tu Capacidad de Compra hoy:</strong> <span style="font-size: 1.5rem; font-weight: 700;">Hasta $1,850,000 MXN</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">¿Cómo Funciona?</h2>
+                <p class="section-subtitle">Descubre, sigue y compra tierras que se ajusten a tu presupuesto en México</p>
+            </div>
+            
+            <div class="process-steps">
+                <!-- Step 1 -->
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="process-title">Descubre</h3>
+                    <p class="process-description">Obtén una estimación de tu presupuesto basada en tus finanzas y tasas de interés en tiempo real proporcionadas por RealtyFind MX Créditos.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="process-title">Sigue</h3>
+                    <p class="process-description">Ve actualizaciones en tiempo real a medida que las tasas de interés cambian y observa cómo tu presupuesto para tierras varía con el tiempo.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="process-step">
+                    <div class="process-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="process-title">Compra</h3>
+                    <p class="process-description">Sabe qué terrenos entran en tu presupuesto con una experiencia de compra personalizada en toda RealtyFind MX.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <h2 class="calculator-title">Descubre lo que Puedes Pagar por una Tierra</h2>
+                    <p class="calculator-subtitle">Obtén una estimación personalizada basada en tus finanzas y las tasas de interés actuales en México</p>
+                </div>
+                
+                <div class="calculator-content">
+                    <div class="calculator-tabs">
+                        <div class="calculator-tab active" data-tab="basic">Información Básica</div>
+                        <div class="calculator-tab" data-tab="advanced">Detalles Financieros</div>
+                    </div>
+                    
+                    <form class="calculator-form">
+                        <div class="form-group">
+                            <label for="income" class="form-label">Ingreso Mensual Neto</label>
+                            <input type="text" id="income" class="form-input" placeholder="$ 35,000 MXN" value="$ 35,000 MXN">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="down-payment" class="form-label">Ahorros para Enganche</label>
+                            <input type="text" id="down-payment" class="form-input" placeholder="$ 300,000 MXN" value="$ 300,000 MXN">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="credit-score" class="form-label">Puntuación Crediticia</label>
+                            <select id="credit-score" class="form-select">
+                                <option>700-750 (Excelente)</option>
+                                <option selected>650-699 (Bueno)</option>
+                                <option>600-649 (Regular)</option>
+                                <option>550-599 (Necesita Mejora)</option>
+                                <option>Menos de 550</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="debt-ratio" class="form-label">Deudas Mensuales</label>
+                            <input type="text" id="debt-ratio" class="form-input" placeholder="$ 8,500 MXN" value="$ 8,500 MXN">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loan-term" class="form-label">Plazo del Crédito</label>
+                            <select id="loan-term" class="form-select">
+                                <option>10 años</option>
+                                <option selected>15 años</option>
+                                <option>20 años</option>
+                                <option>25 años</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest-rate" class="form-label">Tasa de Interés (8.5%)</label>
+                            <input type="range" id="interest-rate" class="form-range" min="5" max="12" step="0.1" value="8.5">
+                            <div class="range-values">
+                                <span>5%</span>
+                                <span>12%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="property-type" class="form-label">Tipo de Terreno</label>
+                            <select id="property-type" class="form-select">
+                                <option selected>Terreno Residencial</option>
+                                <option>Terreno Comercial</option>
+                                <option>Terreno Agrícola</option>
+                                <option>Terreno Industrial</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location" class="form-label">Ubicación</label>
+                            <select id="location" class="form-select">
+                                <option selected>Todas las Zonas</option>
+                                <option>CDMX y Área Metropolitana</option>
+                                <option>Guadalajara</option>
+                                <option>Monterrey</option>
+                                <option>Cancún y Riviera Maya</option>
+                                <option>Otras Zonas</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" style="grid-column: 1/-1;">
+                            <button type="button" class="btn-calculate" id="calculateBtn">Calcular Capacidad de Compra</button>
+                        </div>
+                    </form>
+                    
+                    <div class="results-section">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center; color: var(--gray-900);">Tu Capacidad de Compra Estimada</h3>
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="result-value">$ 1,850,000 MXN</div>
+                                <div class="result-label">Presupuesto Máximo</div>
+                                <div class="result-description">Precio máximo del terreno que califica</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">$ 14,250 MXN</div>
+                                <div class="result-label">Pago Mensual Estimado</div>
+                                <div class="result-description">Incluye principal, intereses y seguros</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; background-color: var(--gray-100); border-radius: var(--radius-md); padding: 1.5rem;">
+                            <h4 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: var(--gray-900);">¿Cómo podemos mejorar tu capacidad de compra?</h4>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                <div>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-check-circle" style="color: var(--secondary);"></i>
+                                        <span>Aumenta tu enganche a $400,000 MXN</span>
+                                    </div>
+                                    <div style="font-size: 0.875rem; color: var(--gray-600); padding-left: 1.75rem;">
+                                        Aumentaría tu presupuesto a <strong>$2,100,000 MXN</strong>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-check-circle" style="color: var(--secondary);"></i>
+                                        <span>Mejora tu puntuación crediticia a 700+</span>
+                                    </div>
+                                    <div style="font-size: 0.875rem; color: var(--gray-600); padding-left: 1.75rem;">
+                                        Reduciría tu pago mensual a <strong>$12,800 MXN</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendation Info Banner -->
+    <div class="container">
+        <div class="recommendation-info">
+            <div class="recommendation-info-content">
+                <h2 class="recommendation-info-title">¿Cómo funcionan estas recomendaciones?</h2>
+                <p class="recommendation-info-text">Las recomendaciones se basan en tu ubicación y actividad de búsqueda, como las propiedades que has visto y guardado y los filtros que has utilizado. Usamos esta información para mostrarte terrenos similares, para que no te pierdas ninguna oportunidad.</p>
+                <a href="#" class="btn-info">Más información sobre recomendaciones</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendations Section -->
+    <section class="recommendations-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Terrenos que se Ajustan a tu Presupuesto</h2>
+                <p class="section-subtitle">Estos terrenos están dentro de tu capacidad de compra estimada de $1,850,000 MXN</p>
+            </div>
+            
+            <div class="properties-grid">
+                <!-- Property 1 - CDMX -->
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Terreno en Santa Catarina, Monterrey">
+                        <div class="property-badge affordable">Dentro de tu Presupuesto</div>
+                        <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">
+                            <i class="fas fa-coins"></i> 
+                            <span class="mxn-price">$1,650,000 MXN</span>
+                        </div>
+                        <div class="property-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Santa Catarina, Monterrey
+                        </div>
+                        <div class="location-hierarchy">
+                            <span class="location-item">Nuevo León</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Monterrey</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Santa Catarina</span>
+                        </div>
+                        <div class="property-stats">
+                            <div class="stat">
+                                <i class="fas fa-ruler-combined"></i>
+                                500 m² de terreno
+                            </div>
+                        </div>
+                        <div class="property-features">
+                            <span class="feature-badge">
+                                <i class="fas fa-road"></i> Acceso Pavimentado
+                            </span>
+                            <span class="feature-badge">
+                                <i class="fas fa-bolt"></i> Luz y Agua
+                            </span>
+                            <span class="feature-badge">
+                                <i class="fas fa-umbrella-beach"></i> Zona en Crecimiento
+                            </span>
+                        </div>
+                        <p class="property-description">Terreno plano en excelente ubicación de Santa Catarina, ideal para construcción residencial o comercial. Documentación en regla y listo para desarrollar.</p>
+                        <a href="#" class="view-property">
+                            Ver terreno <i class="fas fa-arrow-right"></i>
+                            <span class="sr-only">en Santa Catarina, Monterrey</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Property 2 - Cancun -->
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1564501049412-61c2a30837c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             alt="Terreno en Cancún, Quintana Roo">
+                        <div class="property-badge affordable">Dentro de tu Presupuesto</div>
+                        <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-price">
+                            <i class="fas fa-coins"></i> 
+                            <span class="mxn-price">$1,780,000 MXN</span>
+                        </div>
+                        <div class="property-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Cancún, Quintana Roo
+                        </div>
+                        <div class="location-hierarchy">
+                            <span class="location-item">Quintana Roo</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Cancún</span>
+                            <span class="location-separator">></span>
+                            <span class="location-item">Zona Hotelera</span>
+                        </div>
+                        <div class="property-stats">
+                            <div class="stat">
+                                <i class="fas fa-ruler-combined"></i>
+                                450 m² de terreno
+                            </div>
+                        </div>
+                        <div class="property-features">
+                            <span class="feature-badge">
+                                <i class="fas fa-tree"></i> Zona Residencial
+                            </span>
+                            <span class="feature-badge">
+                                <i class="fas fa-car"></i> Acceso Principal
+                            </span>
+                            <span class="feature-badge">
+                                <i class="fas fa-umbrella-beach"></i> Inversión Turística
+                            </span>
+                        </div>
+                        <p class="property-description">Terreno en zona privilegiada de Cancún, perfecto para desarrollo residencial o inversión turística. Ubicado a pocos minutos de la zona hotelera y servicios básicos.</p>
+                        <a href="#" class="view-property">
+                            Ver terreno <i class="fas fa-arrow-right"></i>
+                            <span class="sr-only">en Cancún, Quintana Roo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 2rem;">
+                <a href="#" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1rem;">
+                    <i class="fas fa-search"></i> Ver Todos los Terrenos en tu Presupuesto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Resources Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recursos Adicionales para la Compra de Tierras</h2>
+                <p class="section-subtitle">Herramientas y guías para ayudarte en tu proceso de financiamiento</p>
+            </div>
+            
+            <div class="recommendations-grid">
+                <!-- Resource 1 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="recommendation-title">Guía para Comprar Terrenos en México</h3>
+                    <p class="recommendation-description">Aprende los pasos esenciales para comprar terrenos en México, desde la verificación de propiedad hasta el registro ante notario público. Evita problemas legales comunes.</p>
+                    <a href="#" class="recommendation-cta">
+                        Leer guía completa <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Resource 2 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="recommendation-title">Costos Adicionales al Comprar un Terreno</h3>
+                    <p class="recommendation-description">Descubre todos los costos que debes considerar al comprar un terreno en México, incluyendo impuestos, gastos notariales y costos de escrituración.</p>
+                    <a href="#" class="recommendation-cta">
+                        Ver costos <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Resource 3 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="recommendation-title">Zonas con Mayor Potencial de Valorización</h3>
+                    <p class="recommendation-description">Conoce las zonas en México con el mayor potencial de valorización para inversión en terrenos, basado en análisis de tendencias urbanas y desarrollo infraestructural.</p>
+                    <a href="#" class="recommendation-cta">
+                        Ver zonas <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Resource 4 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="recommendation-title">Programas de Apoyo para la Compra de Terrenos</h3>
+                    <p class="recommendation-description">Información sobre programas gubernamentales y privados que pueden ayudarte con el enganche o tasas preferenciales para la compra de terrenos en México.</p>
+                    <a href="#" class="recommendation-cta">
+                        Conocer programas <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background-color: var(--gray-50);">
+        <div class="container">
+            <div class="section-header" style="max-width: 700px; margin: 0 auto 2.5rem;">
+                <h2 class="section-title">¿Listo para Obtener tu Financiamiento para Tierras?</h2>
+                <p class="section-subtitle">Obtén una estimación personalizada y comienza tu proceso de financiamiento con RealtyFind MX Créditos.</p>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <a href="#" class="btn-hero" style="background-color: var(--primary); color: white; padding: 0.75rem 2rem; border-radius: var(--radius-md); text-decoration: none; font-weight: 600;">
+                    <i class="fas fa-calculator"></i> Obtén tu Estimación
+                </a>
+                <a href="#" class="btn-hero" style="background-color: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 0.75rem 2rem; border-radius: var(--radius-md); text-decoration: none; font-weight: 600;">
+                    <i class="fas fa-phone"></i> Habla con un Experto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        RealtyFind <span class="mx-flag">MX</span>
+                    </a>
+                    <p class="footer-description">Tu socio de confianza para encontrar el financiamiento perfecto para tu terreno en México.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Compradores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Calculadora de Financiamiento</a></li>
+                        <li><a href="#">Tipos de Créditos</a></li>
+                        <li><a href="#">Programas de Apoyo</a></li>
+                        <li><a href="#">Requisitos</a></li>
+                        <li><a href="#">Guía para Comprar Terrenos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog de Finanzas</a></li>
+                        <li><a href="#">Glosario de Términos</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Casos de Éxito</a></li>
+                        <li><a href="#">Simulador de Pagos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Compañía</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Trabajos</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 RealtyFind MX. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Content Loaded Event
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMobileMenu();
+            initializeLanguageToggle();
+            initializeScrollEffects();
+            initializeCalculator();
+            initializeFavoriteButtons();
+            initializeRecommendationSystem();
+        });
+
+        // Mobile Menu Functionality
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                    
+                    // Toggle icon
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileNav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close mobile menu when clicking on links
+                const mobileLinks = mobileNav.querySelectorAll('.nav-link-mobile');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+                        mobileNav.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        }
+
+        // Language Toggle Functionality
+        function initializeLanguageToggle() {
+            const languageToggles = document.querySelectorAll('.language-toggle');
+            
+            languageToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    // Update active state
+                    languageToggles.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // In a real implementation, this would change all text content
+                    // For demo purposes, we'll just show a notification
+                    const lang = this.getAttribute('data-lang');
+                    showNotification(`Idioma cambiado a ${lang === 'es' ? 'Español' : 'English'}`, 'success');
+                });
+            });
+        }
+
+        // Scroll Effects
+        function initializeScrollEffects() {
+            // Add scroll listener for header
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    // Scrolling up
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const animateElements = document.querySelectorAll('.process-step, .property-card, .recommendation-card');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Calculator Functionality
+        function initializeCalculator() {
+            // Tab switching
+            const calculatorTabs = document.querySelectorAll('.calculator-tab');
+            calculatorTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    calculatorTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                });
+            });
+            
+            // Interest rate slider
+            const interestRate = document.getElementById('interest-rate');
+            if (interestRate) {
+                interestRate.addEventListener('input', function() {
+                    const rate = this.value;
+                    document.querySelector('label[for="interest-rate"] .form-label').textContent = 
+                        `Tasa de Interés (${rate}%)`;
+                });
+            }
+            
+            // Calculate button
+            const calculateBtn = document.getElementById('calculateBtn');
+            if (calculateBtn) {
+                calculateBtn.addEventListener('click', function() {
+                    // Get form values
+                    const income = document.getElementById('income').value;
+                    const downPayment = document.getElementById('down-payment').value;
+                    const creditScore = document.getElementById('credit-score').value;
+                    const debtRatio = document.getElementById('debt-ratio').value;
+                    const loanTerm = document.getElementById('loan-term').value;
+                    const interestRate = document.getElementById('interest-rate').value;
+                    
+                    // Show notification
+                    showNotification('Calculando tu capacidad de compra...', 'info');
+                    
+                    // Simulate calculation
+                    setTimeout(() => {
+                        // Update results
+                        document.querySelector('.result-value:first-child').textContent = '$ 1,850,000 MXN';
+                        document.querySelector('.result-value:nth-child(3)').textContent = '$ 14,250 MXN';
+                        
+                        showNotification('¡Cálculo completado! Revisa tu capacidad de compra.', 'success');
+                    }, 1000);
+                });
+            }
+        }
+
+        // Favorite Buttons Functionality
+        function initializeFavoriteButtons() {
+            const favoriteButtons = document.querySelectorAll('.favorite-btn');
+            
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const icon = this.querySelector('i');
+                    const isFavorited = icon.classList.contains('fas');
+                    
+                    if (isFavorited) {
+                        // Remove from favorites
+                        icon.classList.remove('fas', 'fa-heart');
+                        icon.classList.add('far', 'fa-heart');
+                        
+                        showNotification('Removido de favoritos', 'info');
+                    } else {
+                        // Add to favorites
+                        icon.classList.remove('far', 'fa-heart');
+                        icon.classList.add('fas', 'fa-heart');
+                        
+                        showNotification('Añadido a favoritos', 'success');
+                    }
+                    
+                    // Add animation
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        }
+
+        // Recommendation System
+        function initializeRecommendationSystem() {
+            // Check if user has viewed properties
+            const viewedProperties = getLocalStorageItem('viewedProperties', []);
+            const savedProperties = getLocalStorageItem('savedProperties', []);
+            
+            // Show recommendations section if user has activity
+            if (viewedProperties.length > 0 || savedProperties.length > 0) {
+                showRecommendationsSection();
+                
+                // Generate and display recommendations
+                generatePropertyRecommendations(viewedProperties, savedProperties);
+            }
+            
+            // Track property views
+            trackPropertyViews();
+        }
+
+        // Track when user views a property
+        function trackPropertyViews() {
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            propertyCards.forEach(card => {
+                // Add viewed class when property card is in viewport for more than 2 seconds
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                if (entry.isIntersecting) {
+                                    const propertyId = card.dataset.id;
+                                    markPropertyAsViewed(propertyId, card);
+                                }
+                            }, 2000);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(card);
+            });
+        }
+
+        // Mark a property as viewed and save to localStorage
+        function markPropertyAsViewed(propertyId, cardElement) {
+            // Save to localStorage
+            let viewedProperties = getLocalStorageItem('viewedProperties', []);
+            
+            // Remove if already exists to update timestamp
+            viewedProperties = viewedProperties.filter(p => p.id !== propertyId);
+            
+            // Add with timestamp
+            viewedProperties.push({
+                id: propertyId,
+                timestamp: Date.now(),
+                details: getPropertyDetails(cardElement)
+            });
+            
+            // Keep only the 10 most recent
+            viewedProperties = viewedProperties.slice(-10);
+            
+            setLocalStorageItem('viewedProperties', viewedProperties);
+        }
+
+        // Get property details for tracking
+        function getPropertyDetails(cardElement) {
+            return {
+                price: cardElement.querySelector('.property-price')?.textContent || '',
+                address: cardElement.querySelector('.property-address')?.textContent.replace('📍', '').trim() || '',
+                size: cardElement.querySelector('.stat')?.textContent || '',
+                type: 'terreno'
+            };
+        }
+
+        // Show the recommendations section
+        function showRecommendationsSection() {
+            const recommendationsSection = document.querySelector('.recommendations-section');
+            if (recommendationsSection) {
+                recommendationsSection.style.display = 'block';
+                
+                // Animate in
+                setTimeout(() => {
+                    recommendationsSection.style.opacity = '1';
+                }, 50);
+            }
+        }
+
+        // Generate property recommendations
+        function generatePropertyRecommendations(viewedProperties, savedProperties) {
+            const recommendationsGrid = document.querySelector('.recommendations-grid .properties-grid');
+            if (!recommendationsGrid) return;
+            
+            // Clear existing recommendations
+            recommendationsGrid.innerHTML = '';
+            
+            // Show loading state
+            recommendationsGrid.innerHTML = `
+                <div class="recommendations-loading" style="text-align: center; padding: 2rem; grid-column: 1/-1;">
+                    <div class="spinner" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; border: 3px solid #dbeafe; border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="color: #6b7280;">Encontrando terrenos que podrían gustarte...</p>
+                </div>
+            `;
+            
+            // Add spinner animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // Get recommendations based on viewed properties
+                const recommendations = getMexicanPropertyRecommendations(viewedProperties, savedProperties);
+                
+                if (recommendations.length > 0) {
+                    // Render recommendations
+                    recommendationsGrid.innerHTML = '';
+                    recommendations.forEach(property => {
+                        recommendationsGrid.appendChild(createRecommendationCard(property));
+                    });
+                } else {
+                    // Show empty state
+                    recommendationsGrid.innerHTML = `
+                        <div class="recommendations-empty" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                            <div class="recommendations-empty-icon" style="font-size: 3rem; color: #e5e7eb; margin-bottom: 1rem;">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3 class="recommendations-empty-title" style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Sin recomendaciones aún</h3>
+                            <p class="recommendations-empty-text" style="color: #6b7280; max-width: 32rem; margin: 0 auto;">
+                                Navega por los terrenos para ver recomendaciones personalizadas basadas en tus preferencias.
+                            </p>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+
+        // Get Mexican-specific property recommendations
+        function getMexicanPropertyRecommendations(viewedProperties, savedProperties) {
+            // For demo purposes, we'll return some similar properties
+            // In a real implementation, this would use a more sophisticated algorithm
+            
+            // Get the most recently viewed property
+            const mostRecentView = viewedProperties.length > 0 ? 
+                viewedProperties[viewedProperties.length - 1] : null;
+            
+            // If no viewed properties, return empty array
+            if (!mostRecentView) {
+                return [];
+            }
+            
+            // Extract location data from most recent view
+            const { address } = mostRecentView.details;
+            const location = address.split(',')[1]?.trim() || 'México';
+            
+            // Generate similar properties based on location
+            const similarProperties = [];
+            
+            // Create 2 similar properties
+            for (let i = 1; i <= 2; i++) {
+                const price = 1650000 + (Math.random() * 150000);
+                const size = 450 + Math.floor(Math.random() * 100);
+                
+                // Format price as MXN
+                const formattedPrice = new Intl.NumberFormat('es-MX', {
+                    style: 'currency',
+                    currency: 'MXN',
+                    minimumFractionDigits: 0
+                }).format(price);
+                
+                similarProperties.push({
+                    id: `mx-recommendation-${Date.now()}-${i}`,
+                    title: `Terreno en ${location}`,
+                    price: formattedPrice,
+                    address: location === 'México' ? 'Santa Catarina, Monterrey' : location,
+                    image: i === 1 ? 
+                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                        'https://images.unsplash.com/photo-1564501049412-61c2a30837c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                    size: `${size} m²`,
+                    features: [
+                        { icon: 'fa-road', text: 'Acceso Pavimentado' },
+                        { icon: 'fa-bolt', text: 'Luz y Agua' },
+                        { icon: 'fa-umbrella-beach', text: 'Zona en Crecimiento' }
+                    ].slice(0, 2 + Math.floor(Math.random() * 2))
+                });
+            }
+            
+            return similarProperties;
+        }
+
+        // Create recommendation card element
+        function createRecommendationCard(property) {
+            const card = document.createElement('div');
+            card.className = 'property-card';
+            card.innerHTML = `
+                <div class="property-image">
+                    <img src="${property.image}" alt="${property.title}">
+                    <div class="property-badge affordable">Dentro de tu Presupuesto</div>
+                    <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="property-content">
+                    <div class="property-price">
+                        <i class="fas fa-coins"></i> 
+                        <span class="mxn-price">${property.price}</span>
+                    </div>
+                    <div class="property-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${property.address}
+                    </div>
+                    <div class="location-hierarchy">
+                        <span class="location-item">México</span>
+                        <span class="location-separator">></span>
+                        <span class="location-item">${property.address.split(',')[1]?.trim() || 'CDMX'}</span>
+                        <span class="location-separator">></span>
+                        <span class="location-item">${property.address.split(',')[0]?.trim() || 'Polanco'}</span>
+                    </div>
+                    <div class="property-stats">
+                        <div class="stat">
+                            <i class="fas fa-ruler-combined"></i>
+                            ${property.size}
+                        </div>
+                    </div>
+                    <div class="property-features">
+                        ${property.features.map(feature => `
+                            <span class="feature-badge">
+                                <i class="fas ${feature.icon}"></i> ${feature.text}
+                            </span>
+                        `).join('')}
+                    </div>
+                    <p class="property-description">Terreno plano en excelente ubicación, ideal para construcción residencial o comercial. Documentación en regla y listo para desarrollar.</p>
+                    <a href="#" class="view-property">
+                        Ver terreno <i class="fas fa-arrow-right"></i>
+                        <span class="sr-only">en ${property.address}</span>
+                    </a>
+                </div>
+            `;
+            
+            // Add click handler for favorite button
+            card.querySelector('.favorite-btn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far', 'fa-heart');
+                    icon.classList.add('fas', 'fa-heart');
+                    showNotification('Añadido a favoritos', 'success');
+                } else {
+                    icon.classList.remove('fas', 'fa-heart');
+                    icon.classList.add('far', 'fa-heart');
+                    showNotification('Removido de favoritos', 'info');
+                }
+            });
+            
+            return card;
+        }
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            if (type !== 'info') notification.classList.add(type);
+            
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                warning: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
+            };
+            
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas ${icons[type]}"></i>
+                </div>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Get item from localStorage with JSON parsing
+        function getLocalStorageItem(key, defaultValue) {
+            try {
+                const item = localStorage.getItem(key);
+                return item ? JSON.parse(item) : defaultValue;
+            } catch (e) {
+                console.error(`Error parsing localStorage item ${key}:`, e);
+                return defaultValue;
+            }
+        }
+
+        // Set item in localStorage with JSON stringifying
+        function setLocalStorageItem(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (e) {
+                console.error(`Error storing item ${key} in localStorage:`, e);
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

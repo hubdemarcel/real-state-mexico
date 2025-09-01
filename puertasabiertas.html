@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealtyFind MX - Casas Abiertas en México</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --mexico-blue: #0068ff;
+            --mexico-green: #10b981;
+            --mexico-red: #ef4444;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.125rem;
+            --radius: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--gray-700);
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            color: var(--mexico-green);
+        }
+
+        .primary-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            line-height: 80px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .secondary-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .secondary-actions a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            line-height: 80px;
+        }
+
+        .language-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-toggle button {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .language-toggle button.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+
+        /* Search Bar Styles */
+        .search-bar {
+            background-color: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 0;
+        }
+
+        .search-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .search-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .filter-select {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            background-color: #ffffff;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--gray-900);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+            min-width: 180px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-input {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            background-color: #ffffff;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: var(--gray-900);
+            min-width: 300px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        /* Sidebar Filters */
+        .filters-sidebar {
+            background-color: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        .filter-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-title button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .date-range {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .date-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--primary);
+        }
+
+        .apply-filters {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .apply-filters:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Open House Banner */
+        .open-house-banner {
+            background: linear-gradient(135deg, var(--mexico-blue), var(--primary));
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .open-house-banner-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .open-house-banner-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .open-house-banner-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .open-house-banner-subtitle {
+            opacity: 0.9;
+        }
+
+        .open-house-banner-actions {
+            display: flex;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .btn-banner {
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Results Header */
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .results-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .results-count {
+            color: var(--gray-600);
+        }
+
+        .view-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-option {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .view-option.active {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sort-label {
+            font-size: 0.875rem;
+            color: var(--gray-700);
+        }
+
+        .sort-select {
+            padding: 0.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            background-color: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+        }
+
+        /* Property Cards Grid */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* Property Card Styles */
+        .property-card {
+            background-color: #ffffff;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            border: 1px solid var(--gray-200);
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gray-300);
+        }
+
+        .property-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.05);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        .property-badge.sale {
+            background-color: var(--secondary);
+        }
+
+        .property-badge.rent {
+            background-color: var(--primary);
+        }
+
+        .property-badge.mx {
+            background-color: #c026d3;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .property-badge.open-house {
+            background-color: var(--warning);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.85);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favorite-btn:hover {
+            background-color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn i {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+        }
+
+        .favorite-btn.active i {
+            color: #ef4444;
+        }
+
+        .open-house-time {
+            position: absolute;
+            bottom: 0.75rem;
+            left: 0.75rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .property-content {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .property-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mxn-price {
+            color: var(--secondary);
+            font-weight: 800;
+        }
+
+        .property-address {
+            display: flex;
+            align-items: center;
+            color: var(--gray-600);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            min-height: 1.5rem;
+        }
+
+        .property-address i {
+            margin-right: 0.25rem;
+            color: var(--primary);
+        }
+
+        .location-hierarchy {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        .location-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .location-separator {
+            margin: 0 0.25rem;
+            color: var(--gray-400);
+        }
+
+        .property-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .stat i {
+            margin-right: 0.25rem;
+            color: var(--primary);
+        }
+
+        .property-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--gray-700);
+        }
+
+        .feature-badge i {
+            margin-right: 0.25rem;
+            color: var(--secondary);
+        }
+
+        .feature-badge.seguridad {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #059669;
+        }
+
+        .feature-badge.seguridad i {
+            color: #059669;
+        }
+
+        .property-description {
+            color: var(--gray-700);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            min-height: 3.5rem;
+        }
+
+        .view-property {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: auto;
+        }
+
+        .view-property:hover {
+            color: var(--primary-dark);
+        }
+
+        .view-property i {
+            margin-left: 0.25rem;
+            transition: transform 0.2s;
+        }
+
+        .view-property:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Recommendation System Section */
+        .recommendation-system {
+            padding: 3rem 0 1.5rem;
+            background-color: #ffffff;
+        }
+
+        .recommendation-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+            color: var(--gray-600);
+        }
+
+        .recommendation-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--gray-50);
+            border-radius: var(--radius-md);
+        }
+
+        /* Empty State */
+        .recommendations-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--gray-50);
+            border-radius: var(--radius-lg);
+            margin: 2rem 0;
+            grid-column: 1 / -1;
+        }
+
+        .recommendations-empty-icon {
+            font-size: 3rem;
+            color: var(--gray-300);
+            margin-bottom: 1rem;
+        }
+
+        .recommendations-empty-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendations-empty-text {
+            color: var(--gray-600);
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .pagination-list {
+            display: flex;
+            list-style: none;
+            gap: 0.25rem;
+        }
+
+        .pagination-item {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .pagination-item:hover {
+            background-color: var(--gray-100);
+            border-color: var(--gray-400);
+        }
+
+        .pagination-item.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--gray-900);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo i {
+            color: var(--mexico-green);
+        }
+
+        .footer-description {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1199px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-sidebar {
+                display: none;
+            }
+            
+            .filters-sidebar.active {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 100;
+                max-width: none;
+                margin: 0;
+                border-radius: 0;
+                border: none;
+                box-shadow: var(--shadow-xl);
+            }
+            
+            .mobile-filters-toggle {
+                display: block;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .properties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .properties-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        /* Accessibility Improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <i class="fas fa-home logo-icon"></i>
+                RealtyFind <span class="mx-flag">MX</span>
+            </a>
+
+            <!-- Primary Navigation -->
+            <nav class="primary-nav">
+                <a href="#">Comprar</a>
+                <a href="#">Rentar</a>
+                <a href="#">Vender</a>
+                <a href="#">Agentes</a>
+                <a href="#" class="active">Casas Abiertas</a>
+                <a href="#">Créditos</a>
+            </nav>
+
+            <!-- Secondary Actions -->
+            <div class="secondary-actions">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">Administrar Alquileres</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-column">
+                            <h5>Herramientas de Administración</h5>
+                            <a href="#">Crea Anuncio</a>
+                            <a href="#">Mis Listas</a>
+                            <a href="#">Inbox</a>
+                            <a href="#">Aplicaciones</a>
+                            <a href="#">Leases</a>
+                            <a href="#">Pagos</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <h5>Aprende Más</h5>
+                            <a href="#">TIerrasMX Rental Manager</a>
+                            <a href="#">Price My Rental</a>
+                            <a href="#">Centro de Recursos</a>
+                            <a href="#">Centro de Ayuda</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">Anunciar</a>
+                <a href="#">Ayuda</a>
+                <button class="btn btn-ghost">Iniciar Sesión</button>
+                <button class="btn btn-primary">Unirse</button>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="active">ES</button>
+                    <button>EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-container">
+            <div class="search-filters">
+                <div class="filter-group">
+                    <label for="location-search" class="filter-label">Ubicación</label>
+                    <input type="text" id="location-search" class="search-input" placeholder="Ingresa estado, ciudad o colonia">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="open-house-date" class="filter-label">Fecha</label>
+                    <select id="open-house-date" class="filter-select">
+                        <option value="this-weekend">Este fin de semana</option>
+                        <option value="next-weekend">Próximo fin de semana</option>
+                        <option value="today">Hoy</option>
+                        <option value="tomorrow">Mañana</option>
+                        <option value="all">Todas las fechas</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="property-type" class="filter-label">Tipo de Propiedad</label>
+                    <select id="property-type" class="filter-select">
+                        <option value="all">Todas</option>
+                        <option value="casa">Casa</option>
+                        <option value="departamento">Departamento</option>
+                        <option value="terreno">Terreno</option>
+                        <option value="local-comercial">Local Comercial</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group" style="align-self: flex-end;">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <main class="main-content">
+            <!-- Filters Sidebar -->
+            <aside class="filters-sidebar">
+                <div class="filter-section">
+                    <h3 class="filter-title">
+                        Fecha de Casa Abierta
+                        <button>Restablecer</button>
+                    </h3>
+                    <div class="date-range">
+                        <input type="date" class="date-input" id="start-date">
+                        <input type="date" class="date-input" id="end-date">
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3 class="filter-title">
+                        Hora
+                        <button>Restablecer</button>
+                    </h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked> Mañana (8am - 12pm)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked> Tarde (12pm - 5pm)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Noche (5pm - 8pm)
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3 class="filter-title">
+                        Tipo de Propiedad
+                        <button>Restablecer</button>
+                    </h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked> Casa
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked> Departamento
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Terreno
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Local Comercial
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3 class="filter-title">
+                        Características
+                        <button>Restablecer</button>
+                    </h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked> Seguridad 24/7
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked> Estacionamiento
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Gas Natural
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Agua Potable
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="apply-filters">Aplicar Filtros</button>
+            </aside>
+
+            <!-- Property Results -->
+            <div class="property-results">
+                <!-- Open House Banner -->
+                <div class="open-house-banner">
+                    <div class="open-house-banner-content">
+                        <div class="open-house-banner-text">
+                            <h2 class="open-house-banner-title">Casas Abiertas este fin de semana</h2>
+                            <p class="open-house-banner-subtitle">Visita propiedades en persona sin cita previa. Consulta los horarios y direcciones para planificar tu visita.</p>
+                        </div>
+                        <div class="open-house-banner-actions">
+                            <button class="btn-banner">Ver calendario</button>
+                            <button class="btn-banner">Recibir alertas</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-header">
+                    <div>
+                        <h1 class="results-title">Casas Abiertas</h1>
+                        <div class="results-count">147 propiedades encontradas</div>
+                    </div>
+                    
+                    <div class="view-options">
+                        <button class="view-option active">
+                            <i class="fas fa-th-large"></i>
+                            <span class="sr-only">Vista de cuadrícula</span>
+                        </button>
+                        <button class="view-option">
+                            <i class="fas fa-list"></i>
+                            <span class="sr-only">Vista de lista</span>
+                        </button>
+                        <button class="view-option">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span class="sr-only">Vista de mapa</span>
+                        </button>
+                    </div>
+                    
+                    <div class="sort-options">
+                        <span class="sort-label">Ordenar por:</span>
+                        <select class="sort-select">
+                            <option>Fecha de Casa Abierta</option>
+                            <option>Precio (menor a mayor)</option>
+                            <option>Precio (mayor a menor)</option>
+                            <option>Más reciente</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Property Grid -->
+                <div class="properties-grid" id="propertyGrid">
+                    <!-- Property Card 1 -->
+                    <div class="property-card" data-id="mx-cdmx-polanco-123-5500000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Departamento moderno en Polanco, CDMX">
+                            <div class="property-badge sale">En Venta</div>
+                            <div class="property-badge mx">
+                                <i class="fas fa-flag"></i> México
+                            </div>
+                            <div class="open-house-time">
+                                <i class="far fa-calendar"></i> Sáb 10:00 AM - 1:00 PM
+                            </div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins" aria-hidden="true"></i> 
+                                <span class="mxn-price">$5,500,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Polanco, Miguel Hidalgo
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">CDMX</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Miguel Hidalgo</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Polanco</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-bed" aria-hidden="true"></i>
+                                    2 recámaras
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-bath" aria-hidden="true"></i>
+                                    2 baños
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                                    85 m²
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge seguridad">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad 24/7
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-car" aria-hidden="true"></i> Estacionamiento
+                                </span>
+                            </div>
+                            <p class="property-description">Hermoso departamento moderno en Polanco con vista a la ciudad, excelente ubicación cerca de centros comerciales y restaurantes.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                <span class="sr-only">en Polanco, Miguel Hidalgo</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 2 -->
+                    <div class="property-card" data-id="mx-jalisco-guadalajara-456-3200000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600596542815-4a3d32c18c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Casa familiar en Providencia, Guadalajara">
+                            <div class="property-badge sale">En Venta</div>
+                            <div class="property-badge mx">
+                                <i class="fas fa-flag"></i> México
+                            </div>
+                            <div class="open-house-time">
+                                <i class="far fa-calendar"></i> Dom 1:00 PM - 4:00 PM
+                            </div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins" aria-hidden="true"></i> 
+                                <span class="mxn-price">$3,200,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Providencia, Guadalajara
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">Jalisco</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Guadalajara</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Providencia</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-bed" aria-hidden="true"></i>
+                                    3 recámaras
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-bath" aria-hidden="true"></i>
+                                    2.5 baños
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                                    180 m²
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge seguridad">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-utensils" aria-hidden="true"></i> Gas Natural
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-tint" aria-hidden="true"></i> Agua Potable
+                                </span>
+                            </div>
+                            <p class="property-description">Casa familiar en zona segura de Providencia, con jardín privado y acabados de calidad. Cerca de escuelas y centros comerciales.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                <span class="sr-only">en Providencia, Guadalajara</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 3 -->
+                    <div class="property-card" data-id="mx-nl-monterrey-santa-catarina-4500000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Terreno en Santa Catarina, Monterrey">
+                            <div class="property-badge sale">En Venta</div>
+                            <div class="property-badge mx">
+                                <i class="fas fa-flag"></i> México
+                            </div>
+                            <div class="open-house-time">
+                                <i class="far fa-calendar"></i> Sáb 2:00 PM - 5:00 PM
+                            </div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins" aria-hidden="true"></i> 
+                                <span class="mxn-price">$4,500,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Santa Catarina, Monterrey
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">Nuevo León</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Monterrey</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Santa Catarina</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                                    500 m² de terreno
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge">
+                                    <i class="fas fa-road" aria-hidden="true"></i> Acceso Pavimentado
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-bolt" aria-hidden="true"></i> Luz y Agua
+                                </span>
+                            </div>
+                            <p class="property-description">Terreno plano en excelente ubicación de Santa Catarina, ideal para construcción residencial o comercial. Documentación en regla.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                <span class="sr-only">en Santa Catarina, Monterrey</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 4 -->
+                    <div class="property-card" data-id="mx-cdmx-roma-789-2800000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Departamento en Roma, CDMX">
+                            <div class="property-badge sale">En Venta</div>
+                            <div class="property-badge mx">
+                                <i class="fas fa-flag"></i> México
+                            </div>
+                            <div class="open-house-time">
+                                <i class="far fa-calendar"></i> Sáb 9:00 AM - 12:00 PM
+                            </div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins" aria-hidden="true"></i> 
+                                <span class="mxn-price">$2,800,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Roma, Cuauhtémoc
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">CDMX</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Cuauhtémoc</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Roma</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-bed" aria-hidden="true"></i>
+                                    1 recámara
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-bath" aria-hidden="true"></i>
+                                    1 baño
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                                    65 m²
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge seguridad">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-utensils" aria-hidden="true"></i> Gas Natural
+                                </span>
+                            </div>
+                            <p class="property-description">Departamento moderno en la Roma con balcón y vista a la ciudad. Ideal para jóvenes profesionales. Cerca de restaurantes y bares.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                <span class="sr-only">en Roma, Cuauhtémoc</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 5 -->
+                    <div class="property-card" data-id="mx-jalisco-zapopan-101-6200000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1600488689109-5fab0f5b6c86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Casa en Puerta de Hierro, Zapopan">
+                            <div class="property-badge sale">En Venta</div>
+                            <div class="property-badge mx">
+                                <i class="fas fa-flag"></i> México
+                            </div>
+                            <div class="open-house-time">
+                                <i class="far fa-calendar"></i> Dom 11:00 AM - 2:00 PM
+                            </div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins" aria-hidden="true"></i> 
+                                <span class="mxn-price">$6,200,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                Puerta de Hierro, Zapopan
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">Jalisco</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Zapopan</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Puerta de Hierro</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-bed" aria-hidden="true"></i>
+                                    4 recámaras
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-bath" aria-hidden="true"></i>
+                                    3.5 baños
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                                    280 m²
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge seguridad">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad 24/7
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-car" aria-hidden="true"></i> 3 Estacionamientos
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-swimming-pool" aria-hidden="true"></i> Alberca
+                                </span>
+                            </div>
+                            <p class="property-description">Casa de lujo en Puerta de Hierro con alberca, jardín y estacionamiento para 3 autos. Acabados de primera y seguridad 24/7.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                <span class="sr-only">en Puerta de Hierro, Zapopan</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Property Card 6 -->
+                    <div class="property-card" data-id="mx-nl-san-pedro-202-8500000">
+                        <div class="property-image">
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Departamento en San Pedro, Monterrey">
+                            <div class="property-badge sale">En Venta</div>
+                            <div class="property-badge mx">
+                                <i class="fas fa-flag"></i> México
+                            </div>
+                            <div class="open-house-time">
+                                <i class="far fa-calendar"></i> Sáb 3:00 PM - 6:00 PM
+                            </div>
+                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="property-content">
+                            <div class="property-price">
+                                <i class="fas fa-coins" aria-hidden="true"></i> 
+                                <span class="mxn-price">$8,500,000 MXN</span>
+                            </div>
+                            <div class="property-address">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                San Pedro Garza García
+                            </div>
+                            <div class="location-hierarchy">
+                                <span class="location-item">Nuevo León</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">Monterrey</span>
+                                <span class="location-separator">></span>
+                                <span class="location-item">San Pedro</span>
+                            </div>
+                            <div class="property-stats">
+                                <div class="stat">
+                                    <i class="fas fa-bed" aria-hidden="true"></i>
+                                    3 recámaras
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-bath" aria-hidden="true"></i>
+                                    3.5 baños
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                                    195 m²
+                                </div>
+                            </div>
+                            <div class="property-features">
+                                <span class="feature-badge seguridad">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-car" aria-hidden="true"></i> 2 Estacionamientos
+                                </span>
+                                <span class="feature-badge">
+                                    <i class="fas fa-concierge-bell" aria-hidden="true"></i> Servicios
+                                </span>
+                            </div>
+                            <p class="property-description">Departamento de lujo en San Pedro con vista panorámica, amenities completos y seguridad 24/7. Ideal para familias.</p>
+                            <a href="#" class="view-property">
+                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                <span class="sr-only">en San Pedro Garza García</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <ul class="pagination-list">
+                        <li class="pagination-item">
+                            <a href="#" aria-label="Página anterior">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                        <li class="pagination-item active"><a href="#">1</a></li>
+                        <li class="pagination-item"><a href="#">2</a></li>
+                        <li class="pagination-item"><a href="#">3</a></li>
+                        <li class="pagination-item"><a href="#">4</a></li>
+                        <li class="pagination-item"><a href="#">5</a></li>
+                        <li class="pagination-item">
+                            <a href="#" aria-label="Página siguiente">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <!-- Recommendation System -->
+        <section class="recommendation-system" aria-labelledby="recommendations-heading" id="recommendationsSection">
+            <div class="container">
+                <div class="recommendation-header">
+                    <h2 id="recommendations-heading" class="section-title">Casas Abiertas que Tal Vez Te Gusten</h2>
+                    <p class="section-subtitle">Basado en tus búsquedas recientes y propiedades vistas</p>
+                </div>
+                
+                <div class="recommendation-filters" role="search" aria-label="Filtros de recomendaciones">
+                    <div class="filter-group">
+                        <label for="location-filter" class="filter-label">Ubicación:</label>
+                        <select id="location-filter" class="filter-select">
+                            <option value="all">Todas las ubicaciones</option>
+                            <option value="cdmx">Ciudad de México</option>
+                            <option value="guadalajara">Guadalajara</option>
+                            <option value="monterrey">Monterrey</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="date-filter" class="filter-label">Fecha:</label>
+                        <select id="date-filter" class="filter-select">
+                            <option value="all">Todas las fechas</option>
+                            <option value="this-weekend">Este fin de semana</option>
+                            <option value="next-weekend">Próximo fin de semana</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="properties-grid" id="recommendationsGrid">
+                    <div class="recommendations-empty">
+                        <div class="recommendations-empty-icon">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="recommendations-empty-title">Sin recomendaciones aún</h3>
+                        <p class="recommendations-empty-text">Navega por las casas abiertas para ver recomendaciones personalizadas basadas en tus preferencias.</p>
+                    </div>
+                </div>
+                
+                <div class="recommendation-info" aria-hidden="true">
+                    <h3 class="info-title">¿Cómo funcionan estas recomendaciones?</h3>
+                    <p class="info-text">Las recomendaciones se basan en tu ubicación y actividad de búsqueda, como las propiedades que has visto y guardado y los filtros que has utilizado. Usamos esta información para mostrarte propiedades similares, para que no te pierdas ninguna oportunidad.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        RealtyFind <span class="mx-flag">MX</span>
+                    </a>
+                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Compradores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Buscar Propiedades</a></li>
+                        <li><a href="#">Casas Abiertas</a></li>
+                        <li><a href="#">Calculadora de Crédito</a></li>
+                        <li><a href="#">Guía de Compra</a></li>
+                        <li><a href="#">Encuentra un Agente</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Vendedores</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Vende tu Propiedad</a></li>
+                        <li><a href="#">Organizar Casa Abierta</a></li>
+                        <li><a href="#">Valor de tu Propiedad</a></li>
+                        <li><a href="#">Guía de Venta</a></li>
+                        <li><a href="#">Lista tu Propiedad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Compañía</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Trabajos</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 RealtyFind MX. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Content Loaded Event
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMobileMenu();
+            initializeSearchForm();
+            initializeFavoriteButtons();
+            initializePropertyCards();
+            initializeRecommendationSystem();
+            initializePagination();
+            initializeOpenHouses();
+        });
+
+        // Mobile Menu Functionality
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const filtersSidebar = document.querySelector('.filters-sidebar');
+            
+            if (mobileMenuBtn && filtersSidebar) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    filtersSidebar.classList.toggle('active');
+                    
+                    // Toggle icon
+                    const icon = this.querySelector('i');
+                    if (filtersSidebar.classList.contains('active')) {
+                        icon.classList.remove('fa-sliders-h');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-sliders-h');
+                    }
+                });
+            }
+        }
+
+        // Search Form Functionality
+        function initializeSearchForm() {
+            const searchInput = document.getElementById('location-search');
+            const searchButton = document.querySelector('.search-button');
+            
+            if (searchInput) {
+                // Handle Enter key in search input
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        performSearch();
+                    }
+                });
+            }
+
+            if (searchButton) {
+                searchButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    performSearch();
+                });
+            }
+        }
+
+        // Perform Search Function
+        function performSearch() {
+            const searchInput = document.getElementById('location-search');
+            const location = searchInput.value.trim();
+
+            if (!location) {
+                showNotification('Por favor ingresa una ubicación para buscar', 'warning');
+                searchInput.focus();
+                return;
+            }
+
+            // Show loading state
+            const originalText = searchButton.innerHTML;
+            searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
+            searchButton.disabled = true;
+
+            // Simulate search API call
+            setTimeout(() => {
+                // Reset button
+                searchButton.innerHTML = originalText;
+                searchButton.disabled = false;
+
+                // Show results notification
+                showNotification(`Buscando casas abiertas en ${location}...`, 'success');
+            }, 1500);
+        }
+
+        // Favorite Buttons Functionality
+        function initializeFavoriteButtons() {
+            const favoriteButtons = document.querySelectorAll('.favorite-btn');
+            
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const icon = this.querySelector('i');
+                    const propertyCard = this.closest('.property-card');
+                    const propertyId = propertyCard.dataset.id;
+                    const isFavorited = icon.classList.contains('fas');
+                    
+                    if (isFavorited) {
+                        // Remove from favorites
+                        icon.classList.remove('fas', 'fa-heart');
+                        icon.classList.add('far', 'fa-heart');
+                        icon.setAttribute('aria-label', 'Guardar propiedad como favorita');
+                        
+                        // Remove from localStorage
+                        let savedProperties = getLocalStorageItem('savedProperties', []);
+                        savedProperties = savedProperties.filter(p => p.id !== propertyId);
+                        setLocalStorageItem('savedProperties', savedProperties);
+                        
+                        showNotification('Propiedad removida de favoritos', 'info');
+                    } else {
+                        // Add to favorites
+                        icon.classList.remove('far', 'fa-heart');
+                        icon.classList.add('fas', 'fa-heart');
+                        icon.setAttribute('aria-label', 'Remover propiedad de favoritos');
+                        
+                        // Add saved badge
+                        if (!propertyCard.querySelector('.saved-badge')) {
+                            const badge = document.createElement('div');
+                            badge.className = 'saved-badge';
+                            badge.innerHTML = '<i class="fas fa-heart"></i> Guardado';
+                            propertyCard.querySelector('.property-image').appendChild(badge);
+                        }
+                        
+                        // Save to localStorage
+                        const propertyDetails = getPropertyDetails(propertyCard);
+                        let savedProperties = getLocalStorageItem('savedProperties', []);
+                        
+                        // Remove if already exists
+                        savedProperties = savedProperties.filter(p => p.id !== propertyId);
+                        
+                        // Add with timestamp
+                        savedProperties.push({
+                            id: propertyId,
+                            timestamp: Date.now(),
+                            details: propertyDetails
+                        });
+                        
+                        // Keep only the 10 most recent
+                        savedProperties = savedProperties.slice(-10);
+                        setLocalStorageItem('savedProperties', savedProperties);
+                        
+                        showNotification('Propiedad añadida a favoritos', 'success');
+                    }
+                    
+                    // Add animation
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        }
+
+        // Property Cards Interaction
+        function initializePropertyCards() {
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            propertyCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking favorite button
+                    if (e.target.closest('.favorite-btn')) {
+                        return;
+                    }
+                    
+                    // Get property details
+                    const price = this.querySelector('.property-price').textContent;
+                    const address = this.querySelector('.property-address').textContent.trim();
+                    
+                    // Mark as viewed
+                    markPropertyAsViewed(this.dataset.id, this);
+                    
+                    // Simulate opening property details
+                    showNotification(`Abriendo detalles para propiedad en ${address}`, 'info');
+                });
+            });
+        }
+
+        // Open Houses Specific Functionality
+        function initializeOpenHouses() {
+            // Set default dates to this weekend
+            const today = new Date();
+            const daysUntilSaturday = (6 - today.getDay() + 7) % 7;
+            const saturday = new Date();
+            saturday.setDate(today.getDate() + daysUntilSaturday);
+            
+            const startDateInput = document.getElementById('start-date');
+            const endDateInput = document.getElementById('end-date');
+            
+            if (startDateInput) {
+                startDateInput.value = formatDate(saturday);
+            }
+            
+            if (endDateInput) {
+                const sunday = new Date(saturday);
+                sunday.setDate(saturday.getDate() + 1);
+                endDateInput.value = formatDate(sunday);
+            }
+            
+            // Add event listener for date change
+            if (startDateInput && endDateInput) {
+                startDateInput.addEventListener('change', function() {
+                    const startDate = new Date(this.value);
+                    const endDate = new Date(endDateInput.value);
+                    
+                    // Ensure end date is not before start date
+                    if (endDate < startDate) {
+                        endDateInput.value = this.value;
+                    }
+                });
+            }
+        }
+
+        // Format date as YYYY-MM-DD for date input
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Recommendation System
+        function initializeRecommendationSystem() {
+            // Check if user has viewed/saved properties
+            const viewedProperties = getLocalStorageItem('viewedProperties', []);
+            const savedProperties = getLocalStorageItem('savedProperties', []);
+            
+            // Show recommendations section if user has activity
+            if (viewedProperties.length > 0 || savedProperties.length > 0) {
+                showRecommendationsSection();
+                
+                // Generate and display recommendations
+                generatePropertyRecommendations(viewedProperties, savedProperties);
+            }
+            
+            // Track property views
+            trackPropertyViews();
+        }
+
+        // Track when user views a property
+        function trackPropertyViews() {
+            const propertyCards = document.querySelectorAll('.property-card');
+            
+            propertyCards.forEach(card => {
+                // Add viewed class when property card is in viewport for more than 2 seconds
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                if (entry.isIntersecting) {
+                                    const propertyId = card.dataset.id;
+                                    markPropertyAsViewed(propertyId, card);
+                                }
+                            }, 2000);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(card);
+            });
+        }
+
+        // Mark a property as viewed and save to localStorage
+        function markPropertyAsViewed(propertyId, cardElement) {
+            // Add viewed indicator if not already favorited
+            if (!cardElement.classList.contains('viewed-property')) {
+                cardElement.classList.add('viewed-property');
+                
+                // Add viewed badge if not already favorited
+                if (!cardElement.querySelector('.viewed-badge') && 
+                    !cardElement.querySelector('.saved-badge')) {
+                    const badge = document.createElement('div');
+                    badge.className = 'viewed-badge';
+                    badge.innerHTML = '<i class="fas fa-eye"></i> Visto';
+                    cardElement.querySelector('.property-image').appendChild(badge);
+                }
+            }
+            
+            // Save to localStorage
+            let viewedProperties = getLocalStorageItem('viewedProperties', []);
+            
+            // Remove if already exists to update timestamp
+            viewedProperties = viewedProperties.filter(p => p.id !== propertyId);
+            
+            // Add with timestamp
+            viewedProperties.push({
+                id: propertyId,
+                timestamp: Date.now(),
+                details: getPropertyDetails(cardElement)
+            });
+            
+            // Keep only the 10 most recent
+            viewedProperties = viewedProperties.slice(-10);
+            
+            setLocalStorageItem('viewedProperties', viewedProperties);
+            
+            // Show recommendations if needed
+            if (viewedProperties.length === 1) {
+                showRecommendationsSection();
+            }
+        }
+
+        // Get property details for tracking
+        function getPropertyDetails(cardElement) {
+            return {
+                price: cardElement.querySelector('.property-price')?.textContent || '',
+                address: cardElement.querySelector('.property-address')?.textContent.replace('📍', '').trim() || '',
+                bedrooms: cardElement.querySelector('.stat:nth-child(1)')?.textContent || '',
+                bathrooms: cardElement.querySelector('.stat:nth-child(2)')?.textContent || '',
+                size: cardElement.querySelector('.stat:nth-child(3)')?.textContent || '',
+                type: cardElement.querySelector('.property-badge.sale') ? 'venta' : 
+                      cardElement.querySelector('.property-badge.rent') ? 'renta' : 'otros',
+                location: {
+                    estado: cardElement.querySelector('.location-item:nth-child(1)')?.textContent || '',
+                    ciudad: cardElement.querySelector('.location-item:nth-child(3)')?.textContent || '',
+                    colonia: cardElement.querySelector('.location-item:nth-child(5)')?.textContent || ''
+                }
+            };
+        }
+
+        // Show the recommendations section
+        function showRecommendationsSection() {
+            const recommendationsSection = document.getElementById('recommendationsSection');
+            if (recommendationsSection) {
+                recommendationsSection.style.display = 'block';
+                
+                // Animate in
+                setTimeout(() => {
+                    recommendationsSection.style.opacity = '1';
+                }, 50);
+            }
+        }
+
+        // Generate property recommendations
+        function generatePropertyRecommendations(viewedProperties, savedProperties) {
+            const recommendationsGrid = document.getElementById('recommendationsGrid');
+            if (!recommendationsGrid) return;
+            
+            // Clear existing recommendations
+            recommendationsGrid.innerHTML = '';
+            
+            // Show loading state
+            recommendationsGrid.innerHTML = `
+                <div class="recommendations-loading" style="text-align: center; padding: 2rem; grid-column: 1/-1;">
+                    <div class="spinner" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; border: 3px solid #dbeafe; border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="color: #6b7280;">Encontrando casas abiertas que podrían gustarte...</p>
+                </div>
+            `;
+            
+            // Add spinner animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // Get recommendations based on viewed properties
+                const recommendations = getMexicanOpenHouseRecommendations(viewedProperties, savedProperties);
+                
+                if (recommendations.length > 0) {
+                    // Render recommendations
+                    recommendationsGrid.innerHTML = '';
+                    recommendations.forEach(property => {
+                        recommendationsGrid.appendChild(createRecommendationCard(property));
+                    });
+                } else {
+                    // Show empty state
+                    recommendationsGrid.innerHTML = `
+                        <div class="recommendations-empty">
+                            <div class="recommendations-empty-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3 class="recommendations-empty-title">Sin recomendaciones aún</h3>
+                            <p class="recommendations-empty-text">Navega por las casas abiertas para ver recomendaciones personalizadas basadas en tus preferencias.</p>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+
+        // Get Mexican-specific open house recommendations
+        function getMexicanOpenHouseRecommendations(viewedProperties, savedProperties) {
+            // For demo purposes, we'll return some similar properties
+            // In a real implementation, this would use a more sophisticated algorithm
+            
+            // Get the most recently viewed property
+            const mostRecentView = viewedProperties.length > 0 ? 
+                viewedProperties[viewedProperties.length - 1] : null;
+            
+            // If no viewed properties, return empty array
+            if (!mostRecentView) {
+                return [];
+            }
+            
+            // Extract location data from most recent view
+            const { location } = mostRecentView.details;
+            const { estado, ciudad, colonia } = location;
+            
+            // Generate similar properties based on location
+            const similarProperties = [];
+            
+            // Create 3 similar properties
+            for (let i = 1; i <= 3; i++) {
+                let price;
+                let title;
+                let description;
+                let image;
+                let openHouseTime;
+                
+                // Determine open house time (this weekend)
+                const today = new Date();
+                const daysUntilSaturday = (6 - today.getDay() + 7) % 7;
+                const saturday = new Date();
+                saturday.setDate(today.getDate() + daysUntilSaturday);
+                
+                const hours = 10 + Math.floor(Math.random() * 5); // 10am-3pm
+                const minutes = Math.random() < 0.5 ? '00' : '30';
+                openHouseTime = `Sáb ${hours}:${minutes} AM - ${hours + 3}:${minutes} PM`;
+                
+                // Adjust based on property type
+                if (mostRecentView.details.type === 'venta') {
+                    // Price variation (±15%)
+                    const basePrice = parseInt(mostRecentView.details.price.replace(/[^0-9]/g, ''));
+                    const priceVariation = basePrice * 0.15;
+                    price = basePrice + (Math.random() * priceVariation * 2 - priceVariation);
+                    
+                    title = `Propiedad similar en ${colonia || ciudad}`;
+                    description = `Propiedad en ${colonia || ciudad} con características similares a la que has visto recientemente.`;
+                    
+                    // Different images for variety
+                    const images = [
+                        'https://images.unsplash.com/photo-1600488689109-5fab0f5b6c86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                        'https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                        'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    ];
+                    image = images[i % images.length];
+                } else {
+                    // Rental properties
+                    const basePrice = 15000;
+                    price = basePrice + (Math.random() * 5000);
+                    
+                    title = `Departamento en ${colonia || ciudad}`;
+                    description = `Departamento en ${colonia || ciudad} con características similares a la que has visto recientemente.`;
+                    
+                    const images = [
+                        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                        'https://images.unsplash.com/photo-1600596542815-4a3d32c18c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                        'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    ];
+                    image = images[i % images.length];
+                }
+                
+                // Format price as MXN
+                const formattedPrice = new Intl.NumberFormat('es-MX', {
+                    style: 'currency',
+                    currency: 'MXN',
+                    minimumFractionDigits: 0
+                }).format(price);
+                
+                similarProperties.push({
+                    id: `mx-recommendation-${Date.now()}-${i}`,
+                    title,
+                    price: formattedPrice,
+                    address: `${colonia || ciudad}, ${estado || 'México'}`,
+                    image,
+                    openHouseTime,
+                    bedrooms: Math.floor(1 + Math.random() * 3),
+                    bathrooms: Math.floor(1 + Math.random() * 2),
+                    size: Math.floor(60 + Math.random() * 100),
+                    features: [
+                        { icon: 'fa-shield-alt', text: 'Seguridad', className: 'seguridad' },
+                        { icon: 'fa-car', text: 'Estacionamiento' },
+                        { icon: 'fa-utensils', text: 'Gas Natural' }
+                    ].slice(0, 2 + Math.floor(Math.random() * 2))
+                });
+            }
+            
+            return similarProperties;
+        }
+
+        // Create recommendation card element
+        function createRecommendationCard(property) {
+            const card = document.createElement('div');
+            card.className = 'property-card similar-property';
+            card.innerHTML = `
+                <div class="property-image">
+                    <img src="${property.image}" alt="${property.title}">
+                    <div class="property-badge sale">En Venta</div>
+                    <div class="property-badge mx">
+                        <i class="fas fa-flag"></i> México
+                    </div>
+                    <div class="open-house-time">
+                        <i class="far fa-calendar"></i> ${property.openHouseTime}
+                    </div>
+                    <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="property-content">
+                    <div class="property-price">
+                        <i class="fas fa-coins" aria-hidden="true"></i> 
+                        <span class="mxn-price">${property.price}</span>
+                    </div>
+                    <div class="property-address">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        ${property.address}
+                    </div>
+                    <div class="location-hierarchy">
+                        <span class="location-item">México</span>
+                        <span class="location-separator">></span>
+                        <span class="location-item">${property.address.split(',')[1]?.trim() || 'CDMX'}</span>
+                        <span class="location-separator">></span>
+                        <span class="location-item">${property.address.split(',')[0]?.trim() || 'Polanco'}</span>
+                    </div>
+                    <div class="property-stats">
+                        <div class="stat">
+                            <i class="fas fa-bed" aria-hidden="true"></i>
+                            ${property.bedrooms} recámaras
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bath" aria-hidden="true"></i>
+                            ${property.bathrooms} baños
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                            ${property.size} m²
+                        </div>
+                    </div>
+                    <div class="property-features">
+                        ${property.features.map(feature => `
+                            <span class="feature-badge ${feature.className || ''}">
+                                <i class="fas ${feature.icon}" aria-hidden="true"></i> ${feature.text}
+                            </span>
+                        `).join('')}
+                    </div>
+                    <p class="property-description">${property.description}</p>
+                    <a href="#" class="view-property">
+                        Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        <span class="sr-only">en ${property.address}</span>
+                    </a>
+                </div>
+            `;
+            
+            // Add click handler for favorite button
+            const favoriteBtn = card.querySelector('.favorite-btn');
+            favoriteBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const icon = this.querySelector('i');
+                const isFavorited = icon.classList.contains('fas');
+                const propertyId = card.dataset.id;
+                
+                if (isFavorited) {
+                    // Remove from favorites
+                    icon.classList.remove('fas', 'fa-heart');
+                    icon.classList.add('far', 'fa-heart');
+                    icon.setAttribute('aria-label', 'Guardar propiedad como favorita');
+                    
+                    // Update localStorage
+                    let savedProperties = getLocalStorageItem('savedProperties', []);
+                    savedProperties = savedProperties.filter(p => p.id !== propertyId);
+                    setLocalStorageItem('savedProperties', savedProperties);
+                    
+                    showNotification('Propiedad removida de favoritos', 'info');
+                } else {
+                    // Add to favorites
+                    icon.classList.remove('far', 'fa-heart');
+                    icon.classList.add('fas', 'fa-heart');
+                    icon.setAttribute('aria-label', 'Remover propiedad de favoritos');
+                    
+                    // Save to localStorage
+                    const propertyDetails = getPropertyDetails(card);
+                    let savedProperties = getLocalStorageItem('savedProperties', []);
+                    
+                    // Remove if already exists
+                    savedProperties = savedProperties.filter(p => p.id !== propertyId);
+                    
+                    // Add with timestamp
+                    savedProperties.push({
+                        id: propertyId,
+                        timestamp: Date.now(),
+                        details: propertyDetails
+                    });
+                    
+                    // Keep only the 10 most recent
+                    savedProperties = savedProperties.slice(-10);
+                    setLocalStorageItem('savedProperties', savedProperties);
+                    
+                    showNotification('Propiedad añadida a favoritos', 'success');
+                }
+            });
+            
+            return card;
+        }
+
+        // Pagination Functionality
+        function initializePagination() {
+            const paginationItems = document.querySelectorAll('.pagination-item');
+            
+            paginationItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all items
+                    paginationItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Simulate loading new results
+                    const propertyGrid = document.getElementById('propertyGrid');
+                    propertyGrid.innerHTML = `
+                        <div class="properties-grid-loading" style="text-align: center; padding: 2rem; grid-column: 1/-1;">
+                            <div class="spinner" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; border: 3px solid #dbeafe; border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                            <p style="color: #6b7280;">Cargando casas abiertas...</p>
+                        </div>
+                    `;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // In a real implementation, this would load new property data
+                        propertyGrid.innerHTML = `
+                            <div class="properties-grid">
+                                <!-- Property cards would be loaded here -->
+                                <div class="recommendations-empty">
+                                    <div class="recommendations-empty-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <h3 class="recommendations-empty-title">Página ${this.textContent} de resultados</h3>
+                                    <p class="recommendations-empty-text">En una implementación real, aquí se mostrarían las casas abiertas de esta página.</p>
+                                </div>
+                            </div>
+                        `;
+                    }, 1000);
+                });
+            });
+        }
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = `notification`;
+            if (type !== 'info') notification.classList.add(`notification-${type}`);
+            
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                warning: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
+            };
+            
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas ${icons[type]}"></i>
+                </div>
+                <span>${message}</span>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: white;
+                color: var(--gray-900);
+                padding: 1rem 1.5rem;
+                border-radius: var(--radius-md);
+                box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                font-weight: 500;
+                max-width: 400px;
+                border-left: 4px solid var(--primary);
+                animation: slideIn 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Get item from localStorage with JSON parsing
+        function getLocalStorageItem(key, defaultValue) {
+            try {
+                const item = localStorage.getItem(key);
+                return item ? JSON.parse(item) : defaultValue;
+            } catch (e) {
+                console.error(`Error parsing localStorage item ${key}:`, e);
+                return defaultValue;
+            }
+        }
+
+        // Set item in localStorage with JSON stringifying
+        function setLocalStorageItem(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (e) {
+                console.error(`Error storing item ${key} in localStorage:`, e);
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
