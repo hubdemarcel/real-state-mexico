@@ -1,7 +1,6 @@
 <?php
 echo "<!-- Debug timestamp: " . date('Y-m-d H:i:s') . " -->";
 echo "<!-- Test change - Auto-deployment test -->";
-echo "<!-- Second test - " . date('Y-m-d H:i:s') . " -->";
 $pageTitle = 'Tierras.mx - Agentes. Visitas. Créditos. Casas.';
 include 'header.php';
 include 'property-card.php';

@@ -96,13 +96,23 @@
             <div class="secondary-actions">
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
                     <div class="user-menu">
-                        <button class="search-button user-menu-btn" onclick="window.location.href='<?php echo ($_SESSION['user_type'] === 'agent') ? 'agent_dashboard.php' : 'user_dashboard.php'; ?>'">
+                        <button class="search-button user-menu-btn" onclick="window.location.href='<?php
+                            if ($_SESSION['user_type'] === 'agent') {
+                                echo 'agent_dashboard.php';
+                            } elseif ($_SESSION['user_type'] === 'seller') {
+                                echo 'seller_dashboard.php';
+                            } elseif ($_SESSION['user_type'] === 'buyer') {
+                                echo 'buyer_dashboard.php';
+                            } else {
+                                echo 'user_dashboard.php';
+                            }
+                        ?>'">
                             <i class="fas fa-user"></i> Mi Panel
                         </button>
                         <button class="search-button logout-btn" onclick="window.location.href='logout.php'">Cerrar Sesión</button>
                     </div>
                 <?php else: ?>
-                    <button class="search-button" onclick="window.location.href='login.php'">Iniciar Sesión</button>
+                    <button class="search-button" onclick="window.location.href='login.html'">Iniciar Sesión</button>
                     <button class="search-button" onclick="window.location.href='register.php'">Unirse</button>
                 <?php endif; ?>
 
@@ -142,12 +152,22 @@
             <a href="encuentraunagente.php" class="nav-link-mobile">Agentes</a>
             <div class="mobile-auth">
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-                    <button class="btn btn-ghost w-100" onclick="window.location.href='<?php echo ($_SESSION['user_type'] === 'agent') ? 'agent_dashboard.php' : 'user_dashboard.php'; ?>'">
+                    <button class="btn btn-ghost w-100" onclick="window.location.href='<?php
+                        if ($_SESSION['user_type'] === 'agent') {
+                            echo 'agent_dashboard.php';
+                        } elseif ($_SESSION['user_type'] === 'seller') {
+                            echo 'seller_dashboard.php';
+                        } elseif ($_SESSION['user_type'] === 'buyer') {
+                            echo 'buyer_dashboard.php';
+                        } else {
+                            echo 'user_dashboard.php';
+                        }
+                    ?>'">
                         <i class="fas fa-user"></i> Mi Panel
                     </button>
                     <button class="btn btn-primary w-100" onclick="window.location.href='logout.php'">Cerrar Sesión</button>
                 <?php else: ?>
-                    <button class="btn btn-ghost w-100" onclick="window.location.href='login.php'">Iniciar Sesión</button>
+                    <button class="btn btn-ghost w-100" onclick="window.location.href='login.html'">Iniciar Sesión</button>
                     <button class="btn btn-primary w-100" onclick="window.location.href='register.php'">Unirse</button>
                 <?php endif; ?>
             </div>

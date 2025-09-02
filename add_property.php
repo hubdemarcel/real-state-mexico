@@ -2,14 +2,14 @@
 session_start();
 require_once 'config.php';
 
-// Check if user is logged in and is an agent
+// Check if user is logged in and is an agent or seller
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: login.html?status=error&message=Debes iniciar sesión para agregar propiedades.');
     exit();
 }
 
-if ($_SESSION['user_type'] !== 'agent') {
-    header('Location: user_dashboard.php?status=error&message=Solo los agentes pueden agregar propiedades.');
+if ($_SESSION['user_type'] !== 'agent' && $_SESSION['user_type'] !== 'seller') {
+    header('Location: user_dashboard.php?status=error&message=Solo los agentes y vendedores pueden agregar propiedades.');
     exit();
 }
 
@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Basic validation
     if (empty($title) || empty($price) || empty($location) || empty($property_type)) {
-        header('Location: agent_dashboard.php?status=error&message=Por favor, complete todos los campos requeridos.');
+        $dashboard_url = ($_SESSION['user_type'] === 'agent') ? 'agent_dashboard.php' : 'seller_dashboard.php';
+        header('Location: ' . $dashboard_url . '?status=error&message=Por favor, complete todos los campos requeridos.');
         exit();
     }
 
@@ -40,18 +41,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssdsssidds", $title, $description, $price, $location, $property_type, $image_url, $agent_id, $bedrooms, $bathrooms, $amenities);
 
         if ($stmt->execute()) {
-            header('Location: agent_dashboard.php?status=success&message=Propiedad agregada exitosamente!');
+            $dashboard_url = ($_SESSION['user_type'] === 'agent') ? 'agent_dashboard.php' : 'seller_dashboard.php';
+            header('Location: ' . $dashboard_url . '?status=success&message=Propiedad agregada exitosamente!');
         } else {
-            header('Location: agent_dashboard.php?status=error&message=Error al agregar la propiedad: ' . $stmt->error);
+            $dashboard_url = ($_SESSION['user_type'] === 'agent') ? 'agent_dashboard.php' : 'seller_dashboard.php';
+            header('Location: ' . $dashboard_url . '?status=error&message=Error al agregar la propiedad: ' . $stmt->error);
         }
         $stmt->close();
     } else {
-        header('Location: agent_dashboard.php?status=error&message=Error en la preparación de la consulta: ' . $conn->error);
+        $dashboard_url = ($_SESSION['user_type'] === 'agent') ? 'agent_dashboard.php' : 'seller_dashboard.php';
+        header('Location: ' . $dashboard_url . '?status=error&message=Error en la preparación de la consulta: ' . $conn->error);
     }
 
     $conn->close();
 } else {
-    header('Location: agent_dashboard.php');
+    $dashboard_url = ($_SESSION['user_type'] === 'agent') ? 'agent_dashboard.php' : 'seller_dashboard.php';
+    header('Location: ' . $dashboard_url);
     exit();
 }
 ?>

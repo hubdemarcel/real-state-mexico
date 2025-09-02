@@ -34,6 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Redirect based on user type
                 if ($user_type === 'agent') {
                     header('Location: agent_dashboard.php?status=success&message=Bienvenido, ' . $username . '!');
+                } elseif ($user_type === 'seller') {
+                    header('Location: seller_dashboard.php?status=success&message=Bienvenido, ' . $username . '!');
+                } elseif ($user_type === 'buyer') {
+                    header('Location: buyer_dashboard.php?status=success&message=Bienvenido, ' . $username . '!');
                 } else {
                     header('Location: user_dashboard.php?status=success&message=Bienvenido, ' . $username . '!');
                 }

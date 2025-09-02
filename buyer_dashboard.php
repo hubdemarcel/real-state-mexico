@@ -2,13 +2,18 @@
 session_start();
 require_once 'config.php';
 
-// Check if user is logged in
+// Check if user is logged in and is a buyer
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('Location: login.html?status=error&message=Debes iniciar sesión para acceder al panel de usuario.');
+    header('Location: login.html?status=error&message=Debes iniciar sesión para acceder al panel de comprador.');
     exit();
 }
 
-$pageTitle = 'Mi Panel - Tierras.mx';
+if ($_SESSION['user_type'] !== 'buyer') {
+    header('Location: user_dashboard.php?status=error&message=Esta página es solo para compradores.');
+    exit();
+}
+
+$pageTitle = 'Panel de Comprador - Tierras.mx';
 include 'header.php';
 include 'property-card.php';
 
@@ -140,7 +145,7 @@ $conn->close();
         <section class="dashboard-header">
             <div class="dashboard-welcome">
                 <h1>¡Bienvenido, <?php echo htmlspecialchars($username); ?>!</h1>
-                <p>Administra tu perfil, propiedades guardadas y preferencias</p>
+                <p>Encuentra tu propiedad ideal y administra tus búsquedas</p>
             </div>
             <div class="dashboard-actions">
                 <a href="#profile" class="btn btn-primary">Editar Perfil</a>
@@ -175,17 +180,7 @@ $conn->close();
                         <h3><?php echo htmlspecialchars($userProfile['first_name'] . ' ' . $userProfile['last_name']); ?></h3>
                         <p><?php echo htmlspecialchars($userProfile['email']); ?></p>
                         <p><?php echo htmlspecialchars($userProfile['phone']); ?></p>
-                        <p class="user-type"><?php
-                            if ($user_type === 'agent') {
-                                echo 'Agente Inmobiliario';
-                            } elseif ($user_type === 'seller') {
-                                echo 'Vendedor';
-                            } elseif ($user_type === 'buyer') {
-                                echo 'Comprador';
-                            } else {
-                                echo 'Usuario';
-                            }
-                        ?></p>
+                        <p class="user-type">Comprador</p>
                     </div>
                 </div>
                 <div class="profile-bio">

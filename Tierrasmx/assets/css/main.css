@@ -173,6 +173,10 @@
             cursor: pointer;
         }
 
+        .nav-mobile {
+            display: none;
+        }
+
         /* Search Bar Styles */
         .search-bar {
             background-color: white;
@@ -966,6 +970,54 @@
             .mobile-filters-toggle {
                 display: block;
                 margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .primary-nav {
+                display: none;
+            }
+
+            .secondary-actions {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-mobile {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: var(--shadow-lg);
+                z-index: 100;
+                padding: 1rem;
+            }
+
+            .nav-mobile.active {
+                display: block;
+            }
+
+            .nav-link-mobile {
+                display: block;
+                padding: 0.75rem 0;
+                color: var(--gray-700);
+                text-decoration: none;
+                border-bottom: 1px solid var(--gray-100);
+            }
+
+            .mobile-auth {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--gray-200);
+            }
+
+            .mobile-auth button {
+                width: 100%;
+                margin: 0.25rem 0;
             }
         }
 
