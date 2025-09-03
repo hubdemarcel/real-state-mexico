@@ -162,6 +162,7 @@ $conn->close();
                 <li><a href="#history" class="dashboard-nav-link">Historial</a></li>
                 <li><a href="#alerts" class="dashboard-nav-link">Alertas</a></li>
                 <li><a href="#messages" class="dashboard-nav-link">Mensajes</a></li>
+                <li><a href="basic_intelligence.php" class="dashboard-nav-link">📊 Mercado</a></li>
             </ul>
         </nav>
 

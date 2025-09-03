@@ -1,77 +1,15 @@
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tierras.mx - Agentes. Visitas.
-Créditos. Casas.</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&subset=latin,latin-ext&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="Tierrasmx/assets/css/main.css">
-    <link rel="stylesheet" href="Tierrasmx/assets/css/recommendations.css">
-    <link rel="stylesheet" href="Tierrasmx/assets/css/responsive.css">
-</head>
-<body>
-    <header class="header">
-        <div class="header-container container">
-            <a href="index.php" class="logo">
-                <img src="https://static.wixstatic.com/media/663c9c_db1472302d8b4730a01c556f348b0634~mv2.png/v1/fill/w_61,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LOGO%20TM%20BROWN%20copy.png" alt="Tierras.mx Logo" class="logo-icon">
-                Tierras.mx
-            </a>
-            <nav class="primary-nav">
-                <div class="dropdown">
-                    <a href="comprar_new.php" class="nav-link dropdown-toggle">Comprar</a>
-                    <div class="dropdown-menu">
-                        <a href="casas_compra.html">Comprar Casa</a>
-                        <a href="construccionesnuevas.html">Construcciones Nuevas</a>
-                        <a href="casas embargadas.html">Casas Embargadas</a>
-                        <a href="puertasabiertas.html">Puertas Abiertas</a>
-                        <a href="proximamente.html">Próximamente</a>
-                        <a href="ofertadecompra.html">Hacer Oferta</a>
-                    </div>
-                </div>
-                <a href="renta.php" class="nav-link">Rentar</a>
-                <div class="dropdown">
-                    <a href="venta.html" class="nav-link dropdown-toggle">Vender</a>
-                    <div class="dropdown-menu">
-                        <a href="anunciar.php">Anunciar Propiedad</a>
-                        <a href="recursos vendedor.html">Recursos para Vendedores</a>
-                        <a href="ventasrecientes.html">Ventas Recientes</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="Créditos Hipotecarios.html" class="nav-link dropdown-toggle">Créditos</a>
-                    <div class="dropdown-menu">
-                        <a href="prestamos.html">Préstamos</a>
-                        <a href="financiamientotierras.html">Financiamiento de Tierras</a>
-                    </div>
-                </div>
-                <a href="encuentraunagente.php" class="nav-link">Agentes</a>
-            </nav>
-            <div class="secondary-actions">
-                <button class="search-button" onclick="window.location.href='login.html'">Iniciar Sesión</button>
-                <button class="search-button" onclick="window.location.href='register.html'">Unirse</button>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Navigation -->
-        <nav class="nav-mobile" id="mobileNav">
-            <a href="comprar_new.php" class="nav-link-mobile">Comprar</a>
-            <a href="renta.php" class="nav-link-mobile">Rentar</a>
-            <a href="venta.html" class="nav-link-mobile">Vender</a>
-            <a href="encuentraunagente.php" class="nav-link-mobile">Agentes</a>
-            <a href="Créditos Hipotecarios.html" class="nav-link-mobile">Créditos</a>
-            <div class="mobile-auth">
-                <button class="btn btn-ghost w-100" onclick="window.location.href='login.html'">Iniciar Sesión</button>
-                <button class="btn btn-primary w-100" onclick="window.location.href='register.html'">Unirse</button>
-            </div>
-        </nav>
-    </header>
+<?php
+$pageTitle = 'Tierras.mx - Agentes. Visitas. Créditos. Casas.';
+$additionalCss = '
+<link rel="stylesheet" href="/Tierrasmx/assets/css/recommendations.css">
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<!-- Leaflet MarkerCluster CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+';
+include 'header.php';
+?>
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="container">
@@ -85,38 +23,47 @@ Créditos. Casas.</title>
                     <div class="search-bar">
                         <div class="search-container">
                             <div class="search-filters">
-                                <div class="filter-group">
-                                    <label for="location-search" class="filter-label">Ubicación</label>
-                                    <input type="text" id="location-search" class="search-input" placeholder="Ingresa estado, ciudad o colonia">
-                                </div>
-                                
-                                <div class="filter-group">
-                                    <label for="property-type" class="filter-label">Tipo de Propiedad</label>
-                                    <select id="property-type" class="filter-select">
-                                        <option value="all">Todas</option>
-                                        <option value="casa">Casa</option>
-                                        <option value="departamento">Departamento</option>
-                                        <option value="terreno">Terreno</option>
-                                        <option value="local-comercial">Local Comercial</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="filter-group">
-                                    <label for="price-range" class="filter-label">Rango de Precio</label>
-                                    <select id="price-range" class="filter-select">
-                                        <option value="all">Todos los precios</option>
-                                        <option value="0-2000000">$0 - $2,000,000 MXN</option>
-                                        <option value="2000000-5000000">$2,000,000 - $5,000,000 MXN</option>
-                                        <option value="5000000+">$5,000,000+ MXN</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="filter-group" style="align-self: flex-end;">
-                                    <button class="search-button">
-                                        <i class="fas fa-search"></i> Buscar
-                                    </button>
+                                        <div class="filter-group">
+                                            <label for="location-search" class="filter-label">Ubicación</label>
+                                            <input type="text" id="location-search" class="search-input" placeholder="Ingresa estado, ciudad o colonia">
+                                        </div>
+       
+                                        <div class="filter-group">
+                                            <label for="property-type" class="filter-label">Tipo de Propiedad</label>
+                                            <select id="property-type" class="filter-select">
+                                                <option value="all">Todas</option>
+                                                <option value="casa">Casa</option>
+                                                <option value="departamento">Departamento</option>
+                                                <option value="terreno">Terreno</option>
+                                                <option value="local-comercial">Local Comercial</option>
+                                            </select>
+                                        </div>
+       
+                                        <div class="filter-group">
+                                            <label for="price-range" class="filter-label">Rango de Precio</label>
+                                            <select id="price-range" class="filter-select">
+                                                <option value="all">Todos los precios</option>
+                                                <option value="0-2000000">$0 - $2,000,000 MXN</option>
+                                                <option value="2000000-5000000">$2,000,000 - $5,000,000 MXN</option>
+                                                <option value="5000000+">$5,000,000+ MXN</option>
+                                            </select>
+                                        </div>
+       
+                                        <div class="filter-group" style="align-self: flex-end;">
+                                            <button class="search-button">
+                                                <i class="fas fa-search"></i> Buscar
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+       
+                    <div class="hero-cta" style="text-align: center; margin-top: 2rem;">
+                        <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.9);">¿No sabes exactamente qué buscas?</p>
+                        <a href="preferences.html" class="search-button" style="display: inline-block; text-decoration: none;">Personalizar mi Búsqueda</a>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -354,65 +301,173 @@ Créditos. Casas.</title>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.php" class="footer-logo">
-                        <img src="https://static.wixstatic.com/media/663c9c_db1472302d8b4730a01c556f348b0634~mv2.png/v1/fill/w_61,h_61,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LOGO%20TM%20BROWN%20copy.png" alt="Tierras.mx Logo" style="width: 24px; height: 24px; margin-right: 8px;">
-                        Tierras.mx
-                    </a>
-                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
-                    <div class="social-links">
-                        <a href="https://wa.me/523331010164?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n." class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.instagram.com/tierras.mx/" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/tierras-m%C3%A9xico-417931362/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.youtube.com/@TierrasMexico" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-column">
-                    <h4 class="footer-title">Para Compradores</h4>
-                    <ul class="footer-links">
-                        <li><a href="comprar_new.php">Buscar Propiedades</a></li>
-                        <li><a href="#">Calculadora de Crédito</a></li>
-                        <li><a href="#">Guía de Compra</a></li>
-                        <li><a href="encuentraunagente.php">Encuentra un Agente</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4 class="footer-title">Para Vendedores</h4>
-                    <ul class="footer-links">
-                        <li><a href="anunciar.php">Vende tu Propiedad</a></li>
-                        <li><a href="#">Valor de tu Propiedad</a></li>
-                        <li><a href="recursos vendedor.html">Guía de Venta</a></li>
-                        <li><a href="anunciar.php">Lista tu Propiedad</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4 class="footer-title">Compañía</h4>
-                    <ul class="footer-links">
-                        <li><a href="Sobre Nosotros.html">Sobre Nosotros</a></li>
-                        <li><a href="#">Trabajos</a></li>
-                        <li><a href="#">Prensa</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="Politica de Privacidad.html">Política de Privacidad</a></li>
-                    </ul>
-                </div>
+    <!-- Properties Map Section -->
+    <section class="section properties-map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Propiedades en México</h2>
+                <p class="section-subtitle">Explora todas nuestras propiedades disponibles en el mapa interactivo</p>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; 2024 Tierras.mx. Todos los derechos reservados.</p>
+            <div class="map-container">
+                <div id="propertiesMap" class="properties-map"></div>
+            </div>
+
+            <div class="map-legend">
+                <div class="legend-item">
+                    <div class="legend-marker" style="background-color: #2563eb;"></div>
+                    <span>Propiedad en Venta</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-marker" style="background-color: #059669;"></div>
+                    <span>Propiedad en Renta</span>
+                </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script src="Tierrasmx/assets/js/main.js"></script>
-    <script src="Tierrasmx/assets/js/recommendations.js"></script>
-    <script src="Tierrasmx/assets/js/localization.js"></script>
-    <script src="Tierrasmx/assets/js/utils.js"></script>
-    <script src="Tierrasmx/assets/js/search.js" defer></script>
+<?php
+$additionalJs = '
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<!-- Leaflet MarkerCluster JavaScript -->
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<script src="/Tierrasmx/assets/js/main.js"></script>
+<script src="/Tierrasmx/assets/js/recommendations.js"></script>
+<script src="/Tierrasmx/assets/js/localization.js"></script>
+<script src="/Tierrasmx/assets/js/utils.js"></script>
+<script src="/Tierrasmx/assets/js/search.js" defer></script>
+';
+include 'footer.php';
+?>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Leaflet MarkerCluster JavaScript -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <!-- Properties Map Script -->
+    <script>
+        // Initialize map when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePropertiesMap();
+        });
+
+        function initializePropertiesMap() {
+            const mapElement = document.getElementById('propertiesMap');
+            if (!mapElement) return;
+
+            // Initialize map centered on Mexico
+            const map = L.map('propertiesMap').setView([23.6345, -102.5528], 5);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18,
+            }).addTo(map);
+
+            // Create marker cluster group
+            const markers = L.markerClusterGroup({
+                chunkedLoading: true,
+                chunkInterval: 200,
+                chunkDelay: 50,
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                removeOutsideVisibleBounds: true,
+                animate: true,
+                disableClusteringAtZoom: 16,
+                maxClusterRadius: 80,
+                iconCreateFunction: function(cluster) {
+                    const childCount = cluster.getChildCount();
+                    let className = 'marker-cluster-';
+
+                    if (childCount < 10) {
+                        className += 'small';
+                    } else if (childCount < 100) {
+                        className += 'medium';
+                    } else {
+                        className += 'large';
+                    }
+
+                    return new L.DivIcon({
+                        html: '<div><span>' + childCount + '</span></div>',
+                        className: 'marker-cluster ' + className,
+                        iconSize: new L.Point(40, 40)
+                    });
+                }
+            });
+
+            // Load properties data
+            fetch('/Tierrasmx/assets/data/properties-mx.json')
+                .then(response => response.json())
+                .then(properties => {
+                    addPropertyMarkers(map, markers, properties);
+                    map.addLayer(markers);
+                })
+                .catch(error => {
+                    console.error('Error loading properties:', error);
+                });
+        }
+
+        function addPropertyMarkers(map, markers, properties) {
+            properties.forEach(property => {
+                if (property.location && property.location.coordinates) {
+                    const { lat, lng } = property.location.coordinates;
+
+                    // Create marker with custom icon
+                    const markerIcon = L.divIcon({
+                        className: 'property-marker',
+                        html: `<div class="marker-content">
+                            <i class="fas fa-home"></i>
+                            <span class="marker-price">${formatPrice(property.price)}</span>
+                        </div>`,
+                        iconSize: [80, 30],
+                        iconAnchor: [40, 30]
+                    });
+
+                    const marker = L.marker([lat, lng], { icon: markerIcon });
+
+                    // Create popup content
+                    const popupContent = `
+                        <div class="property-popup">
+                            <h4>${property.title_es}</h4>
+                            <div class="popup-price">${formatPrice(property.price)} MXN</div>
+                            <div class="popup-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                ${property.location.city}, ${property.location.state}
+                            </div>
+                            <div class="popup-features">
+                                ${property.features.bedrooms ? `<span><i class="fas fa-bed"></i> ${property.features.bedrooms} rec</span>` : ''}
+                                ${property.features.bathrooms ? `<span><i class="fas fa-bath"></i> ${property.features.bathrooms} baños</span>` : ''}
+                                ${property.features.construction_size ? `<span><i class="fas fa-ruler-combined"></i> ${property.features.construction_size} m²</span>` : ''}
+                            </div>
+                            <a href="templatepropiedad.html?id=${property.id}" class="popup-link">Ver propiedad</a>
+                        </div>
+                    `;
+
+                    marker.bindPopup(popupContent);
+
+                    // Add marker to cluster group instead of directly to map
+                    markers.addLayer(marker);
+                }
+            });
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('es-MX', {
+                style: 'currency',
+                currency: 'MXN',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(price);
+        }
+    </script>
+
+    <script src="/Tierrasmx/assets/js/main.js"></script>
+    <script src="/Tierrasmx/assets/js/recommendations.js"></script>
+    <script src="/Tierrasmx/assets/js/localization.js"></script>
+    <script src="/Tierrasmx/assets/js/utils.js"></script>
+    <script src="/Tierrasmx/assets/js/search.js" defer></script>
 </body>
 </html>t 

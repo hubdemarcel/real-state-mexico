@@ -3,29 +3,60 @@
     .nav-desktop {
         display: flex;
     }
-    
+
     .mobile-menu-btn {
         display: none;
     }
-    
+
     .hero-title {
         font-size: 3.75rem;
     }
-    
+
     .search-grid {
         grid-template-columns: 2fr 1fr auto;
     }
-    
+
     .properties-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .services-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .footer-grid {
         grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+
+    /* Enhanced Header for Tablet and Desktop */
+    .header-container {
+        height: 85px;
+        padding: 0 2rem;
+    }
+
+    .primary-nav {
+        gap: 2.5rem;
+        margin: 0 3rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.75rem 0;
+    }
+
+    .logo-text {
+        font-size: 1.75rem;
+    }
+
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user-menu-btn,
+    .logout-btn {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.9rem !important;
     }
 }
 
@@ -33,18 +64,106 @@
     .container {
         padding: 0 2rem;
     }
-    
+
     .properties-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .hero-title {
         font-size: 4rem;
+    }
+
+    /* Desktop Header Enhancements */
+    .header-container {
+        height: 90px;
+        padding: 0 3rem;
+        max-width: 1600px;
+    }
+
+    .primary-nav {
+        gap: 3rem;
+        margin: 0 4rem;
+    }
+
+    .nav-link {
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.025em;
+    }
+
+    .logo-text {
+        font-size: 2rem;
+        font-weight: 900;
+    }
+
+    .logo-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .user-menu-btn,
+    .logout-btn {
+        padding: 0.875rem 1.75rem !important;
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+    }
+
+    .secondary-actions {
+        gap: 1.5rem;
     }
 }
 
 @media (min-width: 1280px) {
     .container {
         padding: 0 1.5rem;
+    }
+
+    /* Extra Large Desktop Header */
+    .header-container {
+        height: 95px;
+        padding: 0 4rem;
+        max-width: 1800px;
+    }
+
+    .primary-nav {
+        gap: 3.5rem;
+        margin: 0 5rem;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 1rem 0;
+    }
+
+    .logo-text {
+        font-size: 2.25rem;
+    }
+
+    .logo-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-menu-btn,
+    .logout-btn {
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        border-radius: var(--radius-lg) !important;
+    }
+
+    .secondary-actions {
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .header-container {
+        max-width: 2000px;
+        padding: 0 5rem;
+    }
+
+    .primary-nav {
+        margin: 0 6rem;
+        gap: 4rem;
     }
 }

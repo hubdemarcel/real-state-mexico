@@ -9,6 +9,12 @@ class NotificationManager {
     }
 
     init() {
+        // Temporarily disabled due to database connection limits
+        console.log('Notification polling disabled to prevent database connection limit issues');
+        this.createNotificationUI();
+        this.bindEvents();
+        return;
+
         this.createNotificationUI();
         this.loadNotifications();
         this.startPolling();
@@ -16,6 +22,11 @@ class NotificationManager {
     }
 
     createNotificationUI() {
+        // Check if notification container already exists
+        if (document.getElementById('notificationBtn')) {
+            return; // Already exists, don't create another one
+        }
+
         // Create notification dropdown in header
         const header = document.querySelector('.header-container');
         if (!header) return;

@@ -30,4 +30,7 @@
   
   # Handle 404 errors
   ErrorDocument 404 /404.html
+
+  # Process PHP in HTML files
+  AddType application/x-httpd-php .html
 </IfModule>

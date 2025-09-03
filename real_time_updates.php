@@ -10,6 +10,24 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
 $user_id = $_SESSION['id'];
 
+// Rate limiting - only allow one connection per user every 30 seconds
+$cache_key = "sse_user_{$user_id}";
+$cache_file = sys_get_temp_dir() . "/{$cache_key}.cache";
+
+if (file_exists($cache_file)) {
+    $last_request = (int)file_get_contents($cache_file);
+    $time_diff = time() - $last_request;
+
+    if ($time_diff < 30) {
+        // Too frequent, return cached response
+        http_response_code(429);
+        exit('Rate limited');
+    }
+}
+
+// Update cache
+file_put_contents($cache_file, time());
+
 // Set headers for Server-Sent Events
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');

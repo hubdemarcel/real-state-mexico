@@ -121,6 +121,7 @@ $conn->close();
                 <li><a href="#analytics" class="dashboard-nav-link">Analytics</a></li>
                 <li><a href="#profile" class="dashboard-nav-link">Mi Perfil</a></li>
                 <li><a href="#messages" class="dashboard-nav-link">Mensajes</a></li>
+                <li><a href="basic_intelligence.php" class="dashboard-nav-link">📊 Mercado</a></li>
             </ul>
         </nav>
 

@@ -8,6 +8,6 @@ $_SESSION = array();
 session_destroy();
 
 // Redirect to home page with success message
-header('Location: index.html?status=success&message=Has cerrado sesión exitosamente.');
+header('Location: index.php?status=success&message=Has cerrado sesión exitosamente.');
 exit();
 ?>

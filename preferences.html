@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personaliza tu Búsqueda - Tierras.mx</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&subset=latin,latin-ext&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --mexico-blue: #0068ff;
+            --mexico-green: #10b981;
+            --mexico-red: #ef4444;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.125rem;
+            --radius: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--gray-700);
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            color: var(--mexico-green);
+        }
+
+        .primary-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            line-height: 80px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .secondary-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .secondary-actions a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            line-height: 80px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+
+        .nav-mobile {
+            display: none;
+        }
+
+        .search-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle::after {
+            content: ' \25BC'; /* Down arrow */
+            font-size: 0.7em;
+            margin-left: 0.3em;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            border-radius: var(--radius-lg);
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            min-width: 200px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            color: var(--gray-700);
+            padding: 0.75rem 1.25rem;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--gray-100);
+            color: var(--primary);
+        }
+
+        .dropdown-menu a::after {
+            content: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--mexico-blue) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Form Styles */
+        .preferences-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .form-section {
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+        .form-section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .form-section-title i {
+            color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--primary);
+        }
+
+        .budget-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .budget-option {
+            position: relative;
+        }
+
+        .budget-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .budget-option label {
+            display: block;
+            padding: 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .budget-option input[type="radio"]:checked + label {
+            border-color: var(--primary);
+            background-color: rgba(37, 99, 235, 0.05);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .budget-option label:hover {
+            border-color: var(--primary);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--gray-200);
+        }
+
+        .form-actions {
+            padding: 2rem;
+            background-color: var(--gray-50);
+            text-align: center;
+        }
+
+        .form-actions .btn {
+            margin: 0 0.5rem;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .progress-step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--gray-200);
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .progress-step.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .progress-step.completed {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 30px;
+            height: 2px;
+            background-color: var(--gray-200);
+            transform: translateY(-50%);
+        }
+
+        .progress-step:last-child::after {
+            display: none;
+        }
+
+        .progress-step.completed::after {
+            background-color: var(--secondary);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--gray-900);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo i {
+            color: var(--mexico-green);
+        }
+
+        .footer-description {
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .primary-nav {
+                display: none;
+            }
+
+            .secondary-actions {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-mobile {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: var(--shadow-lg);
+                z-index: 100;
+                padding: 1rem;
+            }
+
+            .nav-mobile.active {
+                display: block;
+            }
+
+            .nav-link-mobile {
+                display: block;
+                padding: 0.75rem 0;
+                color: var(--gray-700);
+                text-decoration: none;
+                border-bottom: 1px solid var(--gray-100);
+            }
+
+            .mobile-auth {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--gray-200);
+            }
+
+            .mobile-auth button {
+                width: 100%;
+                margin: 0.25rem 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .budget-options {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-bar {
+                flex-wrap: wrap;
+            }
+
+            .progress-step::after {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .nav-desktop {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-home logo-icon"></i>
+                Tierras.mx
+            </a>
+            <nav class="primary-nav">
+                <div class="dropdown">
+                    <a href="comprar.html" class="nav-link dropdown-toggle">Comprar</a>
+                    <div class="dropdown-menu">
+                        <a href="casas_compra.html">Comprar Casa</a>
+                        <a href="construccionesnuevas.html">Construcciones Nuevas</a>
+                        <a href="casas embargadas.html">Casas Embargadas</a>
+                        <a href="puertasabiertas.html">Puertas Abiertas</a>
+                        <a href="proximamente.html">Próximamente</a>
+                        <a href="ofertadecompra.html">Hacer Oferta</a>
+                    </div>
+                </div>
+                <a href="renta.html" class="nav-link">Rentar</a>
+                <div class="dropdown">
+                    <a href="venta.html" class="nav-link dropdown-toggle">Vender</a>
+                    <div class="dropdown-menu">
+                        <a href="anunciar.html">Anunciar Propiedad</a>
+                        <a href="recursos vendedor.html">Recursos para Vendedores</a>
+                        <a href="ventasrecientes.html">Ventas Recientes</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="Créditos Hipotecarios.html" class="nav-link dropdown-toggle">Créditos</a>
+                    <div class="dropdown-menu">
+                        <a href="prestamos.html">Préstamos</a>
+                        <a href="financiamientotierras.html">Financiamiento de Tierras</a>
+                    </div>
+                </div>
+                <a href="encuentraunagente.html" class="nav-link">Agentes</a>
+            </nav>
+            <div class="secondary-actions">
+                <button class="search-button" onclick="window.location.href='login.html'">Iniciar Sesión</button>
+                <button class="search-button" onclick="window.location.href='register.html'">Unirse</button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="nav-mobile" id="mobileNav">
+            <a href="comprar.html" class="nav-link-mobile">Comprar</a>
+            <a href="renta.html" class="nav-link-mobile">Rentar</a>
+            <a href="venta.html" class="nav-link-mobile">Vender</a>
+            <a href="encuentraunagente.html" class="nav-link-mobile">Agentes</a>
+            <a href="Créditos Hipotecarios.html" class="nav-link-mobile">Créditos</a>
+            <div class="mobile-auth">
+                <button class="btn btn-ghost w-100" onclick="window.location.href='login.html'">Iniciar Sesión</button>
+                <button class="btn btn-primary w-100" onclick="window.location.href='register.html'">Unirse</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Personaliza tu Búsqueda</h1>
+            <p class="hero-subtitle">Cuéntanos qué buscas y te ayudaremos a encontrar la propiedad perfecta</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-step active">1</div>
+                <div class="progress-step">2</div>
+                <div class="progress-step">3</div>
+            </div>
+        </div>
+
+        <form class="preferences-form" action="process_preferences.php" method="post">
+            <!-- Contact Information -->
+            <div class="form-section">
+                <h2 class="form-section-title">
+                    <i class="fas fa-user"></i>
+                    Información de Contacto
+                </h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first_name">Nombre</label>
+                        <input type="text" id="first_name" name="first_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Apellido</label>
+                        <input type="text" id="last_name" name="last_name" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Preferences -->
+            <div class="form-section">
+                <h2 class="form-section-title">
+                    <i class="fas fa-home"></i>
+                    Preferencias de Propiedad
+                </h2>
+                <div class="form-group">
+                    <label for="property_type">Tipo de Propiedad</label>
+                    <select id="property_type" name="property_type" class="form-control form-select" required>
+                        <option value="">Selecciona un tipo</option>
+                        <option value="casa">Casa</option>
+                        <option value="departamento">Departamento</option>
+                        <option value="terreno">Terreno</option>
+                        <option value="local-comercial">Local Comercial</option>
+                        <option value="bodega">Bodega</option>
+                        <option value="oficina">Oficina</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transaction_type">Tipo de Transacción</label>
+                    <select id="transaction_type" name="transaction_type" class="form-control form-select" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="compra">Compra</option>
+                        <option value="renta">Renta</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bedrooms">Recámaras</label>
+                    <select id="bedrooms" name="bedrooms" class="form-control form-select">
+                        <option value="">No importa</option>
+                        <option value="1">1 recámara</option>
+                        <option value="2">2 recámaras</option>
+                        <option value="3">3 recámaras</option>
+                        <option value="4">4+ recámaras</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bathrooms">Baños</label>
+                    <select id="bathrooms" name="bathrooms" class="form-control form-select">
+                        <option value="">No importa</option>
+                        <option value="1">1 baño</option>
+                        <option value="2">2 baños</option>
+                        <option value="3">3 baños</option>
+                        <option value="4">4+ baños</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Budget -->
+            <div class="form-section">
+                <h2 class="form-section-title">
+                    <i class="fas fa-coins"></i>
+                    Presupuesto
+                </h2>
+                <div class="budget-options">
+                    <div class="budget-option">
+                        <input type="radio" id="budget-1" name="budget" value="0-1000000">
+                        <label for="budget-1">$0 - $1,000,000 MXN</label>
+                    </div>
+                    <div class="budget-option">
+                        <input type="radio" id="budget-2" name="budget" value="1000000-3000000">
+                        <label for="budget-2">$1M - $3M MXN</label>
+                    </div>
+                    <div class="budget-option">
+                        <input type="radio" id="budget-3" name="budget" value="3000000-5000000">
+                        <label for="budget-3">$3M - $5M MXN</label>
+                    </div>
+                    <div class="budget-option">
+                        <input type="radio" id="budget-4" name="budget" value="5000000-10000000">
+                        <label for="budget-4">$5M - $10M MXN</label>
+                    </div>
+                    <div class="budget-option">
+                        <input type="radio" id="budget-5" name="budget" value="10000000+">
+                        <label for="budget-5">$10M+ MXN</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="form-section">
+                <h2 class="form-section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ubicación Preferida
+                </h2>
+                <div class="form-group">
+                    <label for="state">Estado</label>
+                    <select id="state" name="state" class="form-control form-select" required>
+                        <option value="">Selecciona un estado</option>
+                        <option value="cdmx">Ciudad de México</option>
+                        <option value="jalisco">Jalisco</option>
+                        <option value="nuevo-leon">Nuevo León</option>
+                        <option value="puebla">Puebla</option>
+                        <option value="queretaro">Querétaro</option>
+                        <option value="yucatan">Yucatán</option>
+                        <option value="guanajuato">Guanajuato</option>
+                        <option value="veracruz">Veracruz</option>
+                        <option value="michoacan">Michoacán</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Ciudad/Municipio</label>
+                    <input type="text" id="city" name="city" class="form-control" placeholder="Ej: Guadalajara, Monterrey, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="neighborhood">Colonia/Fraccionamiento (opcional)</label>
+                    <input type="text" id="neighborhood" name="neighborhood" class="form-control" placeholder="Ej: Polanco, Condesa, etc.">
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="form-section">
+                <h2 class="form-section-title">
+                    <i class="fas fa-star"></i>
+                    Características Deseadas
+                </h2>
+                <div class="checkbox-grid">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-parking" name="features[]" value="estacionamiento">
+                        <label for="feature-parking">Estacionamiento</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-garden" name="features[]" value="jardin">
+                        <label for="feature-garden">Jardín</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-pool" name="features[]" value="alberca">
+                        <label for="feature-pool">Alberca</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-gym" name="features[]" value="gimnasio">
+                        <label for="feature-gym">Gimnasio</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-security" name="features[]" value="seguridad">
+                        <label for="feature-security">Seguridad 24/7</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-elevator" name="features[]" value="elevador">
+                        <label for="feature-elevator">Elevador</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-terrace" name="features[]" value="terraza">
+                        <label for="feature-terrace">Terraza</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="feature-pet-friendly" name="features[]" value="mascotas">
+                        <label for="feature-pet-friendly">Pet Friendly</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.history.back()">Regresar</button>
+                <button type="submit" class="btn btn-primary">Guardar Preferencias</button>
+            </div>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        Tierras.mx
+                    </a>
+                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/523331010164?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n." class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/tierras.mx/" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/tierras-m%C3%A9xico-417931362/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@TierrasMexico" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Compradores</h4>
+                    <ul class="footer-links">
+                        <li><a href="comprar.html">Buscar Propiedades</a></li>
+                        <li><a href="#">Calculadora de Crédito</a></li>
+                        <li><a href="#">Guía de Compra</a></li>
+                        <li><a href="encuentraunagente.html">Encuentra un Agente</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Para Vendedores</h4>
+                    <ul class="footer-links">
+                        <li><a href="anunciar.html">Vende tu Propiedad</a></li>
+                        <li><a href="#">Valor de tu Propiedad</a></li>
+                        <li><a href="recursos vendedor.html">Guía de Venta</a></li>
+                        <li><a href="anunciar.html">Lista tu Propiedad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Compañía</h4>
+                    <ul class="footer-links">
+                        <li><a href="Sobre Nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="#">Trabajos</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="Politica de Privacidad.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tierras.mx. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                });
+            }
+
+            // Form validation
+            const form = document.querySelector('.preferences-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    if (!validateForm()) {
+                        e.preventDefault();
+                    }
+                });
+            }
+
+            // Dynamic city suggestions based on state selection
+            const stateSelect = document.getElementById('state');
+            const cityInput = document.getElementById('city');
+
+            if (stateSelect && cityInput) {
+                stateSelect.addEventListener('change', function() {
+                    const state = this.value;
+                    const cities = {
+                        'cdmx': ['Miguel Hidalgo', 'Cuauhtémoc', 'Benito Juárez', 'Coyoacán', 'Álvaro Obregón'],
+                        'jalisco': ['Guadalajara', 'Zapopan', 'Tlaquepaque', 'Tonalá', 'Puerto Vallarta'],
+                        'nuevo-leon': ['Monterrey', 'San Pedro Garza García', 'San Nicolás de los Garza', 'Apodaca', 'Guadalupe'],
+                        'puebla': ['Puebla', 'Cholula', 'San Andrés Cholula', 'Atlixco', 'San Martín Texmelucan'],
+                        'queretaro': ['Querétaro', 'Corregidora', 'El Marqués', 'San Juan del Río', 'Tequisquiapan'],
+                        'yucatan': ['Mérida', 'Valladolid', 'Izamal', 'Tizimín', 'Progreso'],
+                        'guanajuato': ['León', 'Irapuato', 'Celaya', 'Salamanca', 'Guanajuato'],
+                        'veracruz': ['Veracruz', 'Xalapa', 'Coatzacoalcos', 'Minatitlán', 'Córdoba'],
+                        'michoacan': ['Morelia', 'Uruapan', 'Zamora', 'Lázaro Cárdenas', 'Apatzingán']
+                    };
+
+                    if (cities[state]) {
+                        cityInput.placeholder = `Ej: ${cities[state][0]}, ${cities[state][1]}, etc.`;
+                    } else {
+                        cityInput.placeholder = 'Ej: Guadalajara, Monterrey, etc.';
+                    }
+                });
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+            const requiredFields = document.querySelectorAll('.preferences-form [required]');
+            const emailField = document.getElementById('email');
+            const phoneField = document.getElementById('phone');
+
+            // Clear previous error messages
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
+
+            // Check required fields
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    showError(field, 'Este campo es obligatorio');
+                    isValid = false;
+                }
+            });
+
+            // Email validation
+            if (emailField && emailField.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailField.value)) {
+                    showError(emailField, 'Por favor ingresa un correo electrónico válido');
+                    isValid = false;
+                }
+            }
+
+            // Phone validation
+            if (phoneField && phoneField.value) {
+                const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+                if (!phoneRegex.test(phoneField.value.replace(/\s/g, ''))) {
+                    showError(phoneField, 'Por favor ingresa un número de teléfono válido');
+                    isValid = false;
+                }
+            }
+
+            // Budget validation
+            const budgetChecked = document.querySelector('input[name="budget"]:checked');
+            if (!budgetChecked) {
+                const budgetSection = document.querySelector('.form-section:has(.budget-options)');
+                showError(budgetSection.querySelector('.budget-options'), 'Por favor selecciona un rango de presupuesto');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function showError(field, message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.color = 'var(--danger)';
+            errorDiv.style.fontSize = '0.875rem';
+            errorDiv.style.marginTop = '0.25rem';
+            errorDiv.textContent = message;
+
+            field.parentNode.appendChild(errorDiv);
+            field.style.borderColor = 'var(--danger)';
+
+            field.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    errorDiv.remove();
+                    this.style.borderColor = '';
+                }
+            }, { once: true });
+        }
+    </script>
+</body>
+</html>

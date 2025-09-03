@@ -101,7 +101,6 @@ $analytics = [
     'conversion_rate' => 15.3
 ];
 
-$conn->close();
 ?>
 
 <main class="container">
@@ -113,7 +112,7 @@ $conn->close();
                 <p>Administra tus propiedades, clientes y rendimiento</p>
             </div>
             <div class="dashboard-actions">
-                <a href="#add-property" class="btn btn-primary">Agregar Propiedad</a>
+                <a href="add_property.html" class="btn btn-primary">Agregar Propiedad</a>
                 <a href="#analytics" class="btn btn-secondary">Ver Analytics</a>
             </div>
         </section>
@@ -125,6 +124,57 @@ $conn->close();
                 <li><a href="#properties" class="dashboard-nav-link">Mis Propiedades</a></li>
                 <li><a href="#leads" class="dashboard-nav-link">Clientes Potenciales</a></li>
                 <li><a href="#analytics" class="dashboard-nav-link">Analytics</a></li>
+                <?php
+                // Determine intelligence access based on user type and subscription
+                $intelligence_url = '';
+                $intelligence_text = '';
+                $intelligence_class = '';
+                $intelligence_onclick = '';
+
+                if ($_SESSION['user_type'] === 'admin') {
+                    // Superadmin has full access
+                    $intelligence_url = 'agent_intelligence.php';
+                    $intelligence_text = '🧠 Inteligencia';
+                    $intelligence_class = 'dashboard-nav-link';
+                } elseif ($_SESSION['user_type'] === 'agent') {
+                    // Check premium subscription for agents
+                    $sub_sql = "SELECT subscription_type, status, end_date FROM user_subscriptions
+                               WHERE user_id = ? AND status = 'active'
+                               ORDER BY created_at DESC LIMIT 1";
+                    if ($stmt = $conn->prepare($sub_sql)) {
+                        $stmt->bind_param("i", $user_id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        if ($result->num_rows > 0) {
+                            $subscription = $result->fetch_assoc();
+                            if (($subscription['subscription_type'] === 'premium' || $subscription['subscription_type'] === 'enterprise') &&
+                                ($subscription['end_date'] === null || strtotime($subscription['end_date']) > time())) {
+                                $intelligence_url = 'agent_intelligence.php';
+                                $intelligence_text = '🧠 Inteligencia';
+                                $intelligence_class = 'dashboard-nav-link';
+                            } else {
+                                $intelligence_url = '#';
+                                $intelligence_text = '<i class="fas fa-lock"></i> Inteligencia <span class="premium-badge">Premium</span>';
+                                $intelligence_class = 'dashboard-nav-link premium-link';
+                                $intelligence_onclick = 'onclick="showPremiumModal()"';
+                            }
+                        } else {
+                            $intelligence_url = '#';
+                            $intelligence_text = '<i class="fas fa-lock"></i> Inteligencia <span class="premium-badge">Premium</span>';
+                            $intelligence_class = 'dashboard-nav-link premium-link';
+                            $intelligence_onclick = 'onclick="showPremiumModal()"';
+                        }
+                        $stmt->close();
+                    }
+                } else {
+                    // Buyers and sellers get basic intelligence
+                    $intelligence_url = 'basic_intelligence.php';
+                    $intelligence_text = '📊 Mercado';
+                    $intelligence_class = 'dashboard-nav-link';
+                }
+                ?>
+
+                <li><a href="<?php echo $intelligence_url; ?>" class="<?php echo $intelligence_class; ?>" <?php echo $intelligence_onclick; ?>><?php echo $intelligence_text; ?></a></li>
                 <li><a href="#profile" class="dashboard-nav-link">Mi Perfil</a></li>
                 <li><a href="#messages" class="dashboard-nav-link">Mensajes</a></li>
             </ul>
@@ -185,7 +235,7 @@ $conn->close();
             <div class="section-header">
                 <h2 class="section-title">Mis Propiedades</h2>
                 <p class="section-subtitle">Administra tus propiedades listadas</p>
-                <a href="add_property.php" class="btn btn-primary">Agregar Nueva Propiedad</a>
+                <a href="add_property.html" class="btn btn-primary">Agregar Nueva Propiedad</a>
             </div>
 
             <?php if (empty($agentProperties)): ?>
@@ -195,7 +245,7 @@ $conn->close();
                     </div>
                     <h3 class="empty-state-title">No tienes propiedades listadas</h3>
                     <p class="empty-state-text">Comienza agregando tu primera propiedad para atraer compradores potenciales.</p>
-                    <a href="add_property.php" class="btn btn-primary">Agregar Primera Propiedad</a>
+                    <a href="add_property.html" class="btn btn-primary">Agregar Primera Propiedad</a>
                 </div>
             <?php else: ?>
                 <div class="properties-grid">
@@ -832,6 +882,33 @@ $conn->close();
     background: #c82333;
 }
 
+/* Premium features styling */
+.premium-link {
+    position: relative;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.premium-link:hover {
+    opacity: 0.8;
+}
+
+.premium-badge {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #333;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.premium-link i {
+    margin-right: 0.5rem;
+}
+
 @media (max-width: 768px) {
     .dashboard-header {
         flex-direction: column;
@@ -943,8 +1020,246 @@ function openConversation(clientId) {
     // Implement open conversation functionality
     alert('Función de abrir conversación próximamente disponible');
 }
+
+// Premium modal functions
+function showPremiumModal() {
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'premium-modal-overlay';
+    modal.innerHTML = `
+        <div class="premium-modal">
+            <div class="premium-modal-header">
+                <h3><i class="fas fa-crown"></i> Desbloquea Inteligencia Premium</h3>
+                <button class="modal-close" onclick="closePremiumModal()">&times;</button>
+            </div>
+            <div class="premium-modal-body">
+                <p>Accede a poderosas herramientas de inteligencia artificial para optimizar tu negocio inmobiliario:</p>
+                <div class="premium-features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Análisis de mercado con IA</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Recomendaciones de precios inteligentes</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-magic"></i>
+                        <span>Predicciones de tendencias</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Sugerencias de marketing automatizadas</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-file-export"></i>
+                        <span>Reportes avanzados exportables</span>
+                    </div>
+                </div>
+                <div class="premium-pricing">
+                    <div class="pricing-card">
+                        <h4>Plan Premium</h4>
+                        <div class="price">$499<span>/mes</span></div>
+                        <ul>
+                            <li>Todas las herramientas de IA</li>
+                            <li>Reportes ilimitados</li>
+                            <li>Soporte prioritario</li>
+                            <li>Hasta 100 propiedades</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="premium-modal-footer">
+                <button class="btn btn-secondary" onclick="closePremiumModal()">Después</button>
+                <button class="btn btn-primary" onclick="upgradeToPremium()">
+                    <i class="fas fa-star"></i> Actualizar Ahora
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Add modal styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .premium-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .premium-modal {
+            background: white;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .premium-modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .premium-modal-header h3 {
+            margin: 0;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .premium-modal-header .fa-crown {
+            color: #ffd700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .premium-modal-body {
+            padding: 2rem;
+        }
+
+        .premium-features-list {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .feature-item i {
+            color: #667eea;
+            width: 20px;
+        }
+
+        .premium-pricing {
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .pricing-card h4 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .pricing-card li:last-child {
+            border-bottom: none;
+        }
+
+        .premium-modal-footer {
+            padding: 1.5rem 2rem 2rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 768px) {
+            .premium-modal {
+                width: 95%;
+                margin: 1rem;
+            }
+
+            .premium-modal-header,
+            .premium-modal-body,
+            .premium-modal-footer {
+                padding: 1rem 1.5rem;
+            }
+
+            .premium-modal-footer {
+                flex-direction: column;
+            }
+
+            .pricing-card {
+                padding: 1.5rem;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+function closePremiumModal() {
+    const modal = document.querySelector('.premium-modal-overlay');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function upgradeToPremium() {
+    closePremiumModal();
+    alert('Funcionalidad de actualización próximamente disponible. Contacta a soporte para actualizar tu plan.');
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('premium-modal-overlay')) {
+        closePremiumModal();
+    }
+});
 </script>
 
 <?php
+$conn->close();
 include 'footer.php';
 ?>

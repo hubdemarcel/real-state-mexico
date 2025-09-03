@@ -1,153 +1,1221 @@
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Nueva Propiedad - Tierras.mx</title>
-    <link rel="stylesheet" href="Tierrasmx/assets/css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <header class="header">
-        <div class="header-container container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-home logo-icon"></i>
-                Tierras.mx
-            </a>
-            <nav class="primary-nav">
-                <div class="dropdown">
-                    <a href="comprar.html" class="nav-link dropdown-toggle">Comprar</a>
-                    <div class="dropdown-menu">
-                        <a href="casas_compra.html">Comprar Casa</a>
-                        <a href="construccionesnuevas.html">Construcciones Nuevas</a>
-                        <a href="casas embargadas.html">Casas Embargadas</a>
-                        <a href="puertasabiertas.html">Puertas Abiertas</a>
-                        <a href="proximamente.html">Próximamente</a>
-                        <a href="ofertadecompra.html">Hacer Oferta</a>
-                    </div>
-                </div>
-                <a href="renta.html" class="nav-link">Rentar</a>
-                <div class="dropdown">
-                    <a href="venta.html" class="nav-link dropdown-toggle">Vender</a>
-                    <div class="dropdown-menu">
-                        <a href="anunciar.html">Anunciar Propiedad</a>
-                        <a href="recursos vendedor.html">Recursos para Vendedores</a>
-                        <a href="ventasrecientes.html">Ventas Recientes</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="Créditos Hipotecarios.html" class="nav-link dropdown-toggle">Créditos</a>
-                    <div class="dropdown-menu">
-                        <a href="prestamos.html">Préstamos</a>
-                        <a href="financiamientotierras.html">Financiamiento de Tierras</a>
-                    </div>
-                </div>
-                <a href="encuentraunagente.html" class="nav-link">Agentes</a>
-            </nav>
-            <div class="secondary-actions">
-                <button class="search-button">Iniciar Sesión</button>
-                <button class="search-button">Unirse</button>
+<?php
+$pageTitle = 'Agregar Nueva Propiedad - Tierras.mx';
+include 'header.php';
+?>
+
+<!-- Hero Section -->
+<section class="add-property-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Publica tu Propiedad</h1>
+                <p>Conecta con miles de compradores potenciales en México</p>
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Compradores Activos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Agentes Profesionales</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Tiempo de Respuesta</div>
+                </div>
+            </div>
         </div>
-    </header>
+    </div>
+</section>
 
-    <main class="container">
-        <section class="section">
-            <div class="section-header">
-                <h1 class="section-title">Agregar Nueva Propiedad</h1>
+<main class="container">
+    <div class="add-property-container">
+        <!-- Progress Indicator -->
+        <div class="form-progress">
+            <div class="progress-step active">
+                <span class="step-number">1</span>
+                <span class="step-label">Información Básica</span>
             </div>
+            <div class="progress-step">
+                <span class="step-number">2</span>
+                <span class="step-label">Detalles Adicionales</span>
+            </div>
+            <div class="progress-step">
+                <span class="step-number">3</span>
+                <span class="step-label">Imágenes</span>
+            </div>
+        </div>
 
-            <form action="add_property.php" method="post">
-                <div class="form-group">
-                    <label for="title">Título de la Propiedad</label>
-                    <input type="text" id="title" name="title" class="form-control" required>
+        <!-- Main Form -->
+        <section class="property-form-section">
+            <form action="add_property.php" method="post" enctype="multipart/form-data" class="property-form" id="propertyForm">
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-info-circle"></i>
+                        Información Básica
+                    </h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="title" class="form-label">
+                                <i class="fas fa-tag"></i>
+                                Título de la Propiedad *
+                            </label>
+                            <input type="text" id="title" name="title" class="form-control" placeholder="Ej: Hermosa casa en Polanco" required>
+                            <small class="form-help">Use un título descriptivo y atractivo</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="description" class="form-label">
+                                <i class="fas fa-align-left"></i>
+                                Descripción *
+                            </label>
+                            <textarea id="description" name="description" class="form-control" rows="6" placeholder="Describa las características principales de la propiedad..." required></textarea>
+                            <small class="form-help">Mínimo 50 caracteres. Incluya detalles importantes como habitaciones, baños, amenities, etc.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="price" class="form-label">
+                                <i class="fas fa-dollar-sign"></i>
+                                Precio (MXN) *
+                            </label>
+                            <div class="price-input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="price" name="price" class="form-control price-input" placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+                            <small class="form-help">Ingrese el precio en pesos mexicanos sin comas</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="property_type" class="form-label">
+                                <i class="fas fa-building"></i>
+                                Tipo de Propiedad *
+                            </label>
+                            <select id="property_type" name="property_type" class="form-control" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="casa">🏠 Casa</option>
+                                <option value="departamento">🏢 Departamento</option>
+                                <option value="terreno">🌱 Terreno</option>
+                                <option value="local-comercial">🏪 Local Comercial</option>
+                                <option value="bodega">📦 Bodega</option>
+                                <option value="oficina">💼 Oficina</option>
+                                <option value="nave-industrial">🏭 Nave Industrial</option>
+                                <option value="deposito">📦 Depósito</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <textarea id="description" name="description" class="form-control" rows="5" required></textarea>
+
+                <!-- Location Information -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Ubicación
+                    </h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location" class="form-label">
+                                <i class="fas fa-search"></i>
+                                Ubicación Completa *
+                            </label>
+                            <input type="text" id="location" name="location" class="form-control" placeholder="Ej: Polanco, Miguel Hidalgo, CDMX" required>
+                            <small class="form-help">Especifique la dirección completa incluyendo colonia, municipio y estado</small>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="price">Precio (MXN)</label>
-                    <input type="number" id="price" name="price" class="form-control" step="0.01" required>
+
+                <!-- Additional Details -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-plus-circle"></i>
+                        Detalles Adicionales
+                    </h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bedrooms" class="form-label">
+                                <i class="fas fa-bed"></i>
+                                Recámaras
+                            </label>
+                            <select id="bedrooms" name="bedrooms" class="form-control">
+                                <option value="">Seleccionar</option>
+                                <option value="1">1 recámara</option>
+                                <option value="2">2 recámaras</option>
+                                <option value="3">3 recámaras</option>
+                                <option value="4">4 recámaras</option>
+                                <option value="5">5+ recámaras</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bathrooms" class="form-label">
+                                <i class="fas fa-bath"></i>
+                                Baños
+                            </label>
+                            <select id="bathrooms" name="bathrooms" class="form-control">
+                                <option value="">Seleccionar</option>
+                                <option value="1">1 baño</option>
+                                <option value="1.5">1.5 baños</option>
+                                <option value="2">2 baños</option>
+                                <option value="2.5">2.5 baños</option>
+                                <option value="3">3 baños</option>
+                                <option value="4">4+ baños</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="amenities" class="form-label">
+                                <i class="fas fa-star"></i>
+                                Amenidades
+                            </label>
+                            <input type="text" id="amenities" name="amenities" class="form-control" placeholder="Ej: Jardín, Estacionamiento, Seguridad 24/7">
+                            <small class="form-help">Separe las amenidades con comas</small>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="location">Ubicación</label>
-                    <input type="text" id="location" name="location" class="form-control" required>
+
+                <!-- Images Section -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-camera"></i>
+                        Imágenes de la Propiedad
+                    </h3>
+
+                    <div class="image-upload-container">
+                        <div class="image-upload-area" id="imageUploadArea">
+                            <div class="upload-placeholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h4>Arrastra y suelta tus imágenes aquí</h4>
+                                <p>o <span class="upload-link">haz clic para seleccionar</span></p>
+                                <small>Máximo 10 imágenes • Formatos: JPG, PNG, GIF • Máx. 5MB cada una</small>
+                            </div>
+                            <input type="file" id="imageFiles" name="images[]" multiple accept="image/*" style="display: none;">
+                        </div>
+
+                        <div class="image-preview-grid" id="imagePreviewGrid">
+                            <!-- Image previews will be added here -->
+                        </div>
+
+                        <div class="upload-progress" id="uploadProgress" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <p id="progressText">Subiendo imágenes...</p>
+                        </div>
+                    </div>
+
+                    <div class="image-requirements">
+                        <h4><i class="fas fa-info-circle"></i> Recomendaciones para las imágenes:</h4>
+                        <ul>
+                            <li>📸 Usa fotos de alta resolución (mínimo 800x600px)</li>
+                            <li>🏠 Incluye fotos del exterior, interior y alrededores</li>
+                            <li>☀️ Toma fotos con buena iluminación natural</li>
+                            <li>📐 Mantén las fotos rectas y bien encuadradas</li>
+                            <li>🏷️ La primera imagen será la portada de tu anuncio</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="property_type">Tipo de Propiedad</label>
-                    <select id="property_type" name="property_type" class="form-control" required>
-                        <option value="casa">Casa</option>
-                        <option value="departamento">Departamento</option>
-                        <option value="terreno">Terreno</option>
-                        <option value="local-comercial">Local Comercial</option>
-                    </select>
+
+                <!-- Submit Section -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-large" id="submitBtn">
+                        <i class="fas fa-save"></i>
+                        Agregar Propiedad
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="image_url">URL de la Imagen</label>
-                    <input type="text" id="image_url" name="image_url" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Agregar Propiedad</button>
             </form>
         </section>
-    </main>
+    </div>
+</main>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <i class="fas fa-home"></i>
-                        Tierras.mx
-                    </a>
-                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
-                    <div class="social-links">
-                        <a href="https://wa.me/523331010164?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n." class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.instagram.com/tierras.mx/" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/tierras-m%C3%A9xico-417931362/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.youtube.com/@TierrasMexico" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Para Compradores</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Buscar Propiedades</a></li>
-                        <li><a href="#">Calculadora de Crédito</a></li>
-                        <li><a href="#">Guía de Compra</a></li>
-                        <li><a href="#">Encuentra un Agente</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Para Vendedores</h4>
-                    <ul class="footer-links">
-                        <li><a href="anunciar.html">Vende tu Propiedad</a></li>
-                        <li><a href="#">Valor de tu Propiedad</a></li>
-                        <li><a href="recursos vendedor.html">Guía de Venta</a></li>
-                        <li><a href="anunciar.html">Lista tu Propiedad</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Compañía</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Trabajos</a></li>
-                        <li><a href="#">Prensa</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                    </ul>
+<style>
+/* ===== ADD PROPERTY PAGE STYLES ===== */
+
+/* Hero Section - Professional & Muted */
+.add-property-hero {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 4rem 0 3rem;
+    position: relative;
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.add-property-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.02"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.01"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.01"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.01"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 120px;
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Form Container */
+.add-property-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Progress Indicator */
+.form-progress {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.form-progress::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e9ecef;
+    z-index: 1;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e9ecef;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active .step-number {
+    background: #34495e;
+    color: white;
+}
+
+.step-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.progress-step.active .step-label {
+    color: #34495e;
+}
+
+/* Form Sections */
+.property-form-section {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.property-form {
+    padding: 0;
+}
+
+.form-section {
+    padding: 2.5rem;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-title i {
+    color: #34495e;
+}
+
+/* Form Layout */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-label i {
+    color: #34495e;
+    width: 16px;
+}
+
+/* Form Controls */
+.form-control {
+    padding: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: #2c3e50;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #34495e;
+    box-shadow: 0 0 0 3px rgba(52, 73, 94, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-control::placeholder {
+    color: #adb5bd;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+select.form-control {
+    cursor: pointer;
+}
+
+/* Price Input */
+.price-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 1rem;
+    color: #6c757d;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.price-input {
+    padding-left: 2.5rem !important;
+}
+
+/* Form Help */
+.form-help {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+/* Form Actions */
+.form-actions {
+    padding: 2.5rem;
+    background: #f8f9fa;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #34495e;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2c3e50;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 73, 94, 0.3);
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+}
+
+/* Image Upload Styles */
+.image-upload-container {
+    margin-top: 1rem;
+}
+
+.image-upload-area {
+    border: 2px dashed #bdc3c7;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-upload-area:hover,
+.image-upload-area.dragover {
+    border-color: #34495e;
+    background: #ecf0f1;
+}
+
+.upload-placeholder {
+    color: #7f8c8d;
+}
+
+.upload-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.upload-placeholder h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.upload-placeholder p {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+}
+
+.upload-link {
+    color: #34495e;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.upload-link:hover {
+    text-decoration: underline;
+}
+
+.image-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.image-preview-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.image-preview-item img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-preview-item:hover .image-preview-overlay {
+    opacity: 1;
+}
+
+.image-preview-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.image-action-btn {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.image-action-btn:hover {
+    transform: scale(1.1);
+}
+
+.image-action-btn.remove {
+    color: #e74c3c;
+}
+
+.image-action-btn.star {
+    color: #f39c12;
+}
+
+.image-action-btn.star.active {
+    color: #e67e22;
+    background: rgba(255,255,255,0.9);
+}
+
+.image-order {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(52, 73, 94, 0.9);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.upload-progress {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #34495e 0%, #2c3e50 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.image-requirements {
+    background: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.image-requirements h4 {
+    margin: 0 0 1rem 0;
+    color: #34495e;
+    font-size: 1.1rem;
+}
+
+.image-requirements ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.image-requirements li {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.image-requirements li:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .add-property-container {
+        padding: 1rem;
+    }
+
+    .add-property-hero {
+        padding: 2rem 0;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .hero-stats {
+        gap: 1.5rem;
+    }
+
+    .stat-item {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .form-progress {
+        margin-bottom: 2rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .form-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .form-actions {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .image-upload-area {
+        padding: 2rem 1rem;
+    }
+
+    .upload-placeholder i {
+        font-size: 2.5rem;
+    }
+
+    .image-preview-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .image-preview-item img {
+        height: 100px;
+    }
+
+    .image-requirements {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .hero-text h1 {
+        font-size: 1.75rem;
+    }
+
+    .form-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Loading States */
+.form-control:disabled {
+    background: #f8f9fa;
+    cursor: not-allowed;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Success/Error States */
+.form-group.success .form-control {
+    border-color: #27ae60;
+}
+
+.form-group.error .form-control {
+    border-color: #e74c3c;
+}
+
+.form-message {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-message.success {
+    color: #27ae60;
+}
+
+.form-message.error {
+    color: #e74c3c;
+}
+
+/* Focus States for Accessibility */
+.form-control:focus,
+.btn:focus {
+    outline: 2px solid #34495e;
+    outline-offset: 2px;
+}
+</style>
+
+<script>
+// Form validation and enhancement
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('propertyForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Real-time validation
+    const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            validateField(this);
+        });
+
+        input.addEventListener('input', function() {
+            if (this.classList.contains('error')) {
+                validateField(this);
+            }
+        });
+    });
+
+    function validateField(field) {
+        const formGroup = field.closest('.form-group');
+        const message = formGroup.querySelector('.form-message');
+
+        // Remove existing messages
+        if (message) {
+            message.remove();
+        }
+
+        // Basic validation
+        let isValid = true;
+        let errorMessage = '';
+
+        if (field.hasAttribute('required') && !field.value.trim()) {
+            isValid = false;
+            errorMessage = 'Este campo es obligatorio';
+        } else if (field.type === 'number' && field.value && parseFloat(field.value) <= 0) {
+            isValid = false;
+            errorMessage = 'El precio debe ser mayor a 0';
+        } else if (field.id === 'description' && field.value.length < 50) {
+            isValid = false;
+            errorMessage = 'La descripción debe tener al menos 50 caracteres';
+        }
+
+        // Update field state
+        formGroup.classList.remove('success', 'error');
+
+        if (field.value.trim()) {
+            if (isValid) {
+                formGroup.classList.add('success');
+            } else {
+                formGroup.classList.add('error');
+
+                // Add error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'form-message error';
+                errorDiv.textContent = errorMessage;
+                formGroup.appendChild(errorDiv);
+            }
+        }
+    }
+
+    // Form submission
+    form.addEventListener('submit', function(e) {
+        const requiredFields = form.querySelectorAll('input[required], textarea[required], select[required]');
+        let isFormValid = true;
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                validateField(field);
+                isFormValid = false;
+            }
+        });
+
+        if (!isFormValid) {
+            e.preventDefault();
+            submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return false;
+        }
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Agregando Propiedad...';
+    });
+
+    // Image Upload JavaScript
+    const imageUploadArea = document.getElementById('imageUploadArea');
+    const imageFilesInput = document.getElementById('imageFiles');
+    const imagePreviewGrid = document.getElementById('imagePreviewGrid');
+    const uploadProgress = document.getElementById('uploadProgress');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+
+    let selectedImages = [];
+    let imageCounter = 0;
+
+    // Drag and drop functionality
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        imageUploadArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        imageUploadArea.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        imageUploadArea.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+        imageUploadArea.classList.add('dragover');
+    }
+
+    function unhighlight(e) {
+        imageUploadArea.classList.remove('dragover');
+    }
+
+    imageUploadArea.addEventListener('drop', handleDrop, false);
+    imageUploadArea.addEventListener('click', () => imageFilesInput.click());
+    imageFilesInput.addEventListener('change', handleFileSelect);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+    }
+
+    function handleFileSelect(e) {
+        const files = e.target.files;
+        handleFiles(files);
+    }
+
+    function handleFiles(files) {
+        if (selectedImages.length >= 10) {
+            showNotification('Máximo 10 imágenes permitidas', 'error');
+            return;
+        }
+
+        const validFiles = Array.from(files).filter(file => {
+            if (!file.type.startsWith('image/')) {
+                showNotification(`El archivo ${file.name} no es una imagen válida`, 'error');
+                return false;
+            }
+            if (file.size > 5 * 1024 * 1024) { // 5MB
+                showNotification(`La imagen ${file.name} es demasiado grande (máx. 5MB)`, 'error');
+                return false;
+            }
+            return true;
+        });
+
+        const remainingSlots = 10 - selectedImages.length;
+        const filesToAdd = validFiles.slice(0, remainingSlots);
+
+        filesToAdd.forEach(file => {
+            const imageData = {
+                id: ++imageCounter,
+                file: file,
+                url: URL.createObjectURL(file),
+                name: file.name,
+                size: file.size,
+                isPrimary: selectedImages.length === 0 // First image is primary
+            };
+            selectedImages.push(imageData);
+            createImagePreview(imageData);
+        });
+
+        updateFileInput();
+    }
+
+    function createImagePreview(imageData) {
+        const previewItem = document.createElement('div');
+        previewItem.className = 'image-preview-item';
+        previewItem.dataset.id = imageData.id;
+
+        previewItem.innerHTML = `
+            <img src="${imageData.url}" alt="${imageData.name}">
+            ${imageData.isPrimary ? '<div class="image-order">1</div>' : ''}
+            <div class="image-preview-overlay">
+                <div class="image-preview-actions">
+                    <button type="button" class="image-action-btn star ${imageData.isPrimary ? 'active' : ''}" onclick="setAsPrimary(${imageData.id})">
+                        <i class="fas fa-star"></i>
+                    </button>
+                    <button type="button" class="image-action-btn remove" onclick="removeImage(${imageData.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Tierras.mx. Todos los derechos reservados.</p>
-            </div>
+        `;
+
+        imagePreviewGrid.appendChild(previewItem);
+    }
+
+    function removeImage(imageId) {
+        selectedImages = selectedImages.filter(img => img.id !== imageId);
+        const previewItem = imagePreviewGrid.querySelector(`[data-id="${imageId}"]`);
+        if (previewItem) {
+            previewItem.remove();
+        }
+
+        // If we removed the primary image, make the first remaining image primary
+        if (selectedImages.length > 0 && !selectedImages.some(img => img.isPrimary)) {
+            selectedImages[0].isPrimary = true;
+            updatePrimaryImage();
+        }
+
+        updateFileInput();
+    }
+
+    function setAsPrimary(imageId) {
+        selectedImages.forEach(img => {
+            img.isPrimary = (img.id === imageId);
+        });
+        updatePrimaryImage();
+    }
+
+    function updatePrimaryImage() {
+        // Remove all primary indicators
+        imagePreviewGrid.querySelectorAll('.image-order').forEach(el => el.remove());
+
+        // Add primary indicator to new primary image
+        const primaryImage = selectedImages.find(img => img.isPrimary);
+        if (primaryImage) {
+            const primaryItem = imagePreviewGrid.querySelector(`[data-id="${primaryImage.id}"]`);
+            if (primaryItem) {
+                const orderDiv = document.createElement('div');
+                orderDiv.className = 'image-order';
+                orderDiv.textContent = '1';
+                primaryItem.appendChild(orderDiv);
+            }
+        }
+
+        // Update star buttons
+        imagePreviewGrid.querySelectorAll('.image-action-btn.star').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        const primaryItem = imagePreviewGrid.querySelector(`[data-id="${selectedImages.find(img => img.isPrimary).id}"]`);
+        if (primaryItem) {
+            primaryItem.querySelector('.image-action-btn.star').classList.add('active');
+        }
+    }
+
+    function updateFileInput() {
+        // Create a new DataTransfer object
+        const dt = new DataTransfer();
+
+        // Add all selected files to it
+        selectedImages.forEach(img => {
+            dt.items.add(img.file);
+        });
+
+        // Update the file input
+        imageFilesInput.files = dt.files;
+    }
+
+    // Make functions global so they can be called from HTML
+    window.removeImage = removeImage;
+    window.setAsPrimary = setAsPrimary;
+});
+
+// Notification system
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification-toast');
+    existingNotifications.forEach(notification => notification.remove());
+
+    // Create new notification
+    const notification = document.createElement('div');
+    notification.className = `notification-toast ${type}`;
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
         </div>
-    </footer>
-</body>
-</html>
+    `;
+
+    // Add notification styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'error' ? '#e74c3c' : '#27ae60'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        font-weight: 500;
+        max-width: 400px;
+        animation: slideIn 0.3s ease;
+    `;
+
+    document.body.appendChild(notification);
+
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 5000);
+}
+
+// Add notification animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+</script>
+
+<?php
+include 'footer.php';
+?>

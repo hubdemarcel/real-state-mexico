@@ -12,6 +12,10 @@ class RealTimeUpdates {
     }
 
     init() {
+        // Temporarily disabled due to database connection limits
+        console.log('Real-time updates disabled to prevent database connection limit issues');
+        return;
+
         // Only initialize if user is logged in
         if (this.isUserLoggedIn()) {
             this.connect();

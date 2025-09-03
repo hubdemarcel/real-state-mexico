@@ -1,17 +1,7 @@
-# Zillow-Style Property Listing Page for Mexican Market
-
-```html
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealtyFind MX - Propiedad en Polanco, CDMX</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+<?php
+$pageTitle = 'Propiedad en Nayarit - Tierras.mx';
+include 'header.php';
+?>
         /* CSS Reset and Base Styles */
         * {
             margin: 0;
@@ -1312,64 +1302,7 @@
                 margin-bottom: 1rem;
             }
         }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-container">
-                <!-- Logo -->
-                <a href="#" class="logo">
-                    <i class="fas fa-home logo-icon"></i>
-                    RealtyFind <span class="mx-flag">MX</span>
-                </a>
-                
-                <!-- Navigation -->
-                <nav class="primary-nav">
-                    <a href="#">Comprar</a>
-                    <a href="#">Rentar</a>
-                    <a href="#">Vender</a>
-                    <a href="#">Agentes</a>
-                    <a href="#">Créditos</a>
-                </nav>
-                
-                <!-- Auth & Language -->
-                <div class="secondary-actions">
-                    <button class="language-toggle active" data-lang="es">ES</button>
-                    <button class="language-toggle" data-lang="en">EN</button>
-                    <button class="btn btn-ghost">Iniciar Sesión</button>
-                    <button class="btn btn-primary">Unirse</button>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Navigation -->
-            <nav class="nav-mobile" id="mobileNav">
-                <a href="#" class="nav-link-mobile">Comprar</a>
-                <a href="#" class="nav-link-mobile">Rentar</a>
-                <a href="#" class="nav-link-mobile">Vender</a>
-                <a href="#" class="nav-link-mobile">Agentes</a>
-                <a href="#" class="nav-link-mobile">Créditos</a>
-                <div class="mobile-language">
-                    <button class="language-toggle active w-100 justify-content-start" data-lang="es">
-                        <span class="mx-flag">Español (MX)</span>
-                    </button>
-                    <button class="language-toggle w-100 justify-content-start mt-2" data-lang="en">
-                        English
-                    </button>
-                </div>
-                <div class="mobile-auth">
-                    <button class="btn btn-ghost w-100">Iniciar Sesión</button>
-                    <button class="btn btn-primary w-100">Unirse</button>
-                </div>
-            </nav>
-        </div>
-    </header>
+?>
 
     <!-- Property Detail Section -->
     <section class="property-detail">
@@ -1937,64 +1870,9 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <i class="fas fa-home"></i>
-                        RealtyFind <span class="mx-flag">MX</span>
-                    </a>
-                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Para Compradores</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Buscar Propiedades</a></li>
-                        <li><a href="#">Cómo Comprar</a></li>
-                        <li><a href="#">Guía para Primeriza Vez</a></li>
-                        <li><a href="#">Créditos Hipotecarios</a></li>
-                        <li><a href="#">Consejos para Comprar</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Para Vendedores</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Cómo Vender Rápido</a></li>
-                        <li><a href="#">Cómo Estimar el Precio</a></li>
-                        <li><a href="#">Preparar tu Propiedad</a></li>
-                        <li><a href="#">Evaluación de Propiedades</a></li>
-                        <li><a href="#">Trámites Legales en México</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Compañía</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Trabajos</a></li>
-                        <li><a href="#">Prensa</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 RealtyFind MX. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+<?php
+include 'footer.php';
+?>
 
     <script>
         // DOM Content Loaded Event

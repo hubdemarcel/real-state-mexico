@@ -70,5 +70,672 @@
       "electricity": true,
       "water": true
     }
+  },
+  {
+    "id": "mx-nayarit-sayulita-789-2800000",
+    "title_es": "Terreno frente al mar en Sayulita",
+    "price": 2800000,
+    "currency": "MXN",
+    "property_type": "terreno",
+    "location": {
+      "country": "México",
+      "state": "Nayarit",
+      "city": "Sayulita",
+      "neighborhood": "Centro",
+      "address": "Playa Norte 789",
+      "coordinates": { "lat": 20.871, "lng": -105.434 }
+    },
+    "features": {
+      "construction_size": 0,
+      "land_size": 300,
+      "road_access": true,
+      "electricity": true,
+      "water": true,
+      "beach_access": true
+    }
+  },
+  {
+    "id": "mx-nayarit-sayulita-101-3500000",
+    "title_es": "Terreno residencial en Sayulita",
+    "price": 3500000,
+    "currency": "MXN",
+    "property_type": "terreno",
+    "location": {
+      "country": "México",
+      "state": "Nayarit",
+      "city": "Sayulita",
+      "neighborhood": "Hacienda",
+      "address": "Calle Principal 101",
+      "coordinates": { "lat": 20.869, "lng": -105.432 }
+    },
+    "features": {
+      "construction_size": 0,
+      "land_size": 400,
+      "road_access": true,
+      "electricity": true,
+      "water": true,
+      "mountain_view": true
+    }
+  },
+  {
+    "id": "mx-quintana-roo-tulum-202-4200000",
+    "title_es": "Terreno frente a la playa en Tulum",
+    "price": 4200000,
+    "currency": "MXN",
+    "property_type": "terreno",
+    "location": {
+      "country": "México",
+      "state": "Quintana Roo",
+      "city": "Tulum",
+      "neighborhood": "Zona Hotelera",
+      "address": "Carretera Federal 202",
+      "coordinates": { "lat": 20.211, "lng": -87.467 }
+    },
+    "features": {
+      "construction_size": 0,
+      "land_size": 600,
+      "road_access": true,
+      "electricity": true,
+      "water": true,
+      "beach_access": true,
+      "ocean_view": true
+    }
+  },
+  {
+    "id": "mx-quintana-roo-tulum-303-3800000",
+    "title_es": "Terreno ecológico en Tulum",
+    "price": 3800000,
+    "currency": "MXN",
+    "property_type": "terreno",
+    "location": {
+      "country": "México",
+      "state": "Quintana Roo",
+      "city": "Tulum",
+      "neighborhood": "Biosfera",
+      "address": "Camino al Cenote 303",
+      "coordinates": { "lat": 20.209, "lng": -87.465 }
+    },
+    "features": {
+      "construction_size": 0,
+      "land_size": 800,
+      "road_access": false,
+      "electricity": false,
+      "water": true,
+      "cenote_access": true
+    }
+  },
+  {
+    "id": "mx-baja-california-sur-todos-santos-404-2500000",
+    "title_es": "Terreno desértico en Todos Santos",
+    "price": 2500000,
+    "currency": "MXN",
+    "property_type": "terreno",
+    "location": {
+      "country": "México",
+      "state": "Baja California Sur",
+      "city": "Todos Santos",
+      "neighborhood": "Sierra de la Laguna",
+      "address": "Camino Cerralvo 404",
+      "coordinates": { "lat": 23.446, "lng": -110.223 }
+    },
+    "features": {
+      "construction_size": 0,
+      "land_size": 1000,
+      "road_access": true,
+      "electricity": false,
+      "water": false,
+      "mountain_view": true
+    }
+  },
+  {
+    "id": "mx-sinaloa-culiacan-505-8500000",
+    "title_es": "Rancho agrícola en Culiacán",
+    "price": 8500000,
+    "currency": "MXN",
+    "property_type": "rancho",
+    "location": {
+      "country": "México",
+      "state": "Sinaloa",
+      "city": "Culiacán",
+      "neighborhood": "El Dorado",
+      "address": "Carretera Internacional 505",
+      "coordinates": { "lat": 24.809, "lng": -107.394 }
+    },
+    "features": {
+      "construction_size": 200,
+      "land_size": 5000,
+      "irrigation_system": true,
+      "electricity": true,
+      "water": true,
+      "road_access": true,
+      "crops": ["maíz", "tomate", "frijol"]
+    }
+  },
+  {
+    "id": "mx-jalisco-tequila-606-6200000",
+    "title_es": "Rancho agrícola en Tequila",
+    "price": 6200000,
+    "currency": "MXN",
+    "property_type": "rancho",
+    "location": {
+      "country": "México",
+      "state": "Jalisco",
+      "city": "Tequila",
+      "neighborhood": "Valle de Tequila",
+      "address": "Camino Real 606",
+      "coordinates": { "lat": 20.882, "lng": -103.835 }
+    },
+    "features": {
+      "construction_size": 150,
+      "land_size": 3000,
+      "irrigation_system": true,
+      "electricity": true,
+      "water": true,
+      "road_access": true,
+      "crops": ["agave", "maíz", "naranja"]
+    }
+  },
+  {
+    "id": "mx-michoacan-uruapan-707-9500000",
+    "title_es": "Rancho agrícola en Uruapan",
+    "price": 9500000,
+    "currency": "MXN",
+    "property_type": "rancho",
+    "location": {
+      "country": "México",
+      "state": "Michoacán",
+      "city": "Uruapan",
+      "neighborhood": "Cupatitzio",
+      "address": "Carretera Federal 707",
+      "coordinates": { "lat": 19.411, "lng": -102.057 }
+    },
+    "features": {
+      "construction_size": 300,
+      "land_size": 8000,
+      "irrigation_system": true,
+      "electricity": true,
+      "water": true,
+      "road_access": true,
+      "crops": ["aguacate", "fresa", "durazno"]
+    }
+  },
+  {
+    "id": "mx-veracruz-cordoba-808-7200000",
+    "title_es": "Rancho agrícola en Córdoba",
+    "price": 7200000,
+    "currency": "MXN",
+    "property_type": "rancho",
+    "location": {
+      "country": "México",
+      "state": "Veracruz",
+      "city": "Córdoba",
+      "neighborhood": "Fortín",
+      "address": "Carretera Córdoba-Fortín 808",
+      "coordinates": { "lat": 18.894, "lng": -96.935 }
+    },
+    "features": {
+      "construction_size": 180,
+      "land_size": 4000,
+      "irrigation_system": true,
+      "electricity": true,
+      "water": true,
+      "road_access": true,
+      "crops": ["café", "cacao", "plátano"]
+    }
+  },
+  {
+    "id": "mx-sonora-hermosillo-909-5800000",
+    "title_es": "Rancho agrícola en Hermosillo",
+    "price": 5800000,
+    "currency": "MXN",
+    "property_type": "rancho",
+    "location": {
+      "country": "México",
+      "state": "Sonora",
+      "city": "Hermosillo",
+      "neighborhood": "El Llano",
+      "address": "Boulevard Solidaridad 909",
+      "coordinates": { "lat": 29.102, "lng": -110.956 }
+    },
+    "features": {
+      "construction_size": 120,
+      "land_size": 2500,
+      "irrigation_system": true,
+      "electricity": true,
+      "water": true,
+      "road_access": true,
+      "crops": ["trigo", "algodón", "garbanzo"]
+    }
+  },
+  {
+    "id": "mx-nuevo-leon-monterrey-111-12500000",
+    "title_es": "Bodega industrial en Monterrey",
+    "price": 12500000,
+    "currency": "MXN",
+    "property_type": "bodega",
+    "location": {
+      "country": "México",
+      "state": "Nuevo León",
+      "city": "Monterrey",
+      "neighborhood": "Parque Industrial",
+      "address": "Av. Industrias 111",
+      "coordinates": { "lat": 25.678, "lng": -100.318 }
+    },
+    "features": {
+      "construction_size": 2000,
+      "land_size": 3000,
+      "loading_docks": 4,
+      "ceiling_height": 8,
+      "electricity": true,
+      "water": true,
+      "security": true,
+      "parking_trucks": 10
+    }
+  },
+  {
+    "id": "mx-jalisco-guadalajara-222-9800000",
+    "title_es": "Bodega logística en Guadalajara",
+    "price": 9800000,
+    "currency": "MXN",
+    "property_type": "bodega",
+    "location": {
+      "country": "México",
+      "state": "Jalisco",
+      "city": "Guadalajara",
+      "neighborhood": "Tlaquepaque Industrial",
+      "address": "Av. Patria 222",
+      "coordinates": { "lat": 20.617, "lng": -103.316 }
+    },
+    "features": {
+      "construction_size": 1500,
+      "land_size": 2500,
+      "loading_docks": 3,
+      "ceiling_height": 7,
+      "electricity": true,
+      "water": true,
+      "security": true,
+      "parking_trucks": 8
+    }
+  },
+  {
+    "id": "mx-cdmx-iztapalapa-333-15200000",
+    "title_es": "Bodega comercial en Iztapalapa",
+    "price": 15200000,
+    "currency": "MXN",
+    "property_type": "bodega",
+    "location": {
+      "country": "México",
+      "state": "Ciudad de México",
+      "city": "Ciudad de México",
+      "neighborhood": "Iztapalapa",
+      "address": "Calzada Ignacio Zaragoza 333",
+      "coordinates": { "lat": 19.359, "lng": -99.093 }
+    },
+    "features": {
+      "construction_size": 3000,
+      "land_size": 4000,
+      "loading_docks": 6,
+      "ceiling_height": 9,
+      "electricity": true,
+      "water": true,
+      "security": true,
+      "parking_trucks": 15
+    }
+  },
+  {
+    "id": "mx-puebla-puebla-444-8800000",
+    "title_es": "Bodega industrial en Puebla",
+    "price": 8800000,
+    "currency": "MXN",
+    "property_type": "bodega",
+    "location": {
+      "country": "México",
+      "state": "Puebla",
+      "city": "Puebla",
+      "neighborhood": "Cholula",
+      "address": "Boulevard Norte 444",
+      "coordinates": { "lat": 19.057, "lng": -98.203 }
+    },
+    "features": {
+      "construction_size": 1200,
+      "land_size": 2000,
+      "loading_docks": 2,
+      "ceiling_height": 6,
+      "electricity": true,
+      "water": true,
+      "security": true,
+      "parking_trucks": 6
+    }
+  },
+  {
+    "id": "mx-tamaulipas-reynosa-555-11000000",
+    "title_es": "Bodega logística en Reynosa",
+    "price": 11000000,
+    "currency": "MXN",
+    "property_type": "bodega",
+    "location": {
+      "country": "México",
+      "state": "Tamaulipas",
+      "city": "Reynosa",
+      "neighborhood": "Parque Industrial",
+      "address": "Av. Industrial 555",
+      "coordinates": { "lat": 26.092, "lng": -98.278 }
+    },
+    "features": {
+      "construction_size": 1800,
+      "land_size": 2800,
+      "loading_docks": 4,
+      "ceiling_height": 8,
+      "electricity": true,
+      "water": true,
+      "security": true,
+      "parking_trucks": 12
+    }
+  },
+  {
+    "id": "mx-cdmx-roma-norte-666-6800000",
+    "title_es": "Departamento moderno en Roma Norte",
+    "price": 6800000,
+    "currency": "MXN",
+    "property_type": "departamento",
+    "location": {
+      "country": "México",
+      "state": "Ciudad de México",
+      "city": "Ciudad de México",
+      "neighborhood": "Roma Norte",
+      "address": "Av. Álvaro Obregón 666",
+      "coordinates": { "lat": 19.419, "lng": -99.164 }
+    },
+    "features": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "parking": 2,
+      "construction_size": 120,
+      "land_size": 120,
+      "security": true,
+      "natural_gas": true,
+      "potable_water": true,
+      "elevator": true,
+      "gym": true
+    }
+  },
+  {
+    "id": "mx-jalisco-guadalajara-lafayette-777-5200000",
+    "title_es": "Departamento ejecutivo en Lafayette",
+    "price": 5200000,
+    "currency": "MXN",
+    "property_type": "departamento",
+    "location": {
+      "country": "México",
+      "state": "Jalisco",
+      "city": "Guadalajara",
+      "neighborhood": "Lafayette",
+      "address": "Av. Lafayette 777",
+      "coordinates": { "lat": 20.676, "lng": -103.388 }
+    },
+    "features": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "construction_size": 95,
+      "land_size": 95,
+      "security": true,
+      "natural_gas": true,
+      "potable_water": true,
+      "elevator": true,
+      "pool": true
+    }
+  },
+  {
+    "id": "mx-nuevo-leon-monterrey-valle-oriente-888-7500000",
+    "title_es": "Departamento residencial en Valle Oriente",
+    "price": 7500000,
+    "currency": "MXN",
+    "property_type": "departamento",
+    "location": {
+      "country": "México",
+      "state": "Nuevo León",
+      "city": "Monterrey",
+      "neighborhood": "Valle Oriente",
+      "address": "Av. Lázaro Cárdenas 888",
+      "coordinates": { "lat": 25.649, "lng": -100.362 }
+    },
+    "features": {
+      "bedrooms": 3,
+      "bathrooms": 2.5,
+      "parking": 2,
+      "construction_size": 140,
+      "land_size": 140,
+      "security": true,
+      "natural_gas": true,
+      "potable_water": true,
+      "elevator": true,
+      "garden": true
+    }
+  },
+  {
+    "id": "mx-quintana-roo-cancun-zona-hotelera-999-6200000",
+    "title_es": "Departamento frente al mar en Cancún",
+    "price": 6200000,
+    "currency": "MXN",
+    "property_type": "departamento",
+    "location": {
+      "country": "México",
+      "state": "Quintana Roo",
+      "city": "Cancún",
+      "neighborhood": "Zona Hotelera",
+      "address": "Boulevard Kukulcán 999",
+      "coordinates": { "lat": 21.141, "lng": -86.851 }
+    },
+    "features": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "construction_size": 110,
+      "land_size": 110,
+      "security": true,
+      "natural_gas": false,
+      "potable_water": true,
+      "elevator": true,
+      "ocean_view": true,
+      "pool": true
+    }
+  },
+  {
+    "id": "mx-yucatan-merida-centro-1010-4800000",
+    "title_es": "Departamento colonial en Mérida",
+    "price": 4800000,
+    "currency": "MXN",
+    "property_type": "departamento",
+    "location": {
+      "country": "México",
+      "state": "Yucatán",
+      "city": "Mérida",
+      "neighborhood": "Centro Histórico",
+      "address": "Calle 60 1010",
+      "coordinates": { "lat": 20.967, "lng": -89.623 }
+    },
+    "features": {
+      "bedrooms": 2,
+      "bathrooms": 1.5,
+      "parking": 1,
+      "construction_size": 85,
+      "land_size": 85,
+      "security": true,
+      "natural_gas": false,
+      "potable_water": true,
+      "elevator": false,
+      "colonial_architecture": true
+    }
+  },
+  {
+    "id": "mx-quintana-roo-tulum-renta-1200-35000",
+    "title_es": "Villa de lujo con vista al mar en Tulum",
+    "price": 35000,
+    "currency": "MXN",
+    "property_type": "villa",
+    "rental_type": "monthly",
+    "location": {
+      "country": "México",
+      "state": "Quintana Roo",
+      "city": "Tulum",
+      "neighborhood": "Zona Hotelera",
+      "address": "Carretera Federal 1200",
+      "coordinates": { "lat": 20.213, "lng": -87.469 }
+    },
+    "features": {
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "parking": 2,
+      "construction_size": 250,
+      "land_size": 500,
+      "security": true,
+      "natural_gas": false,
+      "potable_water": true,
+      "ocean_view": true,
+      "pool": true,
+      "garden": true,
+      "furnished": true,
+      "wifi": true,
+      "air_conditioning": true,
+      "minimum_stay": 30,
+      "pets_allowed": true
+    }
+  },
+  {
+    "id": "mx-quintana-roo-tulum-renta-1300-28000",
+    "title_es": "Apartamento boutique en Tulum centro",
+    "price": 28000,
+    "currency": "MXN",
+    "property_type": "apartamento",
+    "rental_type": "monthly",
+    "location": {
+      "country": "México",
+      "state": "Quintana Roo",
+      "city": "Tulum",
+      "neighborhood": "Centro",
+      "address": "Av. Tulum 1300",
+      "coordinates": { "lat": 20.211, "lng": -87.465 }
+    },
+    "features": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "construction_size": 120,
+      "land_size": 120,
+      "security": true,
+      "natural_gas": false,
+      "potable_water": true,
+      "elevator": false,
+      "furnished": true,
+      "wifi": true,
+      "air_conditioning": true,
+      "minimum_stay": 15,
+      "pets_allowed": false,
+      "restaurant_access": true
+    }
+  },
+  {
+    "id": "mx-nayarit-sayulita-renta-1400-25000",
+    "title_es": "Casa playera con terraza en Sayulita",
+    "price": 25000,
+    "currency": "MXN",
+    "property_type": "casa",
+    "rental_type": "monthly",
+    "location": {
+      "country": "México",
+      "state": "Nayarit",
+      "city": "Sayulita",
+      "neighborhood": "Centro",
+      "address": "Calle Marlin 1400",
+      "coordinates": { "lat": 20.870, "lng": -105.433 }
+    },
+    "features": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "parking": 1,
+      "construction_size": 150,
+      "land_size": 200,
+      "security": false,
+      "natural_gas": false,
+      "potable_water": true,
+      "beach_access": true,
+      "terrace": true,
+      "furnished": true,
+      "wifi": true,
+      "air_conditioning": false,
+      "minimum_stay": 7,
+      "pets_allowed": true,
+      "surfboard_rental": true
+    }
+  },
+  {
+    "id": "mx-nayarit-sayulita-renta-1500-32000",
+    "title_es": "Villa privada con jardín en Sayulita",
+    "price": 32000,
+    "currency": "MXN",
+    "property_type": "villa",
+    "rental_type": "monthly",
+    "location": {
+      "country": "México",
+      "state": "Nayarit",
+      "city": "Sayulita",
+      "neighborhood": "Hacienda",
+      "address": "Camino al Mar 1500",
+      "coordinates": { "lat": 20.868, "lng": -105.431 }
+    },
+    "features": {
+      "bedrooms": 3,
+      "bathrooms": 2.5,
+      "parking": 2,
+      "construction_size": 200,
+      "land_size": 300,
+      "security": false,
+      "natural_gas": false,
+      "potable_water": true,
+      "garden": true,
+      "pool": true,
+      "furnished": true,
+      "wifi": true,
+      "air_conditioning": true,
+      "minimum_stay": 14,
+      "pets_allowed": true,
+      "ocean_view": true
+    }
+  },
+  {
+    "id": "mx-jalisco-guadalajara-renta-1600-45000",
+    "title_es": "Penthouse ejecutivo en Lafayette",
+    "price": 45000,
+    "currency": "MXN",
+    "property_type": "penthouse",
+    "rental_type": "monthly",
+    "location": {
+      "country": "México",
+      "state": "Jalisco",
+      "city": "Guadalajara",
+      "neighborhood": "Lafayette",
+      "address": "Av. México 1600",
+      "coordinates": { "lat": 20.677, "lng": -103.387 }
+    },
+    "features": {
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "parking": 2,
+      "construction_size": 180,
+      "land_size": 180,
+      "security": true,
+      "natural_gas": true,
+      "potable_water": true,
+      "elevator": true,
+      "roof_terrace": true,
+      "gym_access": true,
+      "furnished": true,
+      "wifi": true,
+      "air_conditioning": true,
+      "minimum_stay": 30,
+      "pets_allowed": false,
+      "concierge_service": true
+    }
   }
 ]

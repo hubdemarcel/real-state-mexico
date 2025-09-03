@@ -1,166 +1,1472 @@
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - Tierras.mx</title>
-    <link rel="stylesheet" href="Tierrasmx/assets/css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <header class="header">
-        <div class="header-container container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-home logo-icon"></i>
-                Tierras.mx
-            </a>
-            <nav class="primary-nav">
-                <div class="dropdown">
-                    <a href="comprar.html" class="nav-link dropdown-toggle">Comprar</a>
-                    <div class="dropdown-menu">
-                        <a href="casas_compra.html">Comprar Casa</a>
-                        <a href="construccionesnuevas.html">Construcciones Nuevas</a>
-                        <a href="casas embargadas.html">Casas Embargadas</a>
-                        <a href="puertasabiertas.html">Puertas Abiertas</a>
-                        <a href="proximamente.html">Próximamente</a>
-                        <a href="ofertadecompra.html">Hacer Oferta</a>
-                    </div>
-                </div>
-                <a href="renta.html" class="nav-link">Rentar</a>
-                <div class="dropdown">
-                    <a href="venta.html" class="nav-link dropdown-toggle">Vender</a>
-                    <div class="dropdown-menu">
-                        <a href="anunciar.html">Anunciar Propiedad</a>
-                        <a href="recursos vendedor.html">Recursos para Vendedores</a>
-                        <a href="ventasrecientes.html">Ventas Recientes</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="Créditos Hipotecarios.html" class="nav-link dropdown-toggle">Créditos</a>
-                    <div class="dropdown-menu">
-                        <a href="prestamos.html">Préstamos</a>
-                        <a href="financiamientotierras.html">Financiamiento de Tierras</a>
-                    </div>
-                </div>
-                <a href="encuentraunagente.html" class="nav-link">Agentes</a>
-            </nav>
-            <div class="secondary-actions">
-                <button class="search-button">Iniciar Sesión</button>
-                <button class="search-button">Unirse</button>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
 
-    <main class="container">
-        <section class="section">
-            <div class="section-header">
-                <h1 class="section-title">Iniciar Sesión</h1>
-            </div>
+<?php
+$pageTitle = 'Iniciar Sesión - Tierras.mx';
+include 'header.php';
+?>
 
-            <form action="login.php" method="post">
-                <div class="form-group">
-                    <label for="username">Nombre de Usuario o Correo Electrónico</label>
-                    <input type="text" id="username" name="username" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-            </form>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <i class="fas fa-home"></i>
-                        Tierras.mx
-                    </a>
-                    <p class="footer-description">Tu socio de confianza para encontrar la propiedad perfecta en México.</p>
-                    <div class="social-links">
-                        <a href="https://wa.me/523331010164?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n." class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.instagram.com/tierras.mx/" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/tierras-m%C3%A9xico-417931362/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.youtube.com/@TierrasMexico" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Para Compradores</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Buscar Propiedades</a></li>
-                        <li><a href="#">Calculadora de Crédito</a></li>
-                        <li><a href="#">Guía de Compra</a></li>
-                        <li><a href="#">Encuentra un Agente</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Para Vendedores</h4>
-                    <ul class="footer-links">
-                        <li><a href="anunciar.html">Vende tu Propiedad</a></li>
-                        <li><a href="#">Valor de tu Propiedad</a></li>
-                        <li><a href="recursos vendedor.html">Guía de Venta</a></li>
-                        <li><a href="anunciar.html">Lista tu Propiedad</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h4 class="footer-title">Compañía</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Trabajos</a></li>
-                        <li><a href="#">Prensa</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                    </ul>
-                </div>
+<!-- Hero Section -->
+<section class="login-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>¡Bienvenido de Vuelta!</h1>
+                <p>Accede a tu cuenta y continúa tu experiencia inmobiliaria en México</p>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Tierras.mx. Todos los derechos reservados.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-label">Propiedades</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Usuarios Activos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Agentes Certificados</div>
+                </div>
             </div>
         </div>
-    </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const status = urlParams.get('status');
-            const message = urlParams.get('message');
+    </div>
+</section>
 
-            if (status && message) {
-                // Assuming you have a function showNotification in utils.js
-                // or you can implement a simple notification display here
-                if (typeof showNotification === 'function') {
-                    showNotification(decodeURIComponent(message), status);
-                } else {
-                    // Fallback if showNotification is not available
-                    const notificationDiv = document.createElement('div');
-                    notificationDiv.style.padding = '10px';
-                    notificationDiv.style.margin = '10px 0';
-                    notificationDiv.style.color = 'white';
-                    notificationDiv.style.borderRadius = '5px';
-                    notificationDiv.style.textAlign = 'center';
+<main class="container">
+    <!-- User Profiles Section -->
+    <section class="section profiles-section">
+        <div class="section-header">
+            <h2 class="section-title">¿Qué Tipo de Usuario Eres?</h2>
+            <p class="section-subtitle">Selecciona tu perfil para acceder a las herramientas adecuadas</p>
+        </div>
 
-                    if (status === 'success') {
-                        notificationDiv.style.backgroundColor = 'green';
-                    } else if (status === 'error') {
-                        notificationDiv.style.backgroundColor = 'red';
-                    } else {
-                        notificationDiv.style.backgroundColor = 'gray';
-                    }
-                    notificationDiv.textContent = decodeURIComponent(message);
-                    document.querySelector('main.container').prepend(notificationDiv); // Add to top of main content
-                    setTimeout(() => notificationDiv.remove(), 5000); // Remove after 5 seconds
+        <div class="profiles-grid">
+            <div class="profile-card buyer-profile">
+                <div class="profile-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Comprador</h3>
+                <p>Busca tu propiedad ideal, guarda favoritos, recibe alertas personalizadas y conéctate con agentes profesionales.</p>
+                <ul class="profile-features">
+                    <li><i class="fas fa-check"></i> Búsqueda avanzada de propiedades</li>
+                    <li><i class="fas fa-check"></i> Alertas de nuevas propiedades</li>
+                    <li><i class="fas fa-check"></i> Contacto directo con agentes</li>
+                    <li><i class="fas fa-check"></i> Recomendaciones personalizadas</li>
+                </ul>
+            </div>
+
+            <div class="profile-card seller-profile">
+                <div class="profile-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3>Vendedor</h3>
+                <p>Publica tus propiedades, administra interesados, visualiza estadísticas y conecta con compradores potenciales.</p>
+                <ul class="profile-features">
+                    <li><i class="fas fa-check"></i> Publicación de propiedades</li>
+                    <li><i class="fas fa-check"></i> Gestión de interesados</li>
+                    <li><i class="fas fa-check"></i> Analytics de rendimiento</li>
+                    <li><i class="fas fa-check"></i> Comunicación con compradores</li>
+                </ul>
+            </div>
+
+            <div class="profile-card agent-profile">
+                <div class="profile-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Agente Inmobiliario</h3>
+                <p>Herramientas profesionales para gestionar clientes, propiedades y acceder a inteligencia de mercado premium.</p>
+                <ul class="profile-features">
+                    <li><i class="fas fa-check"></i> Todas las funciones de vendedor</li>
+                    <li><i class="fas fa-check"></i> Inteligencia de mercado IA</li>
+                    <li><i class="fas fa-check"></i> Gestión avanzada de clientes</li>
+                    <li><i class="fas fa-check"></i> Reportes profesionales</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Form Section -->
+    <section class="section login-section">
+        <div class="login-container">
+            <div class="login-form-wrapper">
+                <div class="login-header">
+                    <h2>Iniciar Sesión</h2>
+                    <p>Ingresa tus credenciales para continuar</p>
+                </div>
+
+                <form action="login.php" method="post" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Correo Electrónico o Usuario</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="tu@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Tu contraseña" required>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember" id="remember">
+                            <span class="checkmark"></span>
+                            Recordarme
+                        </label>
+                        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">Iniciar Sesión</button>
+                </form>
+
+                <div class="login-footer">
+                    <p>¿No tienes cuenta? <a href="register.html" class="register-link">Regístrate aquí</a></p>
+                </div>
+            </div>
+
+            <div class="login-info">
+                <div class="info-card">
+                    <h3>¿Por Qué Elegir Tierras.mx?</h3>
+                    <div class="info-features">
+                        <div class="info-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>Seguridad Garantizada</h4>
+                                <p>Tus datos están protegidos con encriptación de nivel bancario</p>
+                            </div>
+                        </div>
+                        <div class="info-feature">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Respuesta Rápida</h4>
+                                <p>Los agentes responden en promedio en menos de 2 horas</p>
+                            </div>
+                        </div>
+                        <div class="info-feature">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <div>
+                                <h4>Cobertura Nacional</h4>
+                                <p>Propiedades en todas las ciudades de México</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is Tierras.mx Section -->
+    <section class="section about-section">
+        <div class="section-header">
+            <h2 class="section-title">¿Qué es Tierras.mx?</h2>
+            <p class="section-subtitle">La plataforma inmobiliaria más completa de México</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Inteligencia Artificial</h3>
+                <p>Utilizamos IA avanzada para analizar el mercado inmobiliario mexicano y proporcionar recomendaciones precisas basadas en datos reales.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Datos Centralizados</h3>
+                <p>Accedemos a múltiples fuentes de datos inmobiliarios para ofrecerte información completa y actualizada sobre propiedades en todo México.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Comunidad Profesional</h3>
+                <p>Conectamos compradores, vendedores y agentes certificados en una plataforma segura y confiable.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Analytics Avanzados</h3>
+                <p>Herramientas profesionales para analizar tendencias del mercado, precios y oportunidades de inversión.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials-section">
+        <div class="section-header">
+            <h2 class="section-title">Lo Que Dicen Nuestros Usuarios</h2>
+            <p class="section-subtitle">Historias de éxito de la comunidad Tierras.mx</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Encontré mi casa soñada en menos de 2 semanas gracias a las recomendaciones personalizadas de Tierras.mx. El agente que me asignaron fue increíble."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="author-info">
+                        <h4>María González</h4>
+                        <span>Compradora - CDMX</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Como agente, Tierras.mx me ha permitido gestionar mejor mis propiedades y conectar con más compradores. Las herramientas de analytics son excepcionales."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="author-info">
+                        <h4>Carlos Rodríguez</h4>
+                        <span>Agente Inmobiliario - Guadalajara</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Vendí mi propiedad en tiempo récord. Las recomendaciones de precio y el marketing que ofrece la plataforma hicieron toda la diferencia."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="author-info">
+                        <h4>Ana López</h4>
+                        <span>Vendedora - Monterrey</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+        <div class="section-header">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Resolvemos tus dudas sobre Tierras.mx</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>¿Es gratis usar Tierras.mx?</h4>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, la búsqueda básica y la creación de cuenta son completamente gratuitas. Los agentes tienen acceso a funciones premium mediante suscripción mensual.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>¿Cómo funciona el proceso de compra/venta?</h4>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Te conectamos con agentes certificados que te guían a través de todo el proceso. Desde la búsqueda inicial hasta el cierre de la transacción.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>¿Qué tipos de propiedades puedo encontrar?</h4>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Casas, departamentos, terrenos, locales comerciales y propiedades industriales en todas las ciudades de México.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>¿Cómo sé que los agentes son confiables?</h4>
+                    <i class="fas fa-chevron-down faq-toggle"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Todos nuestros agentes pasan por un proceso de verificación que incluye antecedentes, certificaciones y referencias profesionales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="cta-container">
+            <h2>¿Listo para Empezar?</h2>
+            <p>Únete a miles de usuarios que ya confían en Tierras.mx para sus transacciones inmobiliarias</p>
+            <div class="cta-buttons">
+                <a href="register.html" class="btn btn-primary btn-large">Crear Cuenta Gratuita</a>
+                <a href="comprar.html" class="btn btn-secondary btn-large">Explorar Propiedades</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+/* ===== LOGIN PAGE SPECIFIC STYLES ===== */
+
+/* Hero Section - Enhanced */
+.login-hero {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 5rem 0 4rem;
+    position: relative;
+    margin-top: -2rem;
+    margin-bottom: 4rem;
+    overflow: hidden;
+}
+
+.login-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.03"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.03"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.02"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.02"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-text p {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    opacity: 0.95;
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 120px;
+}
+
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: 900;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Profiles Section - Enhanced */
+.profiles-section {
+    margin-bottom: 4rem;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+}
+
+.profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: 3rem 2rem;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #34495e, #2c3e50);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+}
+
+.profile-card:hover::before {
+    opacity: 1;
+}
+
+.buyer-profile:hover {
+    border-color: #27ae60;
+    box-shadow: 0 20px 40px rgba(39, 174, 96, 0.15);
+}
+
+.seller-profile:hover {
+    border-color: #e67e22;
+    box-shadow: 0 20px 40px rgba(230, 126, 34, 0.15);
+}
+
+.agent-profile:hover {
+    border-color: #3498db;
+    box-shadow: 0 20px 40px rgba(52, 152, 219, 0.15);
+}
+
+.profile-icon {
+    font-size: 4rem;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    position: relative;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover .profile-icon {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.buyer-profile .profile-icon {
+    color: #27ae60;
+}
+
+.seller-profile .profile-icon {
+    color: #e67e22;
+}
+
+.agent-profile .profile-icon {
+    color: #3498db;
+}
+
+.profile-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray-900);
+    font-weight: 700;
+}
+
+.profile-card p {
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.profile-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin: 0;
+}
+
+.profile-features li {
+    padding: 0.8rem 0;
+    color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 1rem;
+}
+
+.profile-features li:last-child {
+    border-bottom: none;
+}
+
+.profile-features i {
+    color: #27ae60;
+    width: 18px;
+    font-size: 1.1rem;
+}
+
+/* Login Section - Enhanced */
+.login-section {
+    margin-bottom: 4rem;
+    padding: 4rem 0;
+}
+
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.login-form-wrapper {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: 3.5rem;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--gray-200);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #34495e, #2c3e50);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.login-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+    font-weight: 800;
+}
+
+.login-header p {
+    color: var(--gray-600);
+    font-size: 1.2rem;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-400);
+    font-size: 1.2rem;
+    z-index: 2;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3.5rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    background: var(--gray-50);
+    color: var(--gray-900);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-control::placeholder {
+    color: var(--gray-400);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--gray-700);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+    accent-color: var(--primary);
+}
+
+.forgot-password {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-full::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-full:hover::before {
+    left: 100%;
+}
+
+.btn-full:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid var(--gray-100);
+}
+
+.register-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.register-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.login-info {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+    border-radius: var(--radius-2xl);
+    padding: 3.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-info::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    50% { transform: translate(-50%, -50%) rotate(180deg); }
+}
+
+.info-card h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+}
+
+.info-features {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.info-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.info-feature i {
+    color: white;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    width: 30px;
+    opacity: 0.9;
+}
+
+.info-feature h4 {
+    margin: 0 0 0.5rem 0;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.info-feature p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* About Section - Enhanced */
+.about-section {
+    margin-bottom: 4rem;
+    padding: 5rem 0;
+    background: var(--gray-50);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: 3rem 2.5rem;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--gray-200);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #34495e, #2c3e50);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover::before {
+    transform: scaleX(1);
+}
+
+.about-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.about-icon {
+    font-size: 4rem;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    color: white;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+}
+
+.about-card:hover .about-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: var(--shadow-xl);
+}
+
+.about-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray-900);
+    font-weight: 700;
+}
+
+.about-card p {
+    color: var(--gray-600);
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+/* Testimonials Section - Enhanced */
+.testimonials-section {
+    margin-bottom: 4rem;
+    padding: 5rem 0;
+    background: white;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonial-card {
+    background: linear-gradient(135deg, white 0%, var(--gray-50) 100%);
+    border-radius: var(--radius-2xl);
+    padding: 3rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-200);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 4rem;
+    color: #34495e;
+    opacity: 0.1;
+    font-family: 'Georgia', serif;
+}
+
+.testimonial-content p {
+    font-style: italic;
+    color: var(--gray-700);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.author-info h4 {
+    margin: 0;
+    color: var(--gray-900);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.author-info span {
+    color: var(--gray-600);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* FAQ Section - Enhanced */
+.faq-section {
+    margin-bottom: 4rem;
+    padding: 5rem 0;
+    background: var(--gray-50);
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-200);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.faq-question {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, white 0%, var(--gray-50) 100%);
+}
+
+.faq-question:hover {
+    background: var(--gray-50);
+}
+
+.faq-question h4 {
+    margin: 0;
+    color: var(--gray-900);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.faq-toggle {
+    color: #34495e;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 2rem 2rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding: 1rem 2rem 2rem;
+}
+
+/* CTA Section - Enhanced */
+.cta-section {
+    margin-bottom: 4rem;
+    padding: 5rem 0;
+}
+
+.cta-container {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 4rem 3rem;
+    border-radius: var(--radius-2xl);
+    position: relative;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cta-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.cta-container h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cta-container p {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    opacity: 0.95;
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-large {
+    padding: 1.5rem 3rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-large:hover::before {
+    left: 100%;
+}
+
+.btn-large:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1024px) {
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-stats {
+        gap: 3rem;
+    }
+
+    .login-container {
+        gap: 3rem;
+    }
+
+    .profiles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-text p {
+        font-size: 1.2rem;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .stat-item {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .login-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .login-form-wrapper,
+    .login-info {
+        padding: 2.5rem;
+    }
+
+    .profiles-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .cta-container h2 {
+        font-size: 2.2rem;
+    }
+
+    .cta-container p {
+        font-size: 1.2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .btn-large {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .login-hero {
+        padding: 3rem 0 2rem;
+    }
+
+    .login-form-wrapper,
+    .login-info {
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+    }
+
+    .profile-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .about-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .testimonial-card {
+        padding: 2rem;
+    }
+
+    .cta-container {
+        padding: 3rem 2rem;
+    }
+
+    .cta-container h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Form enhancements */
+.checkbox-label {
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 2px solid var(--gray-300);
+    border-radius: 4px;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked ~ .checkmark {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.checkmark::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked ~ .checkmark::after {
+    opacity: 1;
+}
+
+/* Focus states for accessibility */
+.form-control:focus,
+.btn:focus,
+.register-link:focus,
+.forgot-password:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Loading animation for buttons */
+.btn-loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+// Enhanced FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
                 }
+            });
+
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+
+    // Enhanced form validation
+    const loginForm = document.querySelector('.login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!username || !password) {
+                e.preventDefault();
+                showNotification('Por favor, completa todos los campos.', 'error');
+                return false;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(username)) {
+                e.preventDefault();
+                showNotification('Por favor, ingresa un correo electrónico válido.', 'error');
+                return false;
+            }
+
+            // Show loading state
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+        });
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
-    </script>
-</body>
-</html>
+    });
+
+    // Profile card hover effects
+    const profileCards = document.querySelectorAll('.profile-card');
+    profileCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
+
+// Notification system
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification-toast');
+    existingNotifications.forEach(notification => notification.remove());
+
+    // Create new notification
+    const notification = document.createElement('div');
+    notification.className = `notification-toast ${type}`;
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// Add some interactive enhancements
+document.addEventListener('DOMContentLoaded', function() {
+    // Add scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections for animation
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'all 0.6s ease';
+        observer.observe(section);
+    });
+});
+</script>
+
+<?php
+include 'footer.php';
+?>
+

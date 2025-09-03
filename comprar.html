@@ -8,8 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="Tierrasmx/assets/css/main.css">
-    <link rel="stylesheet" href="Tierrasmx/assets/css/responsive.css">
+    <link rel="stylesheet" href="/tierras/Tierrasmx/assets/css/main.css">
+    <link rel="stylesheet" href="/tierras/Tierrasmx/assets/css/responsive.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <style>
         /* CSS Reset and Base Styles */
         * {
@@ -956,6 +961,16 @@
             outline: 2px solid var(--primary);
             outline-offset: 2px;
         }
+
+        /* Loading Spinner Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
     </style>
 </head>
 <body>
@@ -1079,16 +1094,16 @@
                     </h3>
                     <div class="checkbox-group">
                         <label class="checkbox-item">
-                            <input type="checkbox" checked> Casa
+                            <input type="checkbox" name="property_type" value="casa" checked> Casa
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" checked> Departamento
+                            <input type="checkbox" name="property_type" value="departamento" checked> Departamento
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox"> Terreno
+                            <input type="checkbox" name="property_type" value="terreno"> Terreno
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox"> Local Comercial
+                            <input type="checkbox" name="property_type" value="local-comercial"> Local Comercial
                         </label>
                     </div>
                 </div>
@@ -1100,16 +1115,16 @@
                     </h3>
                     <div class="checkbox-group">
                         <label class="checkbox-item">
-                            <input type="checkbox" checked> Seguridad 24/7
+                            <input type="checkbox" name="amenities" value="Seguridad 24/7" checked> Seguridad 24/7
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" checked> Estacionamiento
+                            <input type="checkbox" name="amenities" value="Estacionamiento" checked> Estacionamiento
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox"> Gas Natural
+                            <input type="checkbox" name="amenities" value="Gas Natural"> Gas Natural
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox"> Agua Potable
+                            <input type="checkbox" name="amenities" value="Agua Potable"> Agua Potable
                         </label>
                     </div>
                 </div>
@@ -1121,16 +1136,16 @@
                     </h3>
                     <div class="checkbox-group">
                         <label class="checkbox-item">
-                            <input type="checkbox"> 1+ habitación
+                            <input type="checkbox" name="bedrooms" value="1"> 1+ habitación
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" checked> 2+ habitaciones
+                            <input type="checkbox" name="bedrooms" value="2" checked> 2+ habitaciones
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox" checked> 3+ habitaciones
+                            <input type="checkbox" name="bedrooms" value="3" checked> 3+ habitaciones
                         </label>
                         <label class="checkbox-item">
-                            <input type="checkbox"> 4+ habitaciones
+                            <input type="checkbox" name="bedrooms" value="4"> 4+ habitaciones
                         </label>
                     </div>
                 </div>
@@ -1170,359 +1185,10 @@
                 
                 <!-- Property Grid -->
                 <div class="properties-grid" id="propertyGrid">
-                    <!-- Property Card 1 -->
-                    <div class="property-card" data-id="mx-cdmx-polanco-123-5500000">
-                        <div class="property-image">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Departamento moderno en Polanco, CDMX">
-                            <div class="property-badge sale">En Venta</div>
-                            <div class="property-badge mx">
-                                <i class="fas fa-flag"></i> México
-                            </div>
-                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                        <div class="property-content">
-                            <div class="property-price">
-                                <i class="fas fa-coins" aria-hidden="true"></i> 
-                                <span class="mxn-price">$5,500,000 MXN</span>
-                            </div>
-                            <div class="property-address">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                Polanco, Miguel Hidalgo
-                            </div>
-                            <div class="location-hierarchy">
-                                <span class="location-item">CDMX</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Miguel Hidalgo</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Polanco</span>
-                            </div>
-                            <div class="property-stats">
-                                <div class="stat">
-                                    <i class="fas fa-bed" aria-hidden="true"></i>
-                                    2 recámaras
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-bath" aria-hidden="true"></i>
-                                    2 baños
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                                    85 m²
-                                </div>
-                            </div>
-                            <div class="property-features">
-                                <span class="feature-badge seguridad">
-                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad 24/7
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-car" aria-hidden="true"></i> Estacionamiento
-                                </span>
-                            </div>
-                            <p class="property-description">Hermoso departamento moderno en Polanco con vista a la ciudad, excelente ubicación cerca de centros comerciales y restaurantes.</p>
-                            <a href="#" class="view-property">
-                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                <span class="sr-only">en Polanco, Miguel Hidalgo</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Property Card 2 -->
-                    <div class="property-card" data-id="mx-jalisco-guadalajara-456-3200000">
-                        <div class="property-image">
-                            <img src="https://images.unsplash.com/photo-1600596542815-4a3d32c18c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Casa familiar en Providencia, Guadalajara">
-                            <div class="property-badge sale">En Venta</div>
-                            <div class="property-badge mx">
-                                <i class="fas fa-flag"></i> México
-                            </div>
-                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                        <div class="property-content">
-                            <div class="property-price">
-                                <i class="fas fa-coins" aria-hidden="true"></i> 
-                                <span class="mxn-price">$3,200,000 MXN</span>
-                            </div>
-                            <div class="property-address">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                Providencia, Guadalajara
-                            </div>
-                            <div class="location-hierarchy">
-                                <span class="location-item">Jalisco</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Guadalajara</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Providencia</span>
-                            </div>
-                            <div class="property-stats">
-                                <div class="stat">
-                                    <i class="fas fa-bed" aria-hidden="true"></i>
-                                    3 recámaras
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-bath" aria-hidden="true"></i>
-                                    2.5 baños
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                                    180 m²
-                                </div>
-                            </div>
-                            <div class="property-features">
-                                <span class="feature-badge seguridad">
-                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-utensils" aria-hidden="true"></i> Gas Natural
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-tint" aria-hidden="true"></i> Agua Potable
-                                </span>
-                            </div>
-                            <p class="property-description">Casa familiar en zona segura de Providencia, con jardín privado y acabados de calidad. Cerca de escuelas y centros comerciales.</p>
-                            <a href="#" class="view-property">
-                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                <span class="sr-only">en Providencia, Guadalajara</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Property Card 3 -->
-                    <div class="property-card" data-id="mx-nl-monterrey-santa-catarina-4500000">
-                        <div class="property-image">
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Terreno en Santa Catarina, Monterrey">
-                            <div class="property-badge sale">En Venta</div>
-                            <div class="property-badge mx">
-                                <i class="fas fa-flag"></i> México
-                            </div>
-                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                        <div class="property-content">
-                            <div class="property-price">
-                                <i class="fas fa-coins" aria-hidden="true"></i> 
-                                <span class="mxn-price">$4,500,000 MXN</span>
-                            </div>
-                            <div class="property-address">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                Santa Catarina, Monterrey
-                            </div>
-                            <div class="location-hierarchy">
-                                <span class="location-item">Nuevo León</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Monterrey</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Santa Catarina</span>
-                            </div>
-                            <div class="property-stats">
-                                <div class="stat">
-                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                                    500 m² de terreno
-                                </div>
-                            </div>
-                            <div class="property-features">
-                                <span class="feature-badge">
-                                    <i class="fas fa-road" aria-hidden="true"></i> Acceso Pavimentado
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-bolt" aria-hidden="true"></i> Luz y Agua
-                                </span>
-                            </div>
-                            <p class="property-description">Terreno plano en excelente ubicación de Santa Catarina, ideal para construcción residencial o comercial. Documentación en regla.</p>
-                            <a href="#" class="view-property">
-                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                <span class="sr-only">en Santa Catarina, Monterrey</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Property Card 4 -->
-                    <div class="property-card" data-id="mx-cdmx-roma-789-2800000">
-                        <div class="property-image">
-                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Departamento en Roma, CDMX">
-                            <div class="property-badge sale">En Venta</div>
-                            <div class="property-badge mx">
-                                <i class="fas fa-flag"></i> México
-                            </div>
-                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                        <div class="property-content">
-                            <div class="property-price">
-                                <i class="fas fa-coins" aria-hidden="true"></i> 
-                                <span class="mxn-price">$2,800,000 MXN</span>
-                            </div>
-                            <div class="property-address">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                Roma, Cuauhtémoc
-                            </div>
-                            <div class="location-hierarchy">
-                                <span class="location-item">CDMX</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Cuauhtémoc</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Roma</span>
-                            </div>
-                            <div class="property-stats">
-                                <div class="stat">
-                                    <i class="fas fa-bed" aria-hidden="true"></i>
-                                    1 recámara
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-bath" aria-hidden="true"></i>
-                                    1 baño
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                                    65 m²
-                                </div>
-                            </div>
-                            <div class="property-features">
-                                <span class="feature-badge seguridad">
-                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-utensils" aria-hidden="true"></i> Gas Natural
-                                </span>
-                            </div>
-                            <p class="property-description">Departamento moderno en la Roma con balcón y vista a la ciudad. Ideal para jóvenes profesionales. Cerca de restaurantes y bares.</p>
-                            <a href="#" class="view-property">
-                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                <span class="sr-only">en Roma, Cuauhtémoc</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Property Card 5 -->
-                    <div class="property-card" data-id="mx-jalisco-zapopan-101-6200000">
-                        <div class="property-image">
-                            <img src="https://images.unsplash.com/photo-1600488689109-5fab0f5b6c86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Casa en Puerta de Hierro, Zapopan">
-                            <div class="property-badge sale">En Venta</div>
-                            <div class="property-badge mx">
-                                <i class="fas fa-flag"></i> México
-                            </div>
-                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                        <div class="property-content">
-                            <div class="property-price">
-                                <i class="fas fa-coins" aria-hidden="true"></i> 
-                                <span class="mxn-price">$6,200,000 MXN</span>
-                            </div>
-                            <div class="property-address">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                Puerta de Hierro, Zapopan
-                            </div>
-                            <div class="location-hierarchy">
-                                <span class="location-item">Jalisco</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Zapopan</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Puerta de Hierro</span>
-                            </div>
-                            <div class="property-stats">
-                                <div class="stat">
-                                    <i class="fas fa-bed" aria-hidden="true"></i>
-                                    4 recámaras
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-bath" aria-hidden="true"></i>
-                                    3.5 baños
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                                    280 m²
-                                </div>
-                            </div>
-                            <div class="property-features">
-                                <span class="feature-badge seguridad">
-                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad 24/7
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-car" aria-hidden="true"></i> 3 Estacionamientos
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-swimming-pool" aria-hidden="true"></i> Alberca
-                                </span>
-                            </div>
-                            <p class="property-description">Casa de lujo en Puerta de Hierro con alberca, jardín y estacionamiento para 3 autos. Acabados de primera y seguridad 24/7.</p>
-                            <a href="#" class="view-property">
-                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                <span class="sr-only">en Puerta de Hierro, Zapopan</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Property Card 6 -->
-                    <div class="property-card" data-id="mx-nl-san-pedro-202-8500000">
-                        <div class="property-image">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Departamento en San Pedro, Monterrey">
-                            <div class="property-badge sale">En Venta</div>
-                            <div class="property-badge mx">
-                                <i class="fas fa-flag"></i> México
-                            </div>
-                            <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
-                                <i class="far fa-heart"></i>
-                            </button>
-                        </div>
-                        <div class="property-content">
-                            <div class="property-price">
-                                <i class="fas fa-coins" aria-hidden="true"></i> 
-                                <span class="mxn-price">$8,500,000 MXN</span>
-                            </div>
-                            <div class="property-address">
-                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                San Pedro Garza García
-                            </div>
-                            <div class="location-hierarchy">
-                                <span class="location-item">Nuevo León</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">Monterrey</span>
-                                <span class="location-separator">></span>
-                                <span class="location-item">San Pedro</span>
-                            </div>
-                            <div class="property-stats">
-                                <div class="stat">
-                                    <i class="fas fa-bed" aria-hidden="true"></i>
-                                    3 recámaras
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-bath" aria-hidden="true"></i>
-                                    3.5 baños
-                                </div>
-                                <div class="stat">
-                                    <i class="fas fa-ruler-combined" aria-hidden="true"></i>
-                                    195 m²
-                                </div>
-                            </div>
-                            <div class="property-features">
-                                <span class="feature-badge seguridad">
-                                    <i class="fas fa-shield-alt" aria-hidden="true"></i> Seguridad
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-car" aria-hidden="true"></i> 2 Estacionamientos
-                                </span>
-                                <span class="feature-badge">
-                                    <i class="fas fa-concierge-bell" aria-hidden="true"></i> Servicios
-                                </span>
-                            </div>
-                            <p class="property-description">Departamento de lujo en San Pedro con vista panorámica, amenities completos y seguridad 24/7. Ideal para familias.</p>
-                            <a href="#" class="view-property">
-                                Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                <span class="sr-only">en San Pedro Garza García</span>
-                            </a>
-                        </div>
+                    <!-- Properties will be loaded dynamically -->
+                    <div class="loading-properties" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <div class="spinner" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; border: 3px solid #dbeafe; border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                        <p style="color: #6b7280;">Cargando propiedades...</p>
                     </div>
                 </div>
                 
@@ -1595,6 +1261,31 @@
                 </div>
             </div>
         </section>
+
+        <!-- Properties Map Section -->
+        <section class="section properties-map-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Propiedades en el Mapa</h2>
+                    <p class="section-subtitle">Visualiza todas las propiedades disponibles en México</p>
+                </div>
+
+                <div class="map-container">
+                    <div id="propertiesMap" class="properties-map"></div>
+                </div>
+
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background-color: #2563eb;"></div>
+                        <span>Propiedad en Venta</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background-color: #059669;"></div>
+                        <span>Propiedad en Renta</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer class="footer">
@@ -1652,21 +1343,148 @@
         </div>
     </footer>
 
-    <script src="Tierrasmx/assets/js/utils.js"></script>
-    <script src="Tierrasmx/assets/js/localization.js"></script>
-    <script src="Tierrasmx/assets/js/main.js"></script>
-    <script src="Tierrasmx/assets/js/search.js"></script>
-    <script src="Tierrasmx/assets/js/notifications.js"></script>
-    <script src="Tierrasmx/assets/js/real_time_updates.js"></script>
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Leaflet MarkerCluster JavaScript -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <!-- Properties Map Script -->
+    <script>
+        // Initialize map when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePropertiesMap();
+        });
+
+        function initializePropertiesMap() {
+            const mapElement = document.getElementById('propertiesMap');
+            if (!mapElement) return;
+
+            // Initialize map centered on Mexico
+            const map = L.map('propertiesMap').setView([23.6345, -102.5528], 5);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18,
+            }).addTo(map);
+
+            // Create marker cluster group
+            const markers = L.markerClusterGroup({
+                chunkedLoading: true,
+                chunkInterval: 200,
+                chunkDelay: 50,
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                removeOutsideVisibleBounds: true,
+                animate: true,
+                disableClusteringAtZoom: 16,
+                maxClusterRadius: 80,
+                iconCreateFunction: function(cluster) {
+                    const childCount = cluster.getChildCount();
+                    let className = 'marker-cluster-';
+
+                    if (childCount < 10) {
+                        className += 'small';
+                    } else if (childCount < 100) {
+                        className += 'medium';
+                    } else {
+                        className += 'large';
+                    }
+
+                    return new L.DivIcon({
+                        html: '<div><span>' + childCount + '</span></div>',
+                        className: 'marker-cluster ' + className,
+                        iconSize: new L.Point(40, 40)
+                    });
+                }
+            });
+
+            // Load properties data
+            fetch('/tierras/Tierrasmx/assets/data/properties-mx.json')
+                .then(response => response.json())
+                .then(properties => {
+                    addPropertyMarkers(map, markers, properties);
+                    map.addLayer(markers);
+                })
+                .catch(error => {
+                    console.error('Error loading properties:', error);
+                });
+        }
+
+        function addPropertyMarkers(map, markers, properties) {
+            properties.forEach(property => {
+                if (property.location && property.location.coordinates) {
+                    const { lat, lng } = property.location.coordinates;
+
+                    // Create marker with custom icon
+                    const markerIcon = L.divIcon({
+                        className: 'property-marker',
+                        html: `<div class="marker-content">
+                            <i class="fas fa-home"></i>
+                            <span class="marker-price">${formatPrice(property.price)}</span>
+                        </div>`,
+                        iconSize: [80, 30],
+                        iconAnchor: [40, 30]
+                    });
+
+                    const marker = L.marker([lat, lng], { icon: markerIcon });
+
+                    // Create popup content
+                    const popupContent = `
+                        <div class="property-popup">
+                            <h4>${property.title_es}</h4>
+                            <div class="popup-price">${formatPrice(property.price)} MXN</div>
+                            <div class="popup-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                ${property.location.city}, ${property.location.state}
+                            </div>
+                            <div class="popup-features">
+                                ${property.features.bedrooms ? `<span><i class="fas fa-bed"></i> ${property.features.bedrooms} rec</span>` : ''}
+                                ${property.features.bathrooms ? `<span><i class="fas fa-bath"></i> ${property.features.bathrooms} baños</span>` : ''}
+                                ${property.features.construction_size ? `<span><i class="fas fa-ruler-combined"></i> ${property.features.construction_size} m²</span>` : ''}
+                            </div>
+                            <a href="templatepropiedad.html?id=${property.id}" class="popup-link">Ver propiedad</a>
+                        </div>
+                    `;
+
+                    marker.bindPopup(popupContent);
+
+                    // Add marker to cluster group instead of directly to map
+                    markers.addLayer(marker);
+                }
+            });
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('es-MX', {
+                style: 'currency',
+                currency: 'MXN',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(price);
+        }
+    </script>
+
+    <script src="/tierras/Tierrasmx/assets/js/utils.js"></script>
+    <script src="/tierras/Tierrasmx/assets/js/localization.js"></script>
+    <script src="/tierras/Tierrasmx/assets/js/main.js"></script>
+    <script src="/tierras/Tierrasmx/assets/js/search.js"></script>
+    <script src="/tierras/Tierrasmx/assets/js/notifications.js"></script>
+    <script src="/tierras/Tierrasmx/assets/js/real_time_updates.js"></script>
     <script>
         // DOM Content Loaded Event
         document.addEventListener('DOMContentLoaded', function() {
             initializeMobileMenu();
             initializeSearchForm();
+            initializeFilters();
             initializeFavoriteButtons();
             initializePropertyCards();
             initializeRecommendationSystem();
             initializePagination();
+
+            // Load initial properties
+            loadProperties();
         });
 
         // Mobile Menu Functionality
@@ -1695,7 +1513,7 @@
         function initializeSearchForm() {
             const searchInput = document.getElementById('location-search');
             const searchButton = document.querySelector('.search-button');
-            
+
             if (searchInput) {
                 // Handle Enter key in search input
                 searchInput.addEventListener('keypress', function(e) {
@@ -1714,6 +1532,104 @@
             }
         }
 
+        // Initialize Filters Functionality
+        function initializeFilters() {
+            const applyFiltersBtn = document.querySelector('.apply-filters');
+            const resetButtons = document.querySelectorAll('.filter-section button');
+
+            if (applyFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    applyFilters();
+                });
+            }
+
+            // Handle reset buttons
+            resetButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const filterSection = this.closest('.filter-section');
+
+                    // Reset checkboxes in this section
+                    const checkboxes = filterSection.querySelectorAll('input[type="checkbox"]');
+                    checkboxes.forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+
+                    // Reset select dropdowns in this section
+                    const selects = filterSection.querySelectorAll('select');
+                    selects.forEach(select => {
+                        select.selectedIndex = 0;
+                    });
+
+                    // Reset input fields in this section
+                    const inputs = filterSection.querySelectorAll('input[type="text"]');
+                    inputs.forEach(input => {
+                        input.value = '';
+                    });
+
+                    // Apply filters after reset
+                    applyFilters();
+                });
+            });
+        }
+
+        // Apply Filters Function
+        function applyFilters() {
+            const filters = {};
+
+            // Get location from search input
+            const locationInput = document.getElementById('location-search');
+            if (locationInput && locationInput.value.trim()) {
+                filters.location = locationInput.value.trim();
+            }
+
+            // Get property type
+            const propertyTypeSelect = document.getElementById('property-type');
+            if (propertyTypeSelect && propertyTypeSelect.value !== 'all') {
+                filters.property_type = propertyTypeSelect.value;
+            }
+
+            // Get price range
+            const priceRangeSelect = document.getElementById('price-range');
+            if (priceRangeSelect && priceRangeSelect.value !== 'all') {
+                const priceRanges = {
+                    '0-2000000': { min: 0, max: 2000000 },
+                    '2000000-5000000': { min: 2000000, max: 5000000 },
+                    '5000000+': { min: 5000000, max: null }
+                };
+                const range = priceRanges[priceRangeSelect.value];
+                if (range) {
+                    filters.min_price = range.min;
+                    filters.max_price = range.max;
+                }
+            }
+
+            // Get bedrooms from checkboxes
+            const bedroomCheckboxes = document.querySelectorAll('input[name="bedrooms"]:checked');
+            if (bedroomCheckboxes.length > 0) {
+                const bedroomValues = Array.from(bedroomCheckboxes).map(cb => parseInt(cb.value));
+                filters.bedrooms = Math.max(...bedroomValues);
+            }
+
+            // Get bathrooms from checkboxes
+            const bathroomCheckboxes = document.querySelectorAll('input[name="bathrooms"]:checked');
+            if (bathroomCheckboxes.length > 0) {
+                const bathroomValues = Array.from(bathroomCheckboxes).map(cb => parseFloat(cb.value));
+                filters.bathrooms = Math.max(...bathroomValues);
+            }
+
+            // Get amenities from checkboxes
+            const amenityCheckboxes = document.querySelectorAll('input[name="amenities"]:checked');
+            if (amenityCheckboxes.length > 0) {
+                const amenities = Array.from(amenityCheckboxes).map(cb => cb.value);
+                filters.amenities = amenities.join(',');
+            }
+
+            // Load properties with filters
+            loadProperties(filters);
+        }
+
         // Perform Search Function
         function performSearch() {
             const searchInput = document.getElementById('location-search');
@@ -1730,15 +1646,215 @@
             searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
             searchButton.disabled = true;
 
-            // Simulate search API call
+            // Load properties with search filter
+            loadProperties({ location: location });
+
+            // Reset button
             setTimeout(() => {
-                // Reset button
                 searchButton.innerHTML = originalText;
                 searchButton.disabled = false;
+            }, 500);
+        }
 
-                // Show results notification
-                showNotification(`Buscando propiedades en ${location}...`, 'success');
-            }, 1500);
+        // Load Properties Function
+        function loadProperties(filters = {}) {
+            const propertyGrid = document.getElementById('propertyGrid');
+
+            // Show loading state
+            propertyGrid.innerHTML = `
+                <div class="loading-properties" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                    <div class="spinner" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; border: 3px solid #dbeafe; border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                    <p style="color: #6b7280;">Cargando propiedades...</p>
+                </div>
+            `;
+
+            // Build query string from filters
+            const queryParams = new URLSearchParams();
+            if (filters.location) queryParams.append('location', filters.location);
+            if (filters.property_type && filters.property_type !== 'all') queryParams.append('property_type', filters.property_type);
+            if (filters.min_price) queryParams.append('min_price', filters.min_price);
+            if (filters.max_price) queryParams.append('max_price', filters.max_price);
+            if (filters.bedrooms) queryParams.append('bedrooms', filters.bedrooms);
+            if (filters.bathrooms) queryParams.append('bathrooms', filters.bathrooms);
+
+            // Fetch properties from API
+            fetch(`get_properties.php?${queryParams.toString()}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.properties && data.properties.length > 0) {
+                        renderProperties(data.properties);
+                        updateResultsCount(data.total);
+                    } else {
+                        showNoResults();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading properties:', error);
+                    showError('Error al cargar las propiedades. Inténtalo de nuevo.');
+                });
+        }
+
+        // Render Properties Function
+        function renderProperties(properties) {
+            const propertyGrid = document.getElementById('propertyGrid');
+            propertyGrid.innerHTML = '';
+
+            properties.forEach(property => {
+                const propertyCard = createPropertyCard(property);
+                propertyGrid.appendChild(propertyCard);
+            });
+        }
+
+        // Create Property Card Function
+        function createPropertyCard(property) {
+            const card = document.createElement('div');
+            card.className = 'property-card';
+            card.dataset.id = property.id;
+
+            // Format price
+            const formattedPrice = new Intl.NumberFormat('es-MX', {
+                style: 'currency',
+                currency: 'MXN',
+                minimumFractionDigits: 0
+            }).format(property.price);
+
+            // Parse location for hierarchy
+            const locationParts = property.location ? property.location.split(',') : [];
+            const estado = locationParts[1]?.trim() || 'México';
+            const ciudad = locationParts[0]?.trim() || property.location || 'Ubicación';
+
+            // Parse amenities
+            let amenities = [];
+            if (property.amenities) {
+                try {
+                    amenities = JSON.parse(property.amenities);
+                } catch (e) {
+                    amenities = property.amenities.split(',');
+                }
+            }
+
+            card.innerHTML = `
+                <div class="property-image">
+                    <img src="${property.image_url || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'}"
+                         alt="${property.title || 'Propiedad'}">
+                    <div class="property-badge sale">En Venta</div>
+                    <div class="property-badge mx">
+                        <i class="fas fa-flag"></i> México
+                    </div>
+                    <button class="favorite-btn" aria-label="Guardar propiedad como favorita">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="property-content">
+                    <div class="property-price">
+                        <i class="fas fa-coins" aria-hidden="true"></i>
+                        <span class="mxn-price">${formattedPrice}</span>
+                    </div>
+                    <div class="property-address">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        ${ciudad}
+                    </div>
+                    <div class="location-hierarchy">
+                        <span class="location-item">${estado}</span>
+                        <span class="location-separator">></span>
+                        <span class="location-item">${ciudad}</span>
+                    </div>
+                    <div class="property-stats">
+                        ${property.bedrooms ? `<div class="stat">
+                            <i class="fas fa-bed" aria-hidden="true"></i>
+                            ${property.bedrooms} recámaras
+                        </div>` : ''}
+                        ${property.bathrooms ? `<div class="stat">
+                            <i class="fas fa-bath" aria-hidden="true"></i>
+                            ${property.bathrooms} baños
+                        </div>` : ''}
+                        ${property.size ? `<div class="stat">
+                            <i class="fas fa-ruler-combined" aria-hidden="true"></i>
+                            ${property.size} m²
+                        </div>` : ''}
+                    </div>
+                    <div class="property-features">
+                        ${amenities.slice(0, 3).map(amenity => `
+                            <span class="feature-badge ${amenity.toLowerCase().includes('seguridad') ? 'seguridad' : ''}">
+                                <i class="fas fa-${getAmenityIcon(amenity)}" aria-hidden="true"></i> ${amenity.trim()}
+                            </span>
+                        `).join('')}
+                    </div>
+                    <p class="property-description">${property.description || 'Descripción no disponible'}</p>
+                    <a href="templatepropiedad.html?id=${property.id}" class="view-property">
+                        Ver propiedad <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        <span class="sr-only">en ${ciudad}</span>
+                    </a>
+                </div>
+            `;
+
+            // Add click handler for the entire card
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking favorite button
+                if (e.target.closest('.favorite-btn')) {
+                    return;
+                }
+
+                // Navigate to property detail page
+                window.location.href = `templatepropiedad.html?id=${property.id}`;
+            });
+
+            return card;
+        }
+
+        // Get Amenity Icon Function
+        function getAmenityIcon(amenity) {
+            const amenityLower = amenity.toLowerCase();
+            if (amenityLower.includes('seguridad') || amenityLower.includes('vigilancia')) return 'shield-alt';
+            if (amenityLower.includes('estacionamiento') || amenityLower.includes('parking')) return 'car';
+            if (amenityLower.includes('gas')) return 'utensils';
+            if (amenityLower.includes('agua')) return 'tint';
+            if (amenityLower.includes('alberca') || amenityLower.includes('piscina')) return 'swimming-pool';
+            if (amenityLower.includes('jardín') || amenityLower.includes('garden')) return 'tree';
+            return 'check';
+        }
+
+        // Update Results Count Function
+        function updateResultsCount(total) {
+            const resultsCount = document.querySelector('.results-count');
+            if (resultsCount) {
+                resultsCount.textContent = `${total} propiedades encontradas`;
+            }
+        }
+
+        // Show No Results Function
+        function showNoResults() {
+            const propertyGrid = document.getElementById('propertyGrid');
+            propertyGrid.innerHTML = `
+                <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                    <div class="no-results-icon" style="font-size: 3rem; color: #e5e7eb; margin-bottom: 1rem;">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">No se encontraron propiedades</h3>
+                    <p style="color: #6b7280; max-width: 32rem; margin: 0 auto;">
+                        No hay propiedades que coincidan con tus criterios de búsqueda. Intenta ajustar los filtros.
+                    </p>
+                </div>
+            `;
+        }
+
+        // Show Error Function
+        function showError(message) {
+            const propertyGrid = document.getElementById('propertyGrid');
+            propertyGrid.innerHTML = `
+                <div class="error-state" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                    <div class="error-icon" style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Error al cargar propiedades</h3>
+                    <p style="color: #6b7280; max-width: 32rem; margin: 0 auto;">
+                        ${message}
+                    </p>
+                    <button onclick="loadProperties()" style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #2563eb; color: white; border: none; border-radius: 0.375rem; cursor: pointer;">
+                        Reintentar
+                    </button>
+                </div>
+            `;
         }
 
         // Favorite Buttons Functionality

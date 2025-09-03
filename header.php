@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($pageTitle) ? $pageTitle : 'Tierras.mx - Agentes. Visitas. Créditos. Casas.'; ?></title>
+    <title><?php echo isset($pageTitle) ? $pageTitle : 'Tierras.mx - Agentes. Visitas. Financiamiento. Tu Casa.'; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&subset=latin,latin-ext&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="Tierrasmx/assets/css/main.css">
+    <link rel="stylesheet" href="Tierrasmx/assets/css/responsive.css">
     <style>
     .user-menu {
         display: flex;
@@ -60,7 +60,7 @@
     <header class="header">
         <div class="header-container container">
             <a href="index.php" class="logo">
-                <i class="fas fa-home logo-icon"></i>
+                <img src="Tierrasmx/assets/images/logo.png" alt="Tierras.mx Logo" class="logo-icon">
                 Tierras.mx
             </a>
             <nav class="primary-nav">
@@ -113,7 +113,6 @@
                     </div>
                 <?php else: ?>
                     <button class="search-button" onclick="window.location.href='login.html'">Iniciar Sesión</button>
-                    <button class="search-button" onclick="window.location.href='register.php'">Unirse</button>
                 <?php endif; ?>
 
                 <div class="notification-container">
@@ -168,8 +167,8 @@
                     <button class="btn btn-primary w-100" onclick="window.location.href='logout.php'">Cerrar Sesión</button>
                 <?php else: ?>
                     <button class="btn btn-ghost w-100" onclick="window.location.href='login.html'">Iniciar Sesión</button>
-                    <button class="btn btn-primary w-100" onclick="window.location.href='register.php'">Unirse</button>
                 <?php endif; ?>
             </div>
         </nav>
     </header>
+    
